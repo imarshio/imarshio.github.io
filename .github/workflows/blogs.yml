@@ -45,8 +45,8 @@ jobs:
         if: success()
         uses: crazy-max/ghaction-github-pages@v4
         with:
-          # deploy to gh-pages branch
-          target_branch: gh-pages
+          # deploy to blogs branch
+          target_branch: blogs
           # deploy the default output dir of VuePress
           build_dir: blogs/.vuepress/dist
         env:
