@@ -1,12 +1,12 @@
 import { defineUserConfig } from 'vuepress'
 import { defaultTheme } from 'vuepress'
 
-export default {
+export default defineUserConfig({
   lang: 'en-US',
   title: 'marshio',
   description: 'marshio.',
   head: [
-    ['link', { rel: 'icon', href: '/public/images/horse.ico' }]
+    ['link', { rel: 'icon', href: '/images/logo/favicon.ico' }]
   ],
   // 语言选项
   // locales: {
@@ -25,22 +25,22 @@ export default {
   // },
   // public: './.vuepress/assets',
   theme: defaultTheme({
-    logo: '/assets/image/horse.ico',
+    logo: '/images/logo/favicon.ico',
     // navgation
     navbar: [
-      { text: 'Home', link: '/' },
-      { text: 'Projects', link: '/projects' },
-      { text: 'Blogs', link: '/blogs' },
-      { text: 'Books', link: '/books' },
-      { text: 'Tools', link: '/tools' },
-      { text: 'Me', link: '/me' }
+      { text: 'Home', link: '/.index' },
+      { text: 'Projects', link: '/post/projects/' },
+      { text: 'Blogs', link: '/post/blogs/' },
+      { text: 'Books', link: '/post/books/' },
+      { text: 'Tools', link: '/post/tools/' },
+      { text: 'Me', link: '/post/me' }
     ],
     sidebarDepth: 3,
     // sidebar: [
 
     // ]
   })
-}
+})
 
 // module.exports = {
 //   title: 'marshio',

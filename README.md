@@ -171,6 +171,71 @@ pnpm blogs-dev
 
 参考文档：<https://v2.vuepress.vuejs.org/guide/deployment.html>
 
+需要在项目下新建一个目录`.github/workflows/${name it}.yml`，我这里使用的是blogs，即我新建的文件目录为`.github/workflows/blogs.yml`。
+
+默认配置如下
+
+```yaml
+# Github Workflow的名称，可以在Github Actions页面看到
+name: blogs
+
+# 启动条件，即只有在触发如下条件的情况下才会这个Workflow才会执行部署
+on:
+  # trigger deployment on every push to main branch
+  # 指定只有当
+  push:
+    branches: [main]
+  # trigger deployment manually
+  workflow_dispatch:
+
+jobs:
+  blogs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # fetch all commits to get last updated time or other git log info
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          # choose pnpm version to use
+          version: 8
+          # install deps with pnpm
+          run_install: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          # choose node.js version to use
+          node-version: 18.19.0
+          # cache deps for pnpm
+          cache: pnpm
+
+      # run build script
+      - name: Build VuePress site
+        run: pnpm blogs:build
+
+      # please check out the docs of the workflow for more details
+      # @see https://github.com/crazy-max/ghaction-github-pages
+      - name: Deploy to GitHub Pages
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          # deploy to blogs branch
+          target_branch: blogs
+          # deploy the default output dir of VuePress
+          build_dir: blogs/.vuepress/dist
+        env:
+          # @see https://docs.github.com/en/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+```
+
 - 详细使用请参考
 
 [官网-快速上手](https://v2.vuepress.vuejs.org/guide/getting-started.html)
@@ -194,3 +259,17 @@ pnpm blogs-dev
 - 其他，完成整理沉淀之后，会对后续的方向、短期规划做一下扩展，比如吃透一个中间件，读一些好书
 
 就酱吧，目前。
+
+## 更新日志
+
+### 2024.1.9 小站浴火重生
+
+这一天，小马同学对小站的再次改造成功发布了第一版
+
+### 2021 小站2.0元年
+
+这一年，小马同学离开了生活了近三年的学校-石铁大，踏上了社会的征程，也是这一年小站被初次翻新，这次的翻新我是在一片朦胧中走过来，靠着百度大法好的加成，成功的借助着Hexo和官方提供的部署脚本让小站有了较好的面容。
+
+### 2019.6 小站诞生
+
+这一年，应主任的号召，同学们纷纷开启了Github的魔法之门，并建立了自己的门面网站，当时的页面简简单单，我印象中只有几行类似简历内容的话术。

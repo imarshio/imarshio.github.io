@@ -1,7 +1,7 @@
 ---
 lang: en-US
 title: projects
-description: marshio's projects show
+description: 虚心接受自己的不足，然后找机会与时间去弥补自己的不足，你会慢慢体会到高处不胜寒的感觉。
 ---
 
 ## Springboot Demo
@@ -10,8 +10,8 @@ description: marshio's projects show
 
 ### [Java Log Framwork](https://github.com/imarshio/springboot-demo/tree/main/demo-log)
 
-[Log](./projects/springboot-demo/log//log.md)
+[Log](./springboot-demo/log/log.md)
 
 ### [Springboot Annotation](https://github.com/imarshio/springboot-demo/tree/main/demo-annotation)
 
-[Transaction](./projects/springboot-demo/annotation/transaction.md)
+[Transaction](./springboot-demo/annotation/transaction.md)

@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "blogs:dev": "vuepress dev blogs",
-    "blogs:build": "vuepress build blogs"
+    "blog:dev": "vuepress dev blog",
+    "blog:build": "vuepress build blog",
+    "dev": "pnpm blog:dev",
+    "build": "pnpm blog:build"
   },
   "keywords": [],
   "author": "",
