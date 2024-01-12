@@ -1,4 +1,4 @@
-name: blogs
+name: blog
 
 on:
   # trigger deployment on every push to main branch
@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  blogs:
+  blog:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -45,10 +45,10 @@ jobs:
         if: success()
         uses: crazy-max/ghaction-github-pages@v4
         with:
-          # deploy to blogs branch
-          target_branch: blogs
+          # deploy to blog branch
+          target_branch: blog
           # deploy the default output dir of VuePress
-          build_dir: blogs/.vuepress/dist
+          build_dir: blog/.vuepress/dist
         env:
           # @see https://docs.github.com/en/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

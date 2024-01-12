@@ -1,7 +1,7 @@
 ---
 lang: en-US
 title: README
-description: marshio's blogs site
+description: marshio's blog site
 ---
 
 
@@ -145,8 +145,8 @@ pnpm add -D vuepress@next @vuepress/client@next vue
   "main": "index.js",
   "scripts": {
     // 在这里添加如下两行启动脚本
-    "blogs-dev": "vuepress dev blogs",
-    "blogs-build": "vuepress build blogs"
+    "blog-dev": "vuepress dev blog",
+    "blog-build": "vuepress build blog"
   },
   "keywords": [],
   "author": "",
@@ -162,7 +162,7 @@ pnpm add -D vuepress@next @vuepress/client@next vue
 - 启动
 
 ```sh
-pnpm blogs-dev
+pnpm blog-dev
 ```
 
 在浏览器输入<http://localhost:8080/> 如果你能看到你输入的字符就代表大功告成。
@@ -252,7 +252,7 @@ jobs:
 
 - 主题，目前使用的是官方默认主题，大家都知道这个主题非常的简洁易用，但是我个人对博客的感觉还是会带一些其他的期待，要在简洁的同时兼顾美感，经过一番筛选，最终确定了未来将要扩展的主题为：[hope](https://theme-hope.vuejs.press/)
 
-- 迁移，之前写的一些blogs都会相继迁移到新的blog中，敬请期待啊
+- 迁移，之前写的一些blog都会相继迁移到新的blog中，敬请期待啊
 
 - 部署，虽然部署的文档流程已经通读完成了，但是还没有进行详细的操作，其中涉及到了[Github Actions](https://github.com/features/actions)
 

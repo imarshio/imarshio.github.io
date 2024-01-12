@@ -1,7 +1,7 @@
 ---
 lang: en-US
 title: marshio
-description: marshio's blogs site
+description: marshio's blog site
 ---
 
 ## marshio

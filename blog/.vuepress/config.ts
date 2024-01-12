@@ -44,7 +44,7 @@ export default defineUserConfig({
 
 // module.exports = {
 //   title: 'marshio',
-//   description: 'marshio\'s blogs',
+//   description: 'marshio\'s blog',
 //   themeConfig: {
 
 //   }
