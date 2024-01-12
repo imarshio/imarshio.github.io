@@ -171,13 +171,13 @@ pnpm blog-dev
 
 参考文档：<https://v2.vuepress.vuejs.org/guide/deployment.html>
 
-需要在项目下新建一个目录`.github/workflows/${name it}.yml`，我这里使用的是blogs，即我新建的文件目录为`.github/workflows/blogs.yml`。
+需要在项目下新建一个目录`.github/workflows/${name it}.yml`，我这里使用的是blog，即我新建的文件目录为`.github/workflows/blog.yml`。
 
 默认配置如下
 
 ```yaml
 # Github Workflow的名称，可以在Github Actions页面看到
-name: blogs
+name: blog
 
 # 启动条件，即只有在触发如下条件的情况下才会这个Workflow才会执行部署
 on:
@@ -189,7 +189,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  blogs:
+  blog:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -218,7 +218,7 @@ jobs:
 
       # run build script
       - name: Build VuePress site
-        run: pnpm blogs:build
+        run: pnpm blog:build
 
       # please check out the docs of the workflow for more details
       # @see https://github.com/crazy-max/ghaction-github-pages
@@ -226,10 +226,10 @@ jobs:
         if: success()
         uses: crazy-max/ghaction-github-pages@v4
         with:
-          # deploy to blogs branch
-          target_branch: blogs
+          # deploy to blog branch
+          target_branch: blog
           # deploy the default output dir of VuePress
-          build_dir: blogs/.vuepress/dist
+          build_dir: blog/.vuepress/dist
         env:
           # @see https://docs.github.com/en/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
