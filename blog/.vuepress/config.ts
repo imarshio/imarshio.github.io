@@ -28,12 +28,56 @@ export default defineUserConfig({
     logo: '/images/logo/favicon.ico',
     // navgation
     navbar: [
-      { text: 'Home', link: '/.index' },
-      { text: 'Projects', link: '/post/projects/' },
-      { text: 'Blogs', link: '/post/blogs/' },
-      { text: 'Books', link: '/post/books/' },
-      { text: 'Tools', link: '/post/tools/' },
-      { text: 'Me', link: '/post/me' }
+      {
+        text: 'Home',
+        link: '/'
+      },
+      {
+        text: 'Projects',
+        link: '/post/projects/',
+        children: [
+          {
+            text: 'Springboot Demo',
+            link: '/post/projects/#springboot-demo',
+            children: [
+              '/post/projects/springboot-demo/annotation/',
+              '/post/projects/springboot-demo/log/',
+
+            ]
+          },
+          {
+            text: 'Springcloud Alibaba',
+            link: '/post/projects/springcloud-alibaba',
+            children: [
+              // TODO BUG 
+              ''
+            ]
+          },
+          {
+            text: 'Bigdata',
+            link: '/post/projects/big-data',
+            children: [
+              'hadoop'
+            ]
+          }
+        ]
+      },
+      {
+        text: 'Blogs',
+        link: '/post/blogs/'
+      },
+      {
+        text: 'Books',
+        link: '/post/books/'
+      },
+      {
+        text: 'Tools',
+        link: '/post/tools/'
+      },
+      {
+        text: 'Me',
+        link: '/post/me'
+      }
     ],
     sidebarDepth: 3,
     // sidebar: [

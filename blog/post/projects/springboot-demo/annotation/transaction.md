@@ -1,4 +1,10 @@
-# Transactional
+---
+lang: en-US
+title: Transactional
+description: 虚心接受自己的不足，然后找机会与时间去弥补自己的不足，你会慢慢体会到高处不胜寒的感觉。
+tags: 
+---
+
 
 Transactional注解是我们日常开发中经常会用到的注解之一。
 
