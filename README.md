@@ -73,14 +73,6 @@ Path=%PNPM_HOME%;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;%NVM_HOME%;%N
 Setup complete. Open a new terminal to start using pnpm.
 ```
 
-需要注意的是，pnpm同样支持下载Node.js
-
-使用命令 [pnpm env](https://www.pnpm.cn/cli/env) 即可下载Node.js，此命令只支持管理Node.js的版本
-
-```shell
-pnpm env use --global 18.19.0
-```
-
 #### Mac
 
 正常方式下，我们会通过先安装Node.js（版本大于等于16.14）,然后通过homebrew安装pnpm。
@@ -163,24 +155,24 @@ source /Users/marshio/.zshrc
 可以发现，我只需要下载一个pnpm即可，然后再通过命令`pnpm env --global 18.19.0`就完成了环境搭建的先决条件准备。
 可能一些人会疑惑？那vue和vuepress呢？`vue`和`vuepress`都可以通过`pnpm add`添加到项目依赖，即`vue`和`vuepress`。
 
-### 详细步骤
+### 初始化详细步骤
 
 - 安装pnpm
 
-```powershell
-iwr https://get.pnpm.io/install.ps1 -useb | iex
-```
+根据系统选择
 
-- 通过pnpm env 安装Node.js
+- 通过pnpm 安装Node.js
 
-```powershell
+```sh
 pnpm env use --global 18.19.0
 ```
 
 - 在本地创建项目目录`/demo.github.io`
 - 初始化（git、pnpm）
 
-```shell
+Windows和Mac命令相同
+
+```sh
 D:\Code\MS\imarshio.github.io>git init
 Initialized empty Git repository in D:/Code/MS/imarshio.github.io/.git/
 
@@ -203,7 +195,7 @@ Wrote to D:\Code\MS\imarshio.github.io\package.json
 
 - 添加相关依赖
 
-```shell
+```sh
 # 在项目目录下执行如下命令
 pnpm add -D vuepress@next @vuepress/client@next vue
 ```
@@ -313,7 +305,35 @@ jobs:
 
 ```
 
-- 详细使用请参考
+### 非初始化启动
+
+- 环境准备
+
+  - pnpm
+  - git
+
+- git clone到项目目录
+
+```sh
+git clone https://github.com/imarshio/imarshio.github.io.git
+```
+
+- 依赖下载
+
+```sh
+pnpm install
+```
+
+- 启动
+
+```sh
+pnpm blog-dev
+```
+
+在浏览器输入[http://localhost:8080/](http://localhost:8080/) 如果你能看到你输入的字符就代表大功告成。
+
+
+### vuepress的详细使用
 
 [官网-快速上手](https://v2.vuepress.vuejs.org/guide/getting-started.html)
 
