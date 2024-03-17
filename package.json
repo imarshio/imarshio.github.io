@@ -1,0 +1,19 @@
+{
+  "name": "imarshio.github.io",
+  "version": "3.0.0",
+  "description": "Marshio's Blog",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "blog:build": "vuepress-vite build blog",
+    "blog:clean-dev": "vuepress-vite dev blog --clean-cache",
+    "blog:dev": "vuepress-vite dev blog",
+    "blog:update-package": "pnpm dlx vp-update"
+  },
+  "devDependencies": {
+    "@vuepress/bundler-vite": "2.0.0-rc.8",
+    "vue": "^3.4.16",
+    "vuepress": "2.0.0-rc.8",
+    "vuepress-theme-hope": "2.0.0-rc.29"
+  }
+}
