@@ -1,1 +1,0 @@
-import{_ as t,o as a,c as _,d as e,e as c}from"./app-aHnCpnqG.js";const o={},r=e("h2",{id:"架构演进",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#架构演进","aria-hidden":"true"},"#"),c(" 架构演进")],-1),s=[r];function n(d,i){return a(),_("div",null,s)}const l=t(o,[["render",n],["__file","凤凰架构.html.vue"]]);export{l as default};
