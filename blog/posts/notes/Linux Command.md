@@ -17,16 +17,14 @@ tag:
 - [https://phoenixnap.com/kb/linux-commands](https://phoenixnap.com/kb/linux-commands)（推荐）
 - [https://www.runoob.com/linux/linux-command-manual.html](https://www.runoob.com/linux/linux-command-manual.html)
 - [https://www.linuxcool.com/](https://www.linuxcool.com/)
-- 
-
+-
 
 > 如下命令使用中，
+>
 > - []    代表可选参数，
 > - <> 代表可自由输入输入的字符
 > - -     后面跟的是缩写
 > - --    后面跟的是全拼
-
-
 
 # 文件
 
@@ -52,16 +50,18 @@ tag:
 | f    | 强制删除                   |
 | r    | 将目录及之下的文件逐一删除 |
 
-
-
 # 查看
 
 ## cat
+
 `concatenate fiels and print`，接所有指定文件并将结果写到标准输出 。
+
 ### 用法
+
 `cat [选项]... [文件]...`
 
 ### 常用参数
+
 |     |     |     |
 | --- | --- | --- |
 |     |     |     |
@@ -69,31 +69,36 @@ tag:
 
 ### 常用场景
 
-
 ## tail
-```shell
+
+```sh
 # 常用的查看生产日志的命令
 tail -f -n 200 log.log
 ```
 
 # 编辑
+
 ## vi
 
 ## vim
-## 
-
 
 ## sed
+
 Stream EDitor，流式编辑器，类似awk，但是没有awk功能强大，但相对简单。
+
 ### 用法
+
 `sed [OPTION]... {script-only-if-no-other-script} [input-file]...`
+
 ### 参数
+
 | 参数 | 说明                                                                          |
 | ---- | ----------------------------------------------------------------------------- |
 | i    | 直接修改读取的文件内容，`sed -i 's///'`，支持的界定符:`/`、`@`、`#`、`&#124;` |
 |      |                                                                               |
 
 ### 举例
+
 ```shell
 # 将/home/text.txt文件中的oldstr替换成newstr
 sed -i 's/oldstr/newstr/' /home/text.txt
@@ -103,22 +108,28 @@ sed -i 's/oldstr/newstr/g' /home/text.txt
 
 # 如下测试用例，创建两个txt文件，写入abcabca\nabcabcabca
 ```
+
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/21953536/1679498606268-77b52d4f-a471-4efb-a2e4-b2badb8ae9c8.png#averageHue=%232a343e&clientId=u5ce6f6a9-7c29-4&from=paste&height=347&id=u7873d025&originHeight=347&originWidth=448&originalType=binary&ratio=1&rotation=0&showTitle=false&size=17823&status=done&style=none&taskId=u4addc969-37de-46d6-9f9d-fdb9ef37560&title=&width=448)
 
-
 # 进程
+
 ## top
+
 `top`命令可以实时显示系统的运行状态，包括CPU、内存、进程，类似Windows的**任务管理器**，但是更强大，能帮助我们排查服务器异常。
 
 ### 用法
+
 `top -hv | -bcHiOSs -d secs -n max -u|U user -p pid(s) -o field -w [cols]`
+
 ### 常用参数
+
 | 参数 | 说明 | 用例 |
 | ---- | ---- | ---- |
 |      |      |      |
 |      |      |      |
 
 ### 输出说明
+
 ![image.png](/assets/images/LinuxCommand-20240318-0002.png)
 第一排：
 
@@ -129,51 +140,54 @@ sed -i 's/oldstr/newstr/g' /home/text.txt
 第二排
 
 - `Tasks: 107 total`：进程数量
-   - `running`：运行中的进程
-   - `sleeping`：sleeping状态中的进程
-   - `stopped`：停止的进程
-   - `zombie`：僵尸进程
+  - `running`：运行中的进程
+  - `sleeping`：sleeping状态中的进程
+  - `stopped`：停止的进程
+  - `zombie`：僵尸进程
 
 第三排
 
 - `%Cpu(s)`:  
-   - `us`：用户使用CPU
-   - `sy`
-   - `ni`
-   - `id`
-   - `wa`
-   - `hi`
-   - `si`
-   - `st`
+  - `us`：用户使用CPU
+  - `sy`
+  - `ni`
+  - `id`
+  - `wa`
+  - `hi`
+  - `si`
+  - `st`
 
 第四排/第五排
 
 - `KiB Mem` ：以KiB为单位的内存信息
-   - `total`,  服务器总内存大小
-   - `free`,   未被使用的内存
-   - `used`,   目前进程占用的内存
-   - `buff/cache`：缓冲区所占内存
+  - `total`,  服务器总内存大小
+  - `free`,   未被使用的内存
+  - `used`,   目前进程占用的内存
+  - `buff/cache`：缓冲区所占内存
 - `KiB Swap`：交换区大小，详细信息可参考：[Swap](https://baike.baidu.com/item/SWaP/2666174?fr=aladdin)
-   - `total`：
-   - `free`：
-   - `used`：
-   - `avail Mem`： 
+  - `total`：
+  - `free`：
+  - `used`：
+  - `avail Mem`：
 
 其他信息
 
-- PID 
+- PID
 - USER
 - PR  
-- NI    
-- VIRT    
-- RES    
-- SHR S 
-- %CPU 
-- %MEM     
-- TIME+ 
-- COMMAND        
+- NI
+- VIRT
+- RES
+- SHR S
+- %CPU
+- %MEM
+- TIME+
+- COMMAND
+
 # 网络
+
 ## ping
+
 packet Internet grouper，是一种因特网包探索器，用于测试网络连接量的程序。
 ping是TCP/IP体系中应用层的一个命令。
 ping可以通过向目标IP发送一个ICMP（Internet Control Message Protocol，因特网报文控制信息协议）报文，测试目的IP是否可达及了解其有关状态。
@@ -182,7 +196,9 @@ ping可以通过向目标IP发送一个ICMP（Internet Control Message Protocol�
 
 - 检测网络连通性
 - 检测时延
+
 ## netstat
+
 显示网络状态。
 **参数**
 
@@ -191,19 +207,19 @@ ping可以通过向目标IP发送一个ICMP（Internet Control Message Protocol�
 | `-a --all` | 显示所有的Socket |
 |            |                  |
 
-
-
 ```shell
 netstat -lnt
 ```
+
 ## ps
+
 Process Status，用于显示当前进程的状态。
 用法：
 `ps [options]`
 `ps [--help]`
 
-
 ### 🌰
+
 ```shell
 # 查找所有的Java进程  -a代表查询所有 | 代表管道  grep代表过滤出
 ps -a | grep java
@@ -213,8 +229,10 @@ ps -a | grep java | grep -v grep
 ```
 
 #### 根据PID查找工作目录
+
 场景：有一个服务A被同事上线了，但是你不知道这个服务部署在哪了，只知道部署在了哪台服务器以及服务的名称，那么此时你该如何定位到这个服务部署在哪个目录下了呢？
 方法1：
+
 ```shell
 # 查找服务PID
 ps -ef | grep 'service name'
@@ -235,11 +253,13 @@ cd 18486
 
 # 查看cwd对应的引用值即当前工作目录
 ```
+
 可以参考：
 
 - [proc](https://tldp.org/LDP/Linux-Filesystem-Hierarchy/html/proc.html)
 
 方法2：
+
 ```shell
 # 直接根据lsof 命令查找工作目录
 # 找到PID
@@ -248,20 +268,23 @@ ps -ef | grep 'service name'
 # 查找相关信息
 lsof -p PID
 ```
+
 # 查找
+
 ## find
 
-## locate 
+## locate
+
 ```shell
 locate file
 ```
 
-
-
-
 # 系统管理
+
 ## sudo
+
 查看拥有sudo权限的用户：` /etc/sudoers `
+
 ```shell
 # 非root用户但拥有sudo权限的用户更改其他用户的密码
 # 先删除该用户密码
@@ -272,6 +295,7 @@ sudo -u user1 passwd
 ```
 
 ## uname
+
 unix name，用于显示操作系统信息，如内核版本、主机名、处理器等。
 
 | 参数 | 说明                                                                       |
@@ -284,10 +308,13 @@ unix name，用于显示操作系统信息，如内核版本、主机名、处�
 | p    | 显示处理器类型                                                             |
 
 # Linux三剑客
+
 可参考：[https://www.jianshu.com/p/f1402e96c9dd](https://www.jianshu.com/p/f1402e96c9dd)
+
 ## grep
+
 global search regular expression and print out the line，全局正则表达式搜索并打印该行，俗称管道，类似一层过滤网，多上一层命令的结果集进行过滤.
-用法：`grep [options] <pattern> `
+用法：`grep [options] <pattern>`
 
 参数
 
@@ -296,18 +323,13 @@ global search regular expression and print out the line，全局正则表达式�
 |      |      |
 |      |      |
 
-
 ## awk
-
 
 ## sed
 
-
-
 # 命令手册
+
 出自：
+
 - [https://phoenixnap.com/kb/wp-content/uploads/2022/11/linuxCommandsAllUsersShouldKnow.pdf](https://phoenixnap.com/kb/wp-content/uploads/2022/11/linuxCommandsAllUsersShouldKnow.pdf)
 - [linuxCommandsAllUsersShouldKnow.pdf](https://www.yuque.com/attachments/yuque/0/2023/pdf/21953536/1677561001341-bb64ab76-4777-4fce-a4e5-e637ea631274.pdf)
-
-
-

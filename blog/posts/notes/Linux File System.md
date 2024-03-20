@@ -8,8 +8,7 @@ title: Linux File System
 
 ---
 
-# Linux文件系统
-
+## Linux文件系统
 
 ![image.png](/assets/images/LinuxFileSystem-20240318-0001.png)
 

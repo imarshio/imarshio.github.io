@@ -17,7 +17,6 @@ tag:
 
 # Logging Framework
 
-
 ## 日志框架
 
 目前常用的日志框架有log4j,slf4j,,logback,这些日志框架可以分为两种类型：日志门面和日志实现
@@ -845,4 +844,3 @@ public class SLF4JApplication {
 ### 核心组件
 
 ### 配置
-
