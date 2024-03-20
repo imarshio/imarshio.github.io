@@ -20,15 +20,15 @@ title: Design Patterns
 - 接口隔离原则：使用多个专门的接口，而不是使用单一的接口，即可用户端不应该依赖于那些它不需要的接口
 - 合成复用原则：优先使用合成，次使用继承
 
-
 ## 创建型
+
 - 简单工厂模式（Simple Factory Pattern）
 - 工厂方法模式（Factory Method Pattern）
 - 抽象工厂模式（Abstract Factory Pattern）
 - 单例模式（Singleton Pattern）
 - 生成器模式（Builder Pattern）
 - 原型模式（Prototype Pattern）
-    
+
 简单工厂模式不属于23种设计模式
 
 ## 结构型

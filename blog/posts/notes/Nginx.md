@@ -5,25 +5,32 @@ category:
   - Nginx
 title: Nginx
 tag:
-- nginx
+- Nginx
+- Linux
 
 ---
 
-# 介绍
+
 
 官网：[http://nginx.org/](http://nginx.org/)
+
 下载地址：[http://nginx.org/en/download.html](http://nginx.org/en/download.html)
 
-# Linux下安装及使用
+文档：[https://nginx.org/en/docs/](https://nginx.org/en/docs/)
 
 ## 安装
+
 参考：[https://www.runoob.com/linux/nginx-install-setup.html](https://www.runoob.com/linux/nginx-install-setup.html)
+
 ### 安装依赖
+
 ```shell
 # 安装
 yum -y install make zlib zlib-devel gcc-c++ libtool  openssl openssl-devel
 ```
+
 ### 安装PCRE
+
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/21953536/1675267655447-2c113300-0610-42c8-8b39-82706daebf38.png#averageHue=%23242e39&clientId=u32476b06-4201-4&from=paste&height=282&id=u3564989c&originHeight=282&originWidth=2489&originalType=binary&ratio=1&rotation=0&showTitle=false&size=32149&status=done&style=none&taskId=u114720a9-013e-4a2e-8a4c-49c9ba96a38&title=&width=2489)
 进入[pcre下载页](https://sourceforge.net/projects/pcre/)，点击[Files](https://sourceforge.net/projects/pcre/files/)，选择[pcre](https://sourceforge.net/projects/pcre/files/pcre/)，选择要下载的版本，选择下载较多的即可，选中以`tar.gz`结尾的文件右键，复制链接地址，然后回到Linux，使用`wget`下载
 
@@ -133,38 +140,40 @@ chmod 744 /usr/lib/systemd/system/nginx.service
 ## 配置
 
 ### 原始配置
+
 拿到原始配置后，去除被注释的代码后的配置如下所示
+
 ```shell
 # worker进程数，上限取决于服务器的内核数
 worker_processes  1;
 
 events {
 
-  	# 每个worker允许连接的 客户端最大连接数
+   # 每个worker允许连接的 客户端最大连接数
     worker_connections  1024;
 }
 
 http {
-  	# 请求类型
+   # 请求类型
     include       mime.types;
     default_type  application/octet-stream;
 
     sendfile        on;
     keepalive_timeout  65;
 
-  	# 一个server对应一个服务器
+   # 一个server对应一个服务器
     server {
-      	# nginx监听的端口
+       # nginx监听的端口
         listen       80;
-      	# 发起请求的域名或ip，比如baidu.com
+       # 发起请求的域名或ip，比如baidu.com
         server_name  localhost;
-      	# 
+       # 
         location / {
             root   html;
             index  index.html index.htm;
         }
 
-      	# 50x映射地址
+       # 50x映射地址
         error_page   500 502 503 504  /50x.html;
         location = /50x.html {
             root   html;
@@ -178,7 +187,6 @@ http {
 
 ![](https://cdn.nlark.com/yuque/0/2023/jpeg/21953536/1676704375003-a921ce35-ec8d-412c-b685-409f6fd1715e.jpeg)
 
-
 ### 映射静态资源
 
 ```shell
@@ -186,32 +194,32 @@ http {
 
 # 示例1
 server {
-  	# 拦截192.168.130.1:8090的请求
+   # 拦截192.168.130.1:8090的请求
     listen       8090;
     server_name  localhost;
 
-  	# 192.168.130.1:8090/
+   # 192.168.130.1:8090/
     location / {
-      	# 静态资源存放路径
+       # 静态资源存放路径
         root   home/user;
-      	# 想要访问的静态资源，可以是静态页面，也可以是图片，其他
+       # 想要访问的静态资源，可以是静态页面，也可以是图片，其他
         index  index.html index.htm;
     }
 
-  	# 192.168.130.1:8090/demo
+   # 192.168.130.1:8090/demo
     location /demo {
-      	# 静态资源存放位置
-      	root   home/user/demo;
-      	# 默认展示index.html页面
+       # 静态资源存放位置
+       root   home/user/demo;
+       # 默认展示index.html页面
         index  demo.html demo.htm;
     }
 }
 ```
 
-
 ### 二级域名访问
 
 #### 背景
+
 现在有一台服务器，一个域名（starve.fun），四个服务，想要实现通过二级域名的方式访问不同的服务。
 
 - `[nginx.starve.fun](http://nginx.starve.fun)`：80，nginx默认
@@ -222,6 +230,7 @@ server {
 #### 配置
 
 `nginx.conf`
+
 ```shell
 # worker执行用户，需要有对应资源的访问权限
 user  nobody;
@@ -248,10 +257,10 @@ http {
 
     gzip  on;
 
-  	# 引入配置文件
+   # 引入配置文件
     include     ./demo/*.conf;
 
-  	# 默认监听服务nginx，80端口
+   # 默认监听服务nginx，80端口
     server {
         listen       80;
         server_name  www.starve.fun starve.fun;
@@ -298,7 +307,7 @@ server {
     location / {
         root   /home/marshio/demo;
         index  heart.html;
-    }																					
+    }                     
 }
 ```
 
@@ -312,9 +321,9 @@ demo服务
     }
     
     server {
-      	listen	80;
-      	server_name    demo.starve.fun;
-      	location    {
+       listen 80;
+       server_name    demo.starve.fun;
+       location    {
             proxy_pass http://demo;
             proxy_connect_timeout 3s;
             proxy_read_timeout 5s;
@@ -325,8 +334,7 @@ demo服务
 
 ## 配合spring boot使用
 
-
-```shell
+```sh
 user  nobody;
 worker_processes  1;
 
@@ -381,26 +389,25 @@ http {
 }
 ```
 
-
 ## 使用
 
 ### 防盗链
 
 ## 涉及命令
+
 简单的命令不在此赘述，此处只会涉及一些我个人认为**很少使用且相对较难**的命令。
 
 - `tar`，虽然解压工具我也经常使用，但是对于其参数具体的含义还是很模糊，此处还是稍作复习。
-   - `-z`：`--gzip`、`--gunzip`、`--ungzip`，调用gzip执行压缩或解压缩
-   - `-x`：`--extract`、`--get`，解压`tar`文件
-   - `-v`：`--verbose`，列出每一步处理涉及的文件信息，只用一个`v`时，仅列出文件名，使用两个`v`时，列出权限、所有者、大小、时间、文件名等信息
-   - `-f`：`--file`，指定要处理的文件名
+  - `-z`：`--gzip`、`--gunzip`、`--ungzip`，调用gzip执行压缩或解压缩
+  - `-x`：`--extract`、`--get`，解压`tar`文件
+  - `-v`：`--verbose`，列出每一步处理涉及的文件信息，只用一个`v`时，仅列出文件名，使用两个`v`时，列出权限、所有者、大小、时间、文件名等信息
+  - `-f`：`--file`，指定要处理的文件名
 - `ps`，
-   - `-e`
-   - `-f`
+  - `-e`
+  - `-f`
 - `configure`：
 - `make`
 
 参考
 
 - [https://thoughtbot.com/blog/the-magic-behind-configure-make-make-install](https://thoughtbot.com/blog/the-magic-behind-configure-make-make-install)
-
