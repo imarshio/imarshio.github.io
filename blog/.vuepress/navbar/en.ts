@@ -23,15 +23,7 @@ export const enNavbar = navbar([
           { text: "ECS Init", icon: "pen-to-square", link: "ECS Init" },
           { text: "How to build a Blog", icon: "pen-to-square", link: "How to build a Blog" },
           { text: "Linux Command", icon: "pen-to-square", link: "Linux Command" },
-          {
-            text: "Linux",
-            icon: "pen-to-square",
-            link: "Linux",
-            // prefix: "Linux/",
-            // children: [
-              // { text: "Linux Command", icon: "pen-to-square", link: "Linux Command" },
-            // ]
-          },
+          { text: "Linux File System", icon: "pen-to-square", link: "Linux/Linux File System" },
           // "3",
           // "4",
         ],
@@ -54,20 +46,41 @@ export const enNavbar = navbar([
           // "3",
           // "4",
         ],
-      },
-      // {
-      //   text: "Cherry", icon: "pen-to-square", link: "cherry"
-      // },
-      // {
-      //   text: "Dragon Fruit", icon: "pen-to-square", link: "dragonfruit"
-      // },
-      // "tomato",
-      // "strawberry",
+      }
     ],
   },
   // {
-  //   text: "V2 Docs",
-  //   icon: "book",
-  //   link: "https://theme-hope.vuejs.press/",
+  //   text: "books",
+  //   icon: "pen-to-square",
+  //   prefix: "books/",
+  //   children: [
+  //     "1"
+  //   ]
   // },
+  {
+    text: "Tools",
+    icon: "book",
+    prefix: "/tools/",
+    children: [
+      {
+        text: "Java",
+        icon: "pen-to-square",
+        link: "Java Tools"
+        // prefix: "notes/",
+        // children: [
+        //   {
+        //     text: "Logging Frameworks",
+        //     icon: "pen-to-square",
+        //     link: "Logging Frameworks"
+        //     // prefix: "log/"
+        //   }
+        // ],
+      }
+    ],
+  },
+  {
+    text: "V2 Docs",
+    icon: "book",
+    link: "https://theme-hope.vuejs.press/",
+  },
 ]);

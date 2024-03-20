@@ -26,6 +26,7 @@ yum -y install make zlib zlib-devel gcc-c++ libtool  openssl openssl-devel
 ### 安装PCRE
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/21953536/1675267655447-2c113300-0610-42c8-8b39-82706daebf38.png#averageHue=%23242e39&clientId=u32476b06-4201-4&from=paste&height=282&id=u3564989c&originHeight=282&originWidth=2489&originalType=binary&ratio=1&rotation=0&showTitle=false&size=32149&status=done&style=none&taskId=u114720a9-013e-4a2e-8a4c-49c9ba96a38&title=&width=2489)
 进入[pcre下载页](https://sourceforge.net/projects/pcre/)，点击[Files](https://sourceforge.net/projects/pcre/files/)，选择[pcre](https://sourceforge.net/projects/pcre/files/pcre/)，选择要下载的版本，选择下载较多的即可，选中以`tar.gz`结尾的文件右键，复制链接地址，然后回到Linux，使用`wget`下载
+
 ```shell
 # 安装PCRE，让Nginx支持rewrite功能，我们选择的安装目录为/usr/local/src
 cd /usr/local/src
@@ -48,9 +49,11 @@ make && make install
 # 查看pcre版本
 pcre-config --version
 ```
+
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/21953536/1675268379945-1f5e11b5-6e18-4983-9080-01e8f84278fe.png#averageHue=%23bcb4ae&clientId=u90a8284f-7b48-4&from=paste&height=704&id=ubb5caac1&originHeight=704&originWidth=1060&originalType=binary&ratio=1&rotation=0&showTitle=false&size=53790&status=done&style=none&taskId=uf7372233-b1dc-420d-b0c7-5b954bd4401&title=&width=1060)
 
 ### 安装Nginx
+
 ```shell
 # 进入安装目录，此次我们选择的安装目录为/usr/local/src
 cd /usr/local/src
@@ -72,6 +75,7 @@ make && make install
 ```
 
 ## 启停
+
 ```shell
 # 切换到安装目录下
 cd /usr/local/nginx/sbin
@@ -97,6 +101,7 @@ ps -ef | grep nginx
 访问，本机访问输入localhost即可，外网访问只需输入安装机器的ip即可（需要开启80端口访问），因为nginx代理的是80端口。
 
 ## 配置系统服务
+
 ```shell
 # 创建服务脚本
 vim /usr/lib/systemd/system/nginx.service
@@ -123,11 +128,10 @@ WantedBy=multi-user.target
 chmod 744 /usr/lib/systemd/system/nginx.service
 ```
 
-
-
 # Nginx
 
 ## 配置
+
 ### 原始配置
 拿到原始配置后，去除被注释的代码后的配置如下所示
 ```shell
@@ -171,10 +175,12 @@ http {
 ```
 
 ### 配置结构
+
 ![](https://cdn.nlark.com/yuque/0/2023/jpeg/21953536/1676704375003-a921ce35-ec8d-412c-b685-409f6fd1715e.jpeg)
 
 
 ### 映射静态资源
+
 ```shell
 # 假设该服务器IP为192.168.130.1
 
@@ -204,6 +210,7 @@ server {
 
 
 ### 二级域名访问
+
 #### 背景
 现在有一台服务器，一个域名（starve.fun），四个服务，想要实现通过二级域名的方式访问不同的服务。
 
@@ -213,6 +220,7 @@ server {
 - `[demo.starve.fun](http://demo.starve.fun)`：8888/8889/8890，只有`/demo/nginx`可用，需要让其他请求跳转到配置的首页
 
 #### 配置
+
 `nginx.conf`
 ```shell
 # worker执行用户，需要有对应资源的访问权限
@@ -263,6 +271,7 @@ http {
 ```
 
 wechat服务
+
 ```shell
 upstream wechat {
     server 101.132.32.220:8090;
@@ -278,10 +287,10 @@ server {
         index  zmh.html;
     }
 }
-
-
 ```
+
 heart服务
+
 ```shell
 server {
     listen       80;
@@ -292,7 +301,9 @@ server {
     }																					
 }
 ```
+
 demo服务
+
 ```shell
     upstream demo {
         server 101.132.32.220:8888;
@@ -375,7 +386,7 @@ http {
 
 ### 防盗链
 
-# 涉及命令
+## 涉及命令
 简单的命令不在此赘述，此处只会涉及一些我个人认为**很少使用且相对较难**的命令。
 
 - `tar`，虽然解压工具我也经常使用，但是对于其参数具体的含义还是很模糊，此处还是稍作复习。
@@ -392,8 +403,4 @@ http {
 参考
 
 - [https://thoughtbot.com/blog/the-magic-behind-configure-make-make-install](https://thoughtbot.com/blog/the-magic-behind-configure-make-make-install)
-# 涉及工具
-常用工具此处不在多说，此处只会涉及一些我个人认为**很少使用且相对重要**的工具。
-
-- 
 
