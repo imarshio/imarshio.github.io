@@ -2,7 +2,7 @@
 icon: pen-to-square
 date: 2023-09-09
 category:
-  - Log
+  - Logging Framework
 tag:
   - log
   - log4j
@@ -15,7 +15,7 @@ tag:
   - log4j2
 ---
 
-# Log
+# Logging Framework
 
 
 ## 日志框架

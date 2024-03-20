@@ -14,12 +14,24 @@ export const enNavbar = navbar([
         prefix: "notes/",
         children: [
           {
-            text: "log frame",
+            text: "Logging Frameworks",
             icon: "pen-to-square",
-            link: "1",
-            prefix: "log/"
+            link: "Logging Frameworks"
+            // prefix: "log/"
           },
-          // { text: "Apple2", icon: "pen-to-square", link: "2" },
+          { text: "Design Patterns", icon: "pen-to-square", link: "Design Patterns" },
+          { text: "ECS Init", icon: "pen-to-square", link: "ECS Init" },
+          { text: "How to build a Blog", icon: "pen-to-square", link: "How to build a Blog" },
+          { text: "Linux Command", icon: "pen-to-square", link: "Linux Command" },
+          {
+            text: "Linux",
+            icon: "pen-to-square",
+            link: "Linux",
+            // prefix: "Linux/",
+            // children: [
+              // { text: "Linux Command", icon: "pen-to-square", link: "Linux Command" },
+            // ]
+          },
           // "3",
           // "4",
         ],
