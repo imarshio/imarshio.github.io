@@ -29,9 +29,10 @@ tag:
 yum -y install make zlib zlib-devel gcc-c++ libtool  openssl openssl-devel
 ```
 
+![install-dependency.png](/assets/images/Nginx-20240321-0001.png)
+
 ### 安装PCRE
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/21953536/1675267655447-2c113300-0610-42c8-8b39-82706daebf38.png#averageHue=%23242e39&clientId=u32476b06-4201-4&from=paste&height=282&id=u3564989c&originHeight=282&originWidth=2489&originalType=binary&ratio=1&rotation=0&showTitle=false&size=32149&status=done&style=none&taskId=u114720a9-013e-4a2e-8a4c-49c9ba96a38&title=&width=2489)
 进入[pcre下载页](https://sourceforge.net/projects/pcre/)，点击[Files](https://sourceforge.net/projects/pcre/files/)，选择[pcre](https://sourceforge.net/projects/pcre/files/pcre/)，选择要下载的版本，选择下载较多的即可，选中以`tar.gz`结尾的文件右键，复制链接地址，然后回到Linux，使用`wget`下载
 
 ```shell
@@ -57,7 +58,7 @@ make && make install
 pcre-config --version
 ```
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/21953536/1675268379945-1f5e11b5-6e18-4983-9080-01e8f84278fe.png#averageHue=%23bcb4ae&clientId=u90a8284f-7b48-4&from=paste&height=704&id=ubb5caac1&originHeight=704&originWidth=1060&originalType=binary&ratio=1&rotation=0&showTitle=false&size=53790&status=done&style=none&taskId=uf7372233-b1dc-420d-b0c7-5b954bd4401&title=&width=1060)
+![install-pcre.png](/assets/images/Nginx-20240321-0002.png)
 
 ### 安装Nginx
 
@@ -103,11 +104,15 @@ ps -ef | grep nginx
 ./nginx -s reload
 ```
 
-![image.png](https://cdn.nlark.com/yuque/0/2023/png/21953536/1675353493122-bea81831-97c4-4d6d-83f7-72cf0c1e13c7.png#averageHue=%2329323d&clientId=u90a8284f-7b48-4&from=paste&height=284&id=u7b269287&originHeight=284&originWidth=581&originalType=binary&ratio=1&rotation=0&showTitle=false&size=26702&status=done&style=none&taskId=ud29fec74-f150-41fb-a1a7-1b545308521&title=&width=581)
+![nginx-command.png](/assets/images/Nginx-20240321-0003.png)
 
 访问，本机访问输入localhost即可，外网访问只需输入安装机器的ip即可（需要开启80端口访问），因为nginx代理的是80端口。
 
 ## 配置系统服务
+
+```shell
+systemctl 系统服务
+```
 
 ```shell
 # 创建服务脚本
@@ -134,8 +139,6 @@ WantedBy=multi-user.target
 # 赋予脚本执行权限
 chmod 744 /usr/lib/systemd/system/nginx.service
 ```
-
-# Nginx
 
 ## 配置
 
@@ -185,7 +188,7 @@ http {
 
 ### 配置结构
 
-![](https://cdn.nlark.com/yuque/0/2023/jpeg/21953536/1676704375003-a921ce35-ec8d-412c-b685-409f6fd1715e.jpeg)
+TODO 待补充
 
 ### 映射静态资源
 
@@ -332,7 +335,11 @@ demo服务
     }
 ```
 
-## 配合spring boot使用
+### 配合spring boot使用
+
+背景：我有三个服务，部署在该机器上，端口分别为`8888`、`8889`、`8890`，如何使用nginx配置实现LB（load banlance）？
+
+先说答案，配置一个`upstream`即可，但是具体为什么？后面会详细告知。
 
 ```sh
 user  nobody;
@@ -361,7 +368,7 @@ http {
 
     gzip  on;
 
-
+    # 配置upstream
     upstream demo {
         server 101.132.32.220:8888;
         server 101.132.32.220:8889;
@@ -393,21 +400,29 @@ http {
 
 ### 防盗链
 
-## 涉及命令
+TODO 待完善
 
-简单的命令不在此赘述，此处只会涉及一些我个人认为**很少使用且相对较难**的命令。
+## 本文涉及的Linux命令
 
-- `tar`，虽然解压工具我也经常使用，但是对于其参数具体的含义还是很模糊，此处还是稍作复习。
+- `tar`，解压命令
   - `-z`：`--gzip`、`--gunzip`、`--ungzip`，调用gzip执行压缩或解压缩
   - `-x`：`--extract`、`--get`，解压`tar`文件
   - `-v`：`--verbose`，列出每一步处理涉及的文件信息，只用一个`v`时，仅列出文件名，使用两个`v`时，列出权限、所有者、大小、时间、文件名等信息
   - `-f`：`--file`，指定要处理的文件名
-- `ps`，
-  - `-e`
-  - `-f`
-- `configure`：
-- `make`
+- `ps`，查看进程
+  - `-e`：
+  - `-f`：
+- `configure`：配置
+- `make`：编译
 
 参考
 
 - [https://thoughtbot.com/blog/the-magic-behind-configure-make-make-install](https://thoughtbot.com/blog/the-magic-behind-configure-make-make-install)
+
+## 核心组件
+
+### Master
+
+### Worker
+
+### upstream

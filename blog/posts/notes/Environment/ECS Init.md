@@ -45,7 +45,7 @@ whereis nginx
 
 安装后的默认配置
 
-```sh
+```conf
 user nginx;
 # worker节点数量，等于内核数量
 worker_processes auto;
@@ -125,6 +125,85 @@ http {
 #            location = /50x.html {
 #        }
 #    }
+
+}
+```
+
+### 启停
+
+参考：[初学者指导](https://nginx.org/en/docs/beginners_guide.html)
+
+> 注意：执行命令的用户最好是同一个
+
+```sh
+# 启动
+nginx
+
+# 停止
+nginx -s stop
+
+# 重载配置
+nginx -s reload
+
+# 优雅停止
+nginx -s quit
+```
+
+### 适配服务器
+
+```conf
+user nginx;
+# worker节点数量，等于内核数量
+worker_processes auto;
+error_log /var/log/nginx/error.log;
+pid /run/nginx.pid;
+
+# Load dynamic modules. See /usr/share/doc/nginx/README.dynamic.
+include /usr/share/nginx/modules/*.conf;
+
+events {
+    # worker 支持的最大链接数量
+    worker_connections 1024;
+}
+
+http {
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  /var/log/nginx/access.log  main;
+
+    sendfile            on;
+    tcp_nopush          on;
+    tcp_nodelay         on;
+    keepalive_timeout   65;
+    types_hash_max_size 4096;
+
+    include             /etc/nginx/mime.types;
+    default_type        application/octet-stream;
+
+    include /etc/nginx/conf.d/*.conf;
+
+    server {
+        listen       80;
+        listen       [::]:80;
+        # _ 默认代表 localhost
+        # 如果你有域名，那么可以将域名解析到本服务器的公网IP，如 我的域名marshio.com
+        # 添加解析 服务器IP列表添加本服务器IP
+        server_name  marshio.com *.marshio.com;
+        root         /usr/share/nginx/html;
+
+        # Load configuration files for the default server block.
+        include /etc/nginx/default.d/*.conf;
+
+        error_page 404 /404.html;
+        location = /404.html {
+        }
+
+        error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+        }
+    }
 
 }
 ```
