@@ -7,7 +7,7 @@ title: Home
 heroText: Marshio
 # tagline: Never Stop Learning,Never Stop Forward
 heroFullScreen: true
-bgImage: /assets/images/fenling.jpg
+bgImage: /assets/images/fenling.webp
 
 projects:
   - icon: project
