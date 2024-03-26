@@ -1,0 +1,161 @@
+---
+icon: pen-to-square
+date: 2021-03-17
+category:
+  - mysql
+title: 锁 
+# tag:
+
+---
+
+> 数据库的锁经常与事务一起讨论，因为锁只有在多并发的情况下才会起作用。
+>  
+> MySQL中锁又与数据库引擎有关，InnoDB存储引擎支持行级锁，表级锁，MyISAM和MEMORY存储引擎支持表级锁。BDB存储引擎支持页面锁。也支持表级锁。
+>  
+> MySQL的行锁又分为共享锁（S锁），排他锁（X锁）。
+
+MySQL三种锁的特性
+
+|  | 开销 | 死锁 | 粒度 | 并发性能 |
+| --- | --- | --- | --- | --- |
+| 表级锁 | 大，加锁快 | 不会发生死锁 | 大 | 发生冲突的概率高，并发性低 |
+| 行级锁 | 小，加锁慢 | 会发生死锁 | 小 | 发生冲突的概率低，并发性高 |
+| 页面锁 | 中 | 会发生死锁 | 中 | 发生冲突的概率中，并发性一般 |
+
+### MyISAM
+
+> MyISAM只支持表级锁，且不支持事务，所以用的很少。
+
+### InnoDB
+
+> InnoDB即支持表级锁，也支持行级锁，默认是行级锁。
+
+#### 共享锁
+
+> 可以共享
+
+```sql
+# 会造成加S锁的情况
+SELECT <columns> from <table_name> LOCK IN SHARE MODE;
+```
+
+![](https://masuo-github-image.oss-cn-beijing.aliyuncs.com/image/20220117172251.png#id=G1zRq&originHeight=335&originWidth=1296&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+
+#### 排他锁
+
+> 不可共享
+
+```sql
+# 会造成加X锁的情况
+# FOR UPDATE指当前读，即读取最新数据
+SELECT <columns> from <table_name> FOR UPDATE;
+
+# 插入操作
+INSERT INTO <table_name> values(columns_value);
+
+# 更新操作
+UPDATE <table_name> SET (column=new_value,column=new_value...);
+
+# 删除操作
+DELETE FROM <table_name> WHERE column=value;
+```
+
+##### FOR UPDATE
+
+![](https://masuo-github-image.oss-cn-beijing.aliyuncs.com/image/20220117165543.png#id=H9P6p&originHeight=302&originWidth=1298&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+
+##### 新增
+
+##### 更新
+
+![](https://masuo-github-image.oss-cn-beijing.aliyuncs.com/image/20220117170933.png#id=qWwyK&originHeight=372&originWidth=1302&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+
+##### 删除
+
+#### 行锁实现
+
+> InnoDB行锁是通过给索引上的索引项加锁来实现的。这一点与Oracle不同，Oracle是通过在数据块中对相应的数据行加锁来实现。
+>  
+> InnoDB这种加锁意味着只有通过索引条件检索数据，InnoDB才能使用行锁，否则InnoDB将使用表锁。
+
+```sql
+# 查看默认事务隔离级别
+SELECT @@TRANSACTION_ISOLATION;
+
+# 查看表索引
+SHOW INDEX FROM <table_name>;
+
+# 开启事务
+BEGIN；
+
+# 事务A FOR UPDATE会给ID=1的查询加锁，因为是当前读，此时应该是给ID=1的数据加行锁
+SELECT * FROM <table_name> WHERE ID = 1 FOR UPDATE;
+
+# 事务B 尝试给当前读，即获取读锁，被阻塞，如果事务A加了行锁，此时需要等待是正常的
+SELECT * FROM <table_name> WHERE ID = 1 FOR UPDATE;
+
+# 事务B 尝试给当前读，即获取读锁，被阻塞，如果事务A加了行锁，此时不需要等待，但实际上是等待，所以判断是表锁
+SELECT * FROM <table_name> WHERE ID = 2 FOR UPDATE;
+```
+
+![](https://masuo-github-image.oss-cn-beijing.aliyuncs.com/image/20220118090647.png#id=CfMOb&originHeight=550&originWidth=1303&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+
+```sql
+# 接下来我们查看一下，加锁的锁信息
+# 在事务B尝试加锁后，我们查询当前数据库的INNODB_LOCKS，即正在锁的事务
+SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCKS;
+
+# 查看等待锁的事务
+SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCK_WAITS;
+```
+
+![](https://masuo-github-image.oss-cn-beijing.aliyuncs.com/image/20220118094737.png#id=mqYmP&originHeight=278&originWidth=1175&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+
+> `INFORMATION_SCHEMA.INNODB_LOCK_WAITS`
+>  
+> - **requesting_trx_id**：请求锁的事务ID
+> - **requesting_trx_id**：请求的锁的ID
+> - **blocking_trx_id**：阻塞的事务的ID
+> - **blocking_lock_id**:阻塞的锁的ID
+>
+
+> `INFORMATION_SCHEMA.INNODB_LOCKS`
+>  
+> - **lock_id**：锁ID
+> - **lock_trx_id**：事务ID
+> - **lock_mode**：锁模式
+>   - **S**：S锁，即共享锁（Share）
+>   - **X**：X锁，即排他锁（Exclusive）
+>
+
+> - **lock_type**：锁类型
+>   - **RECORD**：记录锁，锁的是索引，如果表上没有索引，那么 `InnoDB`会自动创建一个隐藏的聚簇索引，此时锁住的就是这个隐藏的聚簇索引。所以当一个 `SQL`语句没走索引，或该表没有索引时，将会在每个自动创建出来的聚簇索引上加**X锁**，间接的实现了**表级锁**，即锁升级 (**?**)。
+>
+
+> - **lock_tabe**：锁定的表
+> - **lock_index**：锁定的索引，因为 `InnoDB`的锁需要命中索引，然后给索引加锁
+>   - **GEN_CLUST_INDE**：聚类索引，这个索引是由于表没有建立索引，所以在进行加锁时，需要自动建立一个索引，但是这样建立的索引会给所有的行加锁，导致**行锁**升级成了**表锁**。所以当你的 `lock_index = GEN_CLUST_INDE`时，你需要查看表是否缺少索引，及时建立索引，避免表锁。
+>
+
+> - **lock_space**：锁定的空间
+> - **lock_page**：锁定的页，这里涉及到了内存
+> - **lock_rec**：
+> - **lock_data**：锁定的数据
+
+### 查看锁
+
+```sql
+# chakan锁执行次数
+SHOW STATUS LIKE '%lock%';
+```
+
+![](https://masuo-github-image.oss-cn-beijing.aliyuncs.com/image/20220118092826.png#id=BUyBO&originHeight=549&originWidth=656&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+
+> - Table_locks_waited：如果该值较大，说明存在较严重的表级锁竞争
+>
+
+> `Table_locks_immediate`表示立即释放表锁数，`Table_locks_waited`表示需要等待的表锁数，
+如果 `Table_locks_immediate / Table_locks_waited > 5000`，最好采用 `InnoDB`引擎，
+因为 `InnoDB`是行锁而 `MyISAM`是表锁，对于高并发写入的应用 `InnoDB`效果会好些。
+
+不同隔离级别涉及到的锁 参考：

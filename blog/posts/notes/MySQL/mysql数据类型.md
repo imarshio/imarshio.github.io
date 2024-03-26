@@ -1,0 +1,114 @@
+---
+icon: pen-to-square
+date: 2021-03-17
+category:
+  - mysql
+title: 数据类型 
+# tag:
+
+---
+
+> MySQL中定义的数据字段的类型对优化数据库非常重要。
+
+MySQL支持多种数据类型，大致可分为三种
+
+- 数值
+- 日期
+- 字符串
+
+### 数值型
+
+MySQL支持所有标准SQL数值数据类型。
+**严格数值数据类型**：INTEGER、SMALLINT、DECIMAL、NUMERIC
+**近似数值数据类型**：FLOAT、REAL、DOUBLE PRECISION
+也支持整数类型 TINYINT、MEDIUMINT 、 BIGINT
+
+1 Byte = 1 byte = 1B = 1字节 = 8 bit = 8位
+
+1KB = 1024B
+
+1 字符 = 多个字节
+
+在UTF8中，一个英文字符占一个字节，一个汉字占三个字节。
+
+| 类型 | 大小 | 范围（有符号） | 范围（无符号） | 用途 |
+| --- | --- | --- | --- | --- |
+| TINYINT | 1 Bytes|1字节 | (-128，127) | (0，255) | 小整数值 |
+| SMALLINT | 2 Bytes |2字节 | (-32 768，32 767) | (0，65 535) | 大整数值 |
+| MEDIUMINT | 3 Bytes|3字节 | (-8 388 608，8 388 607) | (0，16 777 215) | 大整数值 |
+| INT或INTEGER | 4 Bytes|4字节 | (-2 147 483 648，2 147 483 647) | (0，4 294 967 295) | 大整数值 |
+| BIGINT | 8 Bytes|8字节 | (-9,223,372,036,854,775,808，9 223 372 036 854 775 807) | (0，18 446 744 073 709 551 615) | 极大整数值 |
+| FLOAT | 4 Bytes|4字节 | (-3.402 823 466 E+38，-1.175 494 351 E-38)，0，(1.175 494 351 E-38，3.402 823 466 351 E+38) | 0，(1.175 494 351 E-38，3.402 823 466 E+38) | 单精度 浮点数值 |
+| DOUBLE | 8 Bytes|8字节 | (-1.797 693 134 862 315 7 E+308，-2.225 073 858 507 201 4 E-308)，0，(2.225 073 858 507 201 4 E-308，1.797 693 134 862 315 7 E+308) | 0，(2.225 073 858 507 201 4 E-308，1.797 693 134 862 315 7 E+308) | 双精度 浮点数值 |
+| DECIMAL | 对DECIMAL(M,D) ，如果M>D，为M+2否则为D+2 | 依赖于M和D的值 | 依赖于M和D的值 | 小数值 |
+
+### 日期型
+
+表示时间值的日期和时间类型为DATETIME、DATE、TIMESTAMP、TIME和YEAR。
+每个时间类型有一个有效值范围和一个"零"值，当指定不合法的MySQL不能表示的值时使用"零"值。
+TIMESTAMP类型有专有的自动更新特性，将在后面描述。
+
+| 类型 | 大小 ( bytes) | 范围 | 格式 | 用途 |
+| --- | --- | --- | --- | --- |
+| DATE | 3 | 1000-01-01/9999-12-31 | YYYY-MM-DD | 日期值 |
+| TIME | 3 | '-838:59:59'/'838:59:59' | HH:MM:SS | 时间值或持续时间 |
+| YEAR | 1 | 1901/2155 | YYYY | 年份值 |
+| DATETIME | 8 | 1000-01-01 00:00:00/9999-12-31 23:59:59 | YYYY-MM-DD HH:MM:SS | 混合日期和时间值 |
+| TIMESTAMP | 4 | 1970-01-01 00:00:00结束时间是第**2147483647** 秒，北京时间 **2038-1-19 11:14:07**，格林尼治时间 2038年1月19日 凌晨 03:14:07 | YYYYMMDD HHMMSS | 混合日期和时间值，时间戳 |
+
+#### DATE
+
+DATE类型不支持函数化的默认初始值，其默认值必须是一个常量。
+DATETIME，支持NOW()、CURRENT_TIMESTAMP
+
+```sql
+create table db_time(
+`date_init_1` date DEFAULT CURRENT_DATE,//1
+`date_init_2` date DEFAULT CURRENT_TIME,
+`date_init_3` date DEFAULT CURRENT_TIMESTAMP,
+`datetime_init_1` datetime DEFAULT CURRENT_DATE,
+`datetime_init_2` datetime DEFAULT CURRENT_TIME,
+`datetime_init_2` datetime DEFAULT CURRENT_TIMESTAMP,//1 等价于使用 now()
+ # 在使用timestamp时，默认值已经设为了CURRENT_TIMESTAMP
+`timestamp_init_1` timestamp DEFAULT CURRENT_DATE,
+`timestamp_init_2` timestamp DEFAULT CURRENT_TIME,
+`timestamp_init_3` timestamp DEFAULT CURRENT_TIMESTAMP;/
+```
+
+### 字符串
+
+> 也称文本类,无特殊说明存储的都是字符.
+>  
+> 字符串类型指CHAR、VARCHAR、BINARY、VARBINARY、BLOB、TEXT、ENUM和SET。
+>  
+> char(n) 和 varchar(n) 中括号中 n 代表**字符**的个数，并不代表**字节**个数，比如 CHAR(30) 就可以存储 30 个字符。
+>  
+> CHAR 和 VARCHAR 类型类似，但它们保存和检索的方式不同。它们的最大长度和是否尾部空格被保留等方面也不同。在存储或检索过程中不进行大小写转换。
+>  
+> BINARY 和 VARBINARY 类似于 CHAR 和 VARCHAR，不同的是它们包含二进制字符串而不要非二进制字符串。也就是说，它们包含字节字符串而不是字符字符串。这说明它们没有字符集，并且排序和比较基于列值字节的数值值。
+>  
+> BLOB 是一个二进制大对象，可以容纳可变数量的数据。有 4 种 BLOB 类型：TINYBLOB、BLOB、MEDIUMBLOB 和 LONGBLOB。它们区别在于可容纳存储范围不同。
+>  
+> 有 4 种 TEXT 类型：TINYTEXT、TEXT、MEDIUMTEXT 和 LONGTEXT。对应的这 4 种 BLOB 类型，可存储的最大长度不同，可根据实际情况选择。
+
+| 数据类型 | 描述 |
+| --- | --- |
+| CHAR(size) | 保存固定长度的字符串（可包含字母、数字以及特殊字符）。在括号中指定字符串的长度。最多 255 个字符。 |
+| VARCHAR(size) | 保存可变长度的字符串（可包含字母、数字以及特殊字符）。在括号中指定字符串的最大长度。最多 255 个字符。注释：如果值的长度大于 255，则被转换为 TEXT 类型。 |
+| TINYTEXT | 存放最大长度为 255 个字符的字符串。 |
+| TEXT | 存放最大长度为 65,535 个字符的字符串。 |
+| BLOB | 用于 BLOBs (Binary Large OBjects)。存放最多 65,535 字节的数据。 |
+| MEDIUMTEXT | 存放最大长度为 16,777,215 个字符的字符串。 |
+| MEDIUMBLOB | 用于 BLOBs (Binary Large OBjects)。存放最多 16,777,215 字节的数据。 |
+| LONGTEXT | 存放最大长度为 4,294,967,295 个字符的字符串。 |
+| LONGBLOB | 用于 BLOBs (Binary Large OBjects)。存放最多 4,294,967,295 字节的数据。 |
+| ENUM(x,y,z,etc.) | 允许你输入可能值的列表。可以在 ENUM 列表中列出最大 65535 个值。如果列表中不存在插入的值，则插入空值。注释：这些值是按照你输入的顺序存储的。可以按照此格式输入可能的值：ENUM('X','Y','Z') |
+| SET | 与 ENUM 类似，SET 最多只能包含 64 个列表项，不过 SET 可存储一个以上的值。 |
+
+### NULL
+
+> 数据库对于 `null`有额外的处理方式，因为一般的命令对NULL可能不在生效。
+
+- IS NULL：当列值为 `null`时，会返回true
+- IS NOT NULL：当列值不为 `null`时，会返回true
+- <=>：当比较的两个值相等或都为 `null`时，返回true

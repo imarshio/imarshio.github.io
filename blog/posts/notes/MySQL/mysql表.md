@@ -1,0 +1,162 @@
+---
+icon: pen-to-square
+date: 2021-03-17
+category:
+  - mysql
+title: 表 
+# tag:
+
+---
+
+### 创建表
+
+> 创建MySQL数据表需要以下信息：
+>  
+> - 表名
+> - 表字段名
+> - 定义每个表字段
+
+```sql
+CREATE TABLE 
+[IF NOT EXISTS] TABLE_NAME 
+(
+    colum_name colum_type
+     [
+            AUTO_INCREMENT,     # 自增
+            PRIMARY KEY,     # 主键
+            UNIQUE,       # 唯一键
+            COMMENT '注释',       # 注释
+            DEFAULT default_value,   # 默认值
+            NOT NULL,      # 非空
+        ],
+    colum_name colum_type,
+    colum_name colum_type
+)
+[
+    ENGINE=InnoDB|MyISAM,
+    CHARSET=UTF8
+];
+```
+
+**表结构设计**
+
+- 自增列推荐使用 `BIGINT`类型
+- 字段在满足业务要求的情况下尽量选择占字节少的类型
+- IP类型字段推荐使用int类型
+- 业务活跃的表须有行数据的创建时间和修改时间
+- 表中字段尽量是NOT NULL
+- 字符集数据库、数据表尽量选utf8
+- 不推荐使用外键
+- 单表数据尽量不要超过5000万行或数据量不大于30G（SSD硬盘）
+- 单表数据尽量不要超过2000万行或数据量不大于15G（SAS硬盘）
+
+举个🌰
+
+```sql
+# 学生表，学号，姓名，年龄，班级，出生年月，
+CREATE TABLE IF NOT EXISTS `table_student`(
+    `id` int(8) UNSIGNED AUTO_INCREMENT，
+    `stu_num` int(8),
+    `stu_name` varchar(16),
+    `stu_age` int(3),
+    `stu_class` varchar(10),
+    `stu_birth` date,
+    PRIMARY KEY (`id`)//设置主键为id
+)ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+
+
+# 学分表,带外键stu_id
+CREATE TABLE `table_score` (
+    `id` int(8),
+    `score` mediumint(4) ,
+    `stu_id` int(8) unsigned,//这里必须跟学生表的主键一致
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`stu_id`) REFERENCES `table_student` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+
+# 不存在才创建表，且需要带自增主键，唯一键，数值默认为0，时间默认当前时间按戳，且带注释
+create table if not exists `user_info_vip`(
+    `id` INT(11) not null auto_increment primary key comment '自增ID',
+    `uid` INT(11) not null unique comment '用户ID',
+    `nick_name` varchar(64) comment '昵称',
+    `achievement` int(11) default 0 comment '成就值',# 数值默认0
+    `level` int(11) comment '用户等级',
+    `job` varchar(32) comment '职业方向',
+    `register_time` DATETIME default current_timestamp comment '注册时间' # 时间默认当前时间戳
+)ENGINE=InnoDB DEFAULT CHARSET=UTF8;
+```
+
+> IF NOT EXISTS：不存在数据库才会创建数据库
+>  
+> UNSIGNED：无符号
+>  
+> AUTO_INCREMENT：自增，一般用在主键，数值自动+1
+>  
+> PRIMARY KEY：声明主键
+>  
+> ENGINE：数据库引擎
+>  
+> CHARSET：数据库编码
+
+[image](https://masuo-github-image.oss-cn-beijing.aliyuncs.com/image/20220113161138.png)
+
+### 查看表
+
+```sql
+# 查看当前数据库的所有表
+SHOW TABLES;
+
+# 查看当前表结构
+DESC <table_name>;
+
+# 查看表信息
+SHOW TABLE STATUS;
+
+# 查看表信息,高可读模式
+SHOW TABLE STATUS LIKE 'table_name'\G;
+
+# 查看建表语句
+SHOW CREATE TABLE <table_name>;
+```
+
+![image](https://masuo-github-image.oss-cn-beijing.aliyuncs.com/image/20220114094651.png#id=X68Hl&originHeight=204&originWidth=588&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+
+![image](https://masuo-github-image.oss-cn-beijing.aliyuncs.com/image/20220114094707.png#id=HZanr&originHeight=401&originWidth=524&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+
+![image](https://masuo-github-image.oss-cn-beijing.aliyuncs.com/image/20220114094952.png#id=QHGib&originHeight=373&originWidth=1305&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+
+### 删除表
+
+```sql
+DROP TABLE <数据表名称>;
+```
+
+### 修改表
+
+```sql
+# 修改表名,旧的表明可以不写
+ALTER TABLE <table_name> RENAME TO <new_name>
+# or
+ALTER TABLE <table_name> RENAME AS <new_name>
+
+# 添加列
+ALTER TABLE <table_name> ADD COLUMN <colum_name> <colum_type>
+
+# 删除列
+ALTER TABLE <table_name> DROP COLUMN <colum_name>
+
+# 修改列,在MySQL中修改列属性需要使用modify而不是alter
+
+# 修改列属性，可选参数：给列增加唯一属性 UNIQUE，
+ALTER TABLE <table_name> MODIFY COLUMN <column_name> <data_type> [UNIQUE]
+
+# 修改列名称以及列属性 可选参数：NOT NULL|AUTO_INCREMENT|UNIQUE
+ALTER TABLE <table_name> 
+CHANGE COLUMN <old_column_name> <new_column_name> <data_type> [NOT NULL|AUTO_INCREMENT|UNIQUE]
+```
+
+![image](https://masuo-github-image.oss-cn-beijing.aliyuncs.com/image/20220114093616.png#id=upojP&originHeight=482&originWidth=922&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+
+![image](https://masuo-github-image.oss-cn-beijing.aliyuncs.com/image/20220114095936.png#id=Y1YXb&originHeight=513&originWidth=588&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+
+![image](https://masuo-github-image.oss-cn-beijing.aliyuncs.com/image/20220114103438.png#id=mNG8U&originHeight=390&originWidth=589&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)

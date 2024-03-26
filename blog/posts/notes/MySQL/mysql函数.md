@@ -1,0 +1,327 @@
+---
+icon: pen-to-square
+date: 2021-03-17
+category:
+  - mysql
+title: 函数 
+# tag:
+
+---
+
+## 函数
+
+> MySQL自带很多函数供我们使用，为我们的查询提供了极大的方便。
+
+### Math函数
+
+#### MAX
+
+求一列的最大值
+
+#### MIN
+
+求一列的最小值
+
+#### SUM
+
+求一列的和
+
+#### ROUND
+
+返回离值X最近的数（四舍五入），支持小数位位数
+
+```
+# 四舍五入
+SELECT ROUND(1.4) = 1
+
+# 两位小数
+SELECT ROUND(1.455，2) = 1.46
+```
+
+#### RAND
+
+随机数，范围[0,1)
+
+### 字符函数
+
+#### SUBSTR
+
+`SUBSTR`是一个字符函数，类似于Java中的 `substring()`方法，但略有不同。
+
+语法，注意在MySQL中 `SUBSTR`是从1开始的，不是0。
+
+```
+# 使用方法1,代表从start开始，截取length长度的字符串
+SUBSTR(s, start, length)
+
+# 使用方法2，代表从start开始，截取length长度的字符串
+SUBSTR(s FROM start FOR length)
+```
+
+#### SUBSTRING
+
+等同于 [SUBSTR]( # SUBSTR)。
+
+#### CONCAT
+
+有字符串截取，自然也是有字符串拼接的，在MySQL中的字符串拼接就是 `CONCAT(str1,str2...strN)`。
+
+`CONCAT()`函数用于合并多个字符串。
+
+#### CONCAT_WS
+
+在拼接字符串时，有时候我们需要添加分隔符。
+
+```sql
+CONCAT_WS(',','hi','how are you')
+```
+
+#### LEFT
+
+`LEFT`是一个字符函数，如 `LEFT("mysql", 2)`表示取字符的前三个字符，即 `my`。
+
+语法
+
+```sql
+# 从字符串中提取n个字符
+LEFT(string, number)
+```
+
+> 注意，`number`是可以大于字符长度的，这样取出来的就是整个字符，且字符长度为字符串的长度。
+>  
+> 举个🌰
+>  
+>  
+> 上面SQL的结果就是 5 ，而不是10。
+
+```sql
+select LENGTH(LEFT('mysql',10))
+```
+
+#### RIGHT
+
+参照 [LEFT](# LEFT)。
+
+#### LCASE
+
+#### LOWER
+
+#### UPCASE
+
+### 时间函数
+
+#### DATE
+
+`DATE`函数返回一个datetime类型的时间的**年月日**。
+
+```sql
+DATE('2021-01-01 12:20:00') = '2021-01-01'
+```
+
+#### DATE_FORMAT
+
+`DATE_FORMAT(d,f)`日期格式化，两个参数，一个日期，一个format，将日期按照format格式化
+
+```sql
+DATE_FORMAT('2021-01-01','%Y - %m - %d')
+```
+
+#### DATEDIFF
+
+`datediff(d1,d2)`，返回两时间之间的天数差（d1 - d2）
+
+```sql
+DATEDIFF('2021-01-05 12:20:00','2021-01-01 12:20:00') = 4
+```
+
+#### TIMEDIFF
+
+`TIMEDIFF(t1,t2)`，返回两时间差，
+
+#### TIMESTAMPDIFF
+
+`TIMESTAMPDIFF(unit,d1,d2)`，计算时间差(d2-d1)，按照unit为单位计算
+
+```sql
+# unit = DAY ,以天为单位返回
+timestampdiff(DAY,'2003-02-01','2003-05-01')
+
+# unit = MONTH，以月为单位返回，
+TIMESTAMPDIFF(MONTH,'2003-02-01','2003-05-01')
+
+# unit 还可以等于YEAR、MINUTE
+```
+
+![image.png](https://cdn.nlark.com/yuque/0/2022/png/21953536/1666407897665-aee20eb3-3173-4b2e-8667-113e98be101b.png#averageHue=%230a0a0a&clientId=ud85b59f9-2d5d-4&id=LVEre&originHeight=372&originWidth=494&originalType=binary&ratio=1&rotation=0&showTitle=false&size=13745&status=done&style=none&taskId=u521d3a97-a0f7-4a54-aa8b-265e95f4ef4&title=)
+
+### 高级函数
+
+#### IF
+
+`IF`是一个三元函数，类似于Java的三元表达式，他会计算第一个表达式的结果，如果为真就返回第二个表达式，否则返回第三个。
+
+**语法**
+
+```sql
+# 计算express，为真返回v1，否则返回v2
+IF(express,v1,v2)
+```
+
+#### CASE
+
+`CASE`是MySQL的高级函数之一，其实用类似于Java的case。
+
+**语法**
+
+```sql
+# 用法1，简单，机械有一定的限制
+CASE expression
+    WHEN condition1 THEN result1
+    WHEN condition2 THEN result2
+    ...
+    WHEN conditionN THEN resultN
+    ELSE result
+END
+
+# 用法2，简单，灵活
+CASE 
+    WHEN <expression1> THEN result1
+    WHEN <expression2> THEN result2
+    ...
+    WHEN <expressionN> THEN resultN
+    ELSE result
+END
+```
+
+对于两种使用来说，`CASE`表示函数的开始，`END`表示函数的结束。
+
+**用法1**
+
+针对一个表达式的不同值进行匹配，如果 `condition1`成立则返回 `result1`，其余情况同理，当没有匹配项，则返回result。
+
+**用法2**
+
+针对多个表达式进行匹配，类似于 `if-else`，如果 `expression1`成立则返回 `result1`，其余情况同理，当没有匹配项，则返回result。
+
+**注意**
+
+`THEN`和 `ELSE`
+
+#### DENSE_RANK
+
+`DENSE_RANK`是一个窗口函数，他为分区或结果集中的每一行数据分配排名，且排名没有间隙，如果有多个相同排名的值，那么他们的排名值是相同的。
+
+**语法**
+
+```sql
+DENSE_RANK() OVER (
+    PARTITION BY <expression>[{,<expression>...}]
+    ORDER BY <expression> [ASC|DESC], [{,<expression>...}]
+)
+```
+
+- `PARTITION BY`，将 `FROM`字句生成的结果按条件分区，该函数应用于每个分区。
+- `ORDER BY`，指定每个分区的排序规则。
+
+**实例**
+
+```sh
+# 表Scores
++----+-------+
+| id | score |
++----+-------+
+| 1  | 3.50  |
+| 2  | 3.65  |
+| 3  | 4.00  |
+| 4  | 3.85  |
+| 5  | 4.00  |
+| 6  | 3.65  |
++----+-------+
+
+# SQL
+SELECT score,DENSE_RANK() OVER (ORDER BY score DESC) 'rank'
+FROM Scores
+```
+
+![image.png](https://cdn.nlark.com/yuque/0/2022/png/21953536/1666407897663-3d62b17d-fbc0-4879-956c-adbfb962d043.png#averageHue=%23f5f3f1&clientId=ud85b59f9-2d5d-4&id=yHqxU&originHeight=180&originWidth=134&originalType=binary&ratio=1&rotation=0&showTitle=false&size=4177&status=done&style=none&taskId=u165314f2-ee6d-4dc5-b755-9a92d5e9fac&title=)
+
+## 自建函数
+
+> MySQL自带很多函数，这些函数在我们查询时提供了很大的帮助，但是由于我们业务场景的不同，MySQL不可能会兼顾到所有的业务场景，所以它提供了自建函数（CREATE FUNCTION）给我们使用。
+>  
+> 参考：[https://blog.csdn.net/weixin_45866849/article/details/119719547](https://blog.csdn.net/weixin_45866849/article/details/119719547)
+
+### 语法
+
+```sql
+CREATE FUNCTION function_name ( [function_parameter] ) //括号是必须的，参数是可选的
+RETURNS type
+[ characteristic ...] routine_body
+```
+
+- function_name：自建函数名称
+- function_parameter：自建函数的参数，可选，还可以设置是输入参数还是输出参数，用 IN 、OUT、INOUT表示，IN：表示输入参数，OUT：表示输出参数，INOUT：表示既可以输入也可以输出。
+- type：返回值类型
+- characteristic：指定该函数的特性，
+- routine_body：函数体
+
+characteristic的取值为
+
+| 值 | 说明 |
+| --- | --- |
+| language sql | 说明routine_body部分是由SQL语句组成的，当前系统支持的语言为SQL |
+| [not] deterministic | 指明存储过程执行的结果是否确定。DETERMINISTIC 表示结果是确定的。每次执行存储过程时，相同的输入会得到相同的输出。 |
+| {contains sql \\no sql \\ reads sql data \\modifies sql data} | 指明子程序使用SQL语句的限制。CONTAINS SQL表明子程序包含SQL语句，但是不包含读写数据的语句；NO SQL表明子程序不包含SQL语句；READS SQL DATA：说明子程序包含读数据的语句；MODIFIES SQL DATA表明子程序包含写数据的语句。默认情况下，系统会指定为CONTAINS SQL。 |
+| sql_security{definer\\invoker} | 指明谁有权限来执行。DEFINER 表示只有定义者才能执行；INVOKER 表示拥有权限的调用者可以执行。默认情况下，系统指定为DEFINER。 |
+| comment 'string' | 注释信息，可以用来描述存储过程或函数 |
+
+表链接源：[https://juejin.cn/post/6844903461234933773](https://juejin.cn/post/6844903461234933773)
+
+其实，这个我也不太懂，也没咋用到。
+
+### 变量
+
+在MySQL的函数中，变量的定义是在begin之前定义的，变量的范围旨在该函数中生效。
+
+举个🌰
+
+```sh
+# 表Employee
++-------------+------+
+| Column Name | Type |
++-------------+------+
+| id          | int  |
+| salary      | int  |
++-------------+------+
+# 函数1
+DELIMETER// # 声明end的结束符为//，不与MySQL语句的结束符冲突
+create function getSalary(N INT) returns INT
+BEGIN
+ DECLARE rt_salary INT; # 声明薪水变量
+ SET N:=N-1; // 设置n=n-1
+ RETURN(
+     select 
+         salary
+        INTO 
+         rt_salary
+        from
+         Employee
+    );
+END//
+
+# 函数2
+DELIMETER// # 声明end的结束符为//，不与MySQL语句的结束符冲突
+create function getSalary(N INT) returns INT
+BEGIN
+ DECLARE rt_salary INT; # 声明薪水变量
+
+    select 
+        salary
+    INTO 
+        rt_salary
+    from
+        Employee;
+  
+    RETURN rt_salary;
+END//
+```

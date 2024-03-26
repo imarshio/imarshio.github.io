@@ -1,0 +1,49 @@
+---
+icon: pen-to-square
+date: 2021-03-17
+category:
+  - mysql
+title: 数据库管理 
+# tag:
+
+---
+
+### 创建数据库
+
+```sql
+CREATE DATABASE <数据库名称>;
+# or
+MYSQLADMIN -u root -p CREATE DATABASE <数据库名称>
+```
+
+> CREATE是在数据库中创建数据库,需要使用结束符 `;`
+>  
+> MYSQLADMIN是在外部通过该命令创建数据库,不需要结束符。
+
+![](https://masuo-github-image.oss-cn-beijing.aliyuncs.com/image/20220113143121.png#id=CuFzQ&originHeight=56&originWidth=327&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+
+![](https://masuo-github-image.oss-cn-beijing.aliyuncs.com/image/20220113143407.png#id=MPC04&originHeight=550&originWidth=1324&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+
+### 查看数据库
+
+```sql
+# 查看所有的数据库
+SHOW DATABASES;
+
+# 查看当前数据库
+SELECT DATABASE();
+```
+
+### 删除数据库
+
+```sql
+DROP DATABASE <数据库名称>;
+```
+
+![](https://masuo-github-image.oss-cn-beijing.aliyuncs.com/image/20220113143942.png#id=QxxVQ&originHeight=300&originWidth=309&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+
+### 选择数据库
+
+```sql
+USE <数据库名称>;
+```
