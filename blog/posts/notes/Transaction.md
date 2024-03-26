@@ -2,7 +2,12 @@
 lang: en-US
 title: Transactional Usage
 description: 虚心接受自己的不足，然后找机会与时间去弥补自己的不足，你会慢慢体会到高处不胜寒的感觉。
+category:
+- Transcation
 tags: 
+- spring
+- 事务
+- 源码阅读
 ---
 
 
@@ -290,18 +295,18 @@ public class TransactionalService {
 
 下图有待验证，以及特殊案例有待补充，但是其原理可以参考下面的**原理**章节
 
-| rollbackFor               | Throwable                                                    | rollback |
-| ------------------------- | ------------------------------------------------------------ | -------- |
-| Throwable.class           | *                                                            | YES      |
-| Exception.class           | Exception & ExceptionSubClasses & Error & ErrorSubClasses    | YES      |
+| rollbackFor               | Throwable                                                               | rollback |
+| ------------------------- | ----------------------------------------------------------------------- | -------- |
+| Throwable.class           | *                                                                       | YES      |
+| Exception.class           | Exception & ExceptionSubClasses & Error & ErrorSubClasses               | YES      |
 | Error.class               | Error & ErrorSubClasses & RuntimeException & RuntimeExceptionSubClasses | YES      |
-| Exception.class           | Error & ErrorSubClasses                                      | NO       |
-| Error.class               | Exception & ExceptionSubClasses                              | NO       |
-| Default(RuntimeException) | RuntimeException & RuntimeExceptionSubClasses                | YES      |
-| RuntimeException.class    | RuntimeException & RuntimeExceptionSubClasses                | YES      |
-| RuntimeException.class    | Exception                                                    | NO       |
-| ArithmeticException.class | RuntimeException & RuntimeExceptionSubClasses                | YES      |
-| RuntimeException.class    | ! (RuntimeException & RuntimeExceptionSubClasses)            | NO       |
+| Exception.class           | Error & ErrorSubClasses                                                 | NO       |
+| Error.class               | Exception & ExceptionSubClasses                                         | NO       |
+| Default(RuntimeException) | RuntimeException & RuntimeExceptionSubClasses                           | YES      |
+| RuntimeException.class    | RuntimeException & RuntimeExceptionSubClasses                           | YES      |
+| RuntimeException.class    | Exception                                                               | NO       |
+| ArithmeticException.class | RuntimeException & RuntimeExceptionSubClasses                           | YES      |
+| RuntimeException.class    | ! (RuntimeException & RuntimeExceptionSubClasses)                       | NO       |
 
 ### 原理
 
