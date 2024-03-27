@@ -4,8 +4,8 @@ date: 2021-03-17
 category:
   - python
 title: Python环境搭建 
-# tag:
-
+tag:
+  - python
 ---
 
 ## [Conda](https://conda.io/en/latest/)

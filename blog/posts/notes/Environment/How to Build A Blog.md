@@ -60,7 +60,8 @@ nvm current
 打开power shell，输入如下命令`iwr [https://get.pnpm.io/install.ps1](https://get.pnpm.io/install.ps1) -useb | iex`
 
 ```shell
-PS C:\Users\demo> iwr https://get.pnpm.io/install.ps1 -useb | iex                                                   Downloading pnpm from GitHub...
+PS C:\Users\demo> iwr https://get.pnpm.io/install.ps1 -useb | iex
+Downloading pnpm from GitHub...
 
 Running setup...
 

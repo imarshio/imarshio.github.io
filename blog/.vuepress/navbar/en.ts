@@ -17,7 +17,7 @@ export const enNavbar = navbar([
           { text: "Design Patterns", icon: "pen-to-square", link: "Design Patterns" },
           { text: "ECS Init", icon: "pen-to-square", link: "ECS Init" },
           { text: "How to build a Blog", icon: "pen-to-square", link: "How to build a Blog" },
-          { text: "Linux Command", icon: "pen-to-square", link: "Linux Command" },
+          { text: "Linux Command", icon: "pen-to-square", link: "Linux/Linux Command" },
           { text: "Linux File System", icon: "pen-to-square", link: "Linux/Linux File System" },
         ]
       },
