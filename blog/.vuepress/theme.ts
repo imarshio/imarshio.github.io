@@ -11,7 +11,12 @@ export default hopeTheme({
     url: "https://marshio.com",
   },
 
-  iconAssets: "fontawesome-with-brands",
+  iconAssets: [
+    "fontawesome",
+    "https://kit.fontawesome.com/3f09d46c33.js"
+  ],
+
+  iconPrefix: "fas fa-",
 
   logo: "/horse.png",
 

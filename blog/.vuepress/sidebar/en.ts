@@ -11,9 +11,15 @@ export const enSidebar = sidebar({
     //   children: "structure",
     // },
     {
-      text: "blogs",
+      text: "posts",
       icon: "book",
       prefix: "posts/",
+      children: "structure",
+    },
+    {
+      text: "notes",
+      icon: "book",
+      prefix: "notes/",
       children: "structure",
     },
     {
