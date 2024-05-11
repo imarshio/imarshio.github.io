@@ -11,12 +11,15 @@ export default hopeTheme({
     url: "https://marshio.com",
   },
 
-  iconAssets: [
-    "fontawesome",
-    "https://kit.fontawesome.com/3f09d46c33.js"
-  ],
+  iconAssets: "fontawesome-with-brands",
+  // iconAssets: [
+  //   "fontawesome-with-brands",
+  //   "https://kit.fontawesome.com/3f09d46c33.js"
+  // ],
 
-  iconPrefix: "fas fa-",
+  pure: true,
+
+  // iconPrefix: "fas fa-",
 
   logo: "/horse.png",
 
@@ -111,6 +114,8 @@ export default hopeTheme({
 
     // all features are enabled for demo, only preserve features you need here
     mdEnhance: {
+      // 启用 GFM 警告
+      alert: true,
       align: true,
       attrs: true,
       codetabs: true,
@@ -138,7 +143,6 @@ export default hopeTheme({
       sup: true,
       tabs: true,
       vPre: true,
-
       // install chart.js before enabling it
       // chart: true,
 

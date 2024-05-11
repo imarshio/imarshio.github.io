@@ -3,7 +3,7 @@ lang: en-US
 icon: pen-to-square
 data: 2024-03-01
 category: 
-    - 环境搭建
+    - Environment setup
 tag:
     - Macbook Pro
     - Windows

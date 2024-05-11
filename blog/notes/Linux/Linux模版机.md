@@ -120,7 +120,7 @@ yum install -y vim wget lrzsz tree curl
 
 ## yum源配置
 
-##### 1、进入如下位置，对目标文件进行备份
+### 1、进入如下位置，对目标文件进行备份
 
 ```shell
 # 切换目录
@@ -132,7 +132,7 @@ mv CentOS-Base.repo CentOS-Base-bak.repo
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/21953536/1675097058829-1dba9c69-f247-4026-a0c1-e342d3315bdc.png#averageHue=%232e3742&clientId=ub89e2585-fe2d-4&from=paste&height=225&id=u6f2eb6d0&originHeight=225&originWidth=500&originalType=binary&ratio=1&rotation=0&showTitle=false&size=21729&status=done&style=none&taskId=ucff6341f-ef4d-41d9-b4cd-21890d90ac2&title=&width=500)
 
-##### 2、下载其他yum源
+### 2、下载其他yum源
 
 可选yum源
 
@@ -206,7 +206,7 @@ RPM version 4.11.3
 [root@192 ~]# wget -O /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo
 ```
 
-##### 3、清除缓存并重新生成
+### 3、清除缓存并重新生成
 
 ```shell
 yum clean all && yum makecache
@@ -216,7 +216,7 @@ yum clean all && yum makecache
 
 位置：`/etc/sysconfig/network-scripts/ifcfg-ens33`
 
-##### 1、修改配置
+### 1、修改配置
 
 ```shell
 [root@192 ~]# vim /etc/sysconfig/network-scripts/ifcfg-ens33
@@ -273,18 +273,18 @@ NETMASK=255.255.255.0
 DNS1=192.168.130.2
 ```
 
-###### 1.1、查看网关
+#### 1.1、查看网关
 
 1、进入VMware，点击edit-->VMware Network Editor，点击VMnet8
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/21953536/1679844087471-c1df3155-f96d-42a7-8484-724563db467e.png#averageHue=%23efeceb&clientId=ub21957db-170b-4&from=paste&height=546&id=u89a2cfcb&originHeight=546&originWidth=1111&originalType=binary&ratio=1&rotation=0&showTitle=false&size=73198&status=done&style=none&taskId=u6438be83-0691-4d4a-8665-d82399fd5c6&title=&width=1111)
 
-##### 2、重启网络服务
+### 2、重启网络服务
 
 ```shell
 [root@192 ~]# systemctl restart network
 ```
 
-##### 3、关闭防火墙
+### 3、关闭防火墙
 
 ```shell
 [root@192 ~]# systemctl disable firewalld
@@ -292,7 +292,7 @@ Removed symlink /etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service.
 Removed symlink /etc/systemd/system/basic.target.wants/firewalld.service.
 ```
 
-##### 4、测试网络连接
+### 4、测试网络连接
 
 ```shell
 [root@192 ~]# ping www.baidu.com
@@ -305,28 +305,28 @@ Removed symlink /etc/systemd/system/basic.target.wants/firewalld.service.
 命名快照、描述，点击Take Snapshot就OK了。
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/21953536/1679923402588-53950f46-4a12-45c3-969e-f36451907921.png#averageHue=%23ecebea&clientId=ud7ae89de-a645-4&from=paste&height=232&id=u0527fe46&originHeight=232&originWidth=353&originalType=binary&ratio=1&rotation=0&showTitle=false&size=11023&status=done&style=none&taskId=u059a9064-ab96-49a4-a367-4eb6351f22d&title=&width=353)
 
-# Kali
+## Kali
 
-## ISO
+### ISO
 
 进入[https://www.kali.org/get-kali/#kali-installer-images](https://www.kali.org/get-kali/#kali-installer-images)，下载带有Recommended的iso镜像，建议使用迅雷下载。
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/21953536/1679926607678-5ec80318-e705-48a4-9e55-f39cc09f9ccd.png#averageHue=%23f7f6f5&clientId=ue5248778-9dae-4&from=paste&height=1233&id=u303a7d00&originHeight=1233&originWidth=2560&originalType=binary&ratio=1&rotation=0&showTitle=false&size=598083&status=done&style=none&taskId=ue74ae75a-d817-454f-98cf-f141db37543&title=&width=2560)
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/21953536/1679926630761-df911486-6212-49f0-8fe4-ed19513148dd.png#averageHue=%23f9f8f8&clientId=ue5248778-9dae-4&from=paste&height=1233&id=u48d33949&originHeight=1233&originWidth=2560&originalType=binary&ratio=1&rotation=0&showTitle=false&size=212306&status=done&style=none&taskId=u72f4779e-f2cb-448a-9de5-bcf5e6fab56&title=&width=2560)
 
-## 装机
+### 装机
 
-##### 1、打开VMware，选择File-->New Virtual Machine，选择Custom，点击next
+#### 1、打开VMware，选择File-->New Virtual Machine，选择Custom，点击next
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/21953536/1679818570976-86cd0a03-624c-4f13-9df6-d2939bd37bc9.png#averageHue=%23f9f5f4&clientId=ufcbce0c8-1413-4&from=paste&height=395&id=jZb1g&originHeight=395&originWidth=426&originalType=binary&ratio=1&rotation=0&showTitle=false&size=25261&status=done&style=none&taskId=u0809deac-4e57-4a75-9907-97639c84d3d&title=&width=426)
 
-##### 2、选择自己的VMware版本，点击next
+#### 2、选择自己的VMware版本，点击next
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/21953536/1679818747477-cd4425ba-0f73-4499-9337-894270108ea0.png#averageHue=%23ece8e6&clientId=ufcbce0c8-1413-4&from=paste&height=437&id=Y9xzv&originHeight=437&originWidth=442&originalType=binary&ratio=1&rotation=0&showTitle=false&size=21686&status=done&style=none&taskId=u1514dbb3-da2d-41f2-8c3b-ff13ddbf5b7&title=&width=442)
 
-##### 3、选择"I will install the operating system later"，点击next
+#### 3、选择"I will install the operating system later"，点击next
 
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/21953536/1679818801755-75af779d-58c2-41ae-b991-96a945f17266.png#averageHue=%23ece8e7&clientId=ufcbce0c8-1413-4&from=paste&height=437&id=kL2qG&originHeight=437&originWidth=442&originalType=binary&ratio=1&rotation=0&showTitle=false&size=21927&status=done&style=none&taskId=uf3207f27-cb79-4bcc-b12d-41131faf205&title=&width=442)
 
-##### 4、选择模板机的操作系统（operating system）和版本（version），点击next
+#### 4、选择模板机的操作系统（operating system）和版本（version），点击next
 
 这里我们选择

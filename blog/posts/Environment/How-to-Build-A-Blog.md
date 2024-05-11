@@ -3,6 +3,7 @@ icon: pen-to-square
 date: 2023-11-17
 category:
   - Blog
+  - Environment setup
 title: How to build a Blog
 # tag:
 

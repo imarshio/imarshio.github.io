@@ -10,13 +10,13 @@ title: Linux简介
 
 ## Linux学习路径图
 
-![](https://doc.shiyanlou.com/linux_base/1-8.png#id=NSkvR&originHeight=693&originWidth=442&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+![image](https://doc.shiyanlou.com/linux_base/1-8.png#id=NSkvR&originHeight=693&originWidth=442&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 
 本文图部分来自：[蓝桥云课](https://www.lanqiao.cn/courses/1)，仅供个人学习使用。当然学习Linux我也非常推荐蓝桥云课，不仅有免费的在线Linux系统可用，还有大量免费的教程，这不是广告，是我的使用体验。
 
 ## Linux文件系统结构图
 
-![](https://masuo-github-image.oss-cn-beijing.aliyuncs.com/image/20210930174255.png#id=Po5nT&originHeight=1388&originWidth=1247&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+![image](https://masuo-github-image.oss-cn-beijing.aliyuncs.com/image/20210930174255.png#id=Po5nT&originHeight=1388&originWidth=1247&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 
 <!--more-->
 
@@ -62,7 +62,7 @@ Linux就是一个操作系统（OS，Operate System），就像Windows或Mac OS�
 
 Linux主要是系统调用和内核那两层，想一下就知道了，首先Linux不能是硬件，虽然说操作系统也算是应用程序，但是他是特殊的应用程序---操作系统。
 
-![](https://doc.shiyanlou.com/linux_base/1-1.png#id=GLheT&originHeight=406&originWidth=488&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+![image](https://doc.shiyanlou.com/linux_base/1-1.png#id=GLheT&originHeight=406&originWidth=488&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 
 ## Linux历史
 
@@ -87,7 +87,7 @@ Linux 内核 1.0 在 1994 年 3 月发布，内核的发布要经历许多开发
 - 1965 年，Bell 实验室、MIT、GE（通用电气公司）准备开发 Multics 系统，为了同时支持 300 个终端访问主机，但是 1969 年失败了；
 
 > 那时候并没有鼠标、键盘，输入设备，只有卡片机。因此，如果要测试某个程序，则需要将读卡纸插入卡片机，如果有错误，还需要重新来过；
->  
+>
 > Multics : Multiplexed Information and Computing Service；
 
 - 1969 年，Ken Thompson（C 语言之父）利用汇编语言开发了 File Server System（Unics，即 UNIX 的原型）；
@@ -116,46 +116,46 @@ Linux 内核 1.0 在 1994 年 3 月发布，内核的发布要经历许多开发
 
 UNIX 进化史（UNIX 大家族族谱 1969-2013）：
 
-![](https://dn-simplecloud.shiyanlou.com/uid/c4ca4238a0b923820dcc509a6f75849b/1467262784463.png#id=RtVJX&originHeight=1306&originWidth=1959&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+![image](https://dn-simplecloud.shiyanlou.com/uid/c4ca4238a0b923820dcc509a6f75849b/1467262784463.png#id=RtVJX&originHeight=1306&originWidth=1959&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 
 ## Linux 之父
 
 ### Linus Torvalds - 芬兰赫尔辛基大学
 
-![](https://doc.shiyanlou.com/linux_base/1-7.jpg#id=nuW1H&originHeight=920&originWidth=600&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+![image](https://doc.shiyanlou.com/linux_base/1-7.jpg#id=nuW1H&originHeight=920&originWidth=600&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 
 ## Linux与Windows的异同
 
-#### 1. 免费与收费
+### 1. 免费与收费
 
 - 最新正版 Windows 10，需要付费购买；
 - Linux 免费或少许费用。
 
-#### 2. 软件与支持
+### 2. 软件与支持
 
 - Windows 平台：数量和质量的优势，不过大部分为收费软件；由微软官方提供重要支持和服务；
 - Linux 平台：大都为开源自由软件，用户可以修改定制和再发布，由于基本免费没有资金支持，部分软件质量和体验欠缺；由全球所有的 Linux 开发者和自由软件社区提供支持。
 
-#### 3. 安全性
+### 3. 安全性
 
 - Windows 平台：三天两头打补丁安装系统安全更新，还是会中病毒木马；
 - Linux 平台：要说 Linux 没有安全问题，那当然是不可能的，这一点仁者见仁智者见智，相对来说肯定比 Windows 平台要更加安全，使用 Linux 你也不用装某杀毒、某毒霸。
 
-#### 4. 使用习惯
+### 4. 使用习惯
 
 - Windows：普通用户基本都是纯图形界面下操作使用，依靠鼠标和键盘完成一切操作，用户上手容易，入门简单；
 - Linux：兼具图形界面操作（需要使用带有桌面环境的发行版）和完全的命令行操作，可以只用键盘完成一切操作，新手入门较困难，需要一些学习和指导（这正是我们要做的事情），一旦熟练之后效率极高。
 
-#### 5. 可定制性
+### 5. 可定制性
 
 - Windows：这些年之前算是全封闭的，系统可定制性很差；
 - Linux：你想怎么做就怎么做，Windows 能做到得它都能，Windows 做不到的，它也能。
 
-#### 6. 应用范畴
+### 6. 应用范畴
 
 或许你之前不知道 Linux ，要知道，你之前在 Windows 使用百度、谷歌，上淘宝，聊 QQ 时，支撑这些软件和服务的，是后台成千上万的 Linux 服务器主机，它们时时刻刻都在忙碌地进行着数据处理和运算，可以说世界上大部分软件和服务都是运行在 Linux 之上的。
 
-#### 7. Windows 没有的
+### 7. Windows 没有的
 
 - 稳定的系统
 - 安全性和漏洞的快速修补
@@ -165,7 +165,7 @@ UNIX 进化史（UNIX 大家族族谱 1969-2013）：
 - 可定制裁剪，移植到嵌入式平台（如安卓设备）
 - 可选择的多种图形用户界面（如 GNOME，KDE）
 
-#### 8. Linux 没有的
+### 8. Linux 没有的
 
 - 特定的支持厂商
 - 足够的游戏娱乐支持度
@@ -173,15 +173,15 @@ UNIX 进化史（UNIX 大家族族谱 1969-2013）：
 
 ## Linux桌面环境
 
-#### 1.Linux 桌面环境介绍
+### 1.Linux 桌面环境介绍
 
 相对于现在的 Windows 系统，UNIX/Linux 本身是没有图形界面的，我们通常在 UNIX/Linux 发行版上看到的图形界面实际都只是运行在 Linux 系统之上的一套软件，类似 Windows95 之前的 Windows 的图形界面实则也只是运行在 DOS 环境的一套软件。而 Linux 上的这套软件以前是 XFree86，现在则是 xorg（X.Org），而这套软件又是通过 X 窗口系统（X Window System，也常被称为 X11 或 X）实现的，X 本身只是工具包及架构协议，而 xorg 便是 X 架构规范的一个实现体，也就是说它是实现了 X 协议规范的一个提供图形界面服务的服务器，就像实现了 http 协议提供 web 服务的 Apache 。如果只有服务器也是不能实现一个完整的桌面环境的，当然还需要一个客户端，我们称为 X Client，像如下几个大家熟知也最流行的实现了客户端功能的桌面环境 **KDE**，**GNOME**，**XFCE**，**LXDE** 。其中就有你看到的，实验楼目前使用的 **XFCE** 桌面环境，部分老用户可能可以回想起，实验楼之前使用的环境是 **LXDE** 。这也意味着在 Linux 上你可以自己选择安装不同的桌面环境，甚至可以定制自己的专属桌面。
 
-![](https://doc.shiyanlou.com/linux_base/2-1.png#id=aUkDy&originHeight=500&originWidth=1120&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+![image](https://doc.shiyanlou.com/linux_base/2-1.png#id=aUkDy&originHeight=500&originWidth=1120&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 
 这里讲这么多，主要是为了帮助你更好地理解 Linux 的桌面环境是一个怎样的概念，以及它跟 Windows 操作系统桌面的差异，实际它们之间是有着本质的差别的，希望清楚这些内容之后可以让你忽略那些体验上的差异，专心把精力放到 Linux 系统本身或者你正准备学习的某一门技术之上，这门实验课后面的内容和实验楼的其它课程便是为了帮助你实现以上两个目标。
 
-#### 2.Linux 桌面环境的使用
+### 2.Linux 桌面环境的使用
 
 如果你对当前实验桌面环境（xfce）的使用有任何困难，建议你先学习[实验楼入门基础课程](https://www.lanqiao.cn/courses/63)，对于其它桌面环境的使用，不在本课程的范围之内，有兴趣的用户可以在自己的计算机中安装完整的 Linux 发行版或其 Live CD 体验。
 
@@ -241,23 +241,23 @@ man 1 ls
 
 所有的手册页遵循一个常见的布局，为了通过简单的 ASCII 文本展示而被优化，而这种情况下可能没有任何形式的高亮或字体控制。一般包括以下部分内容：
 
-**NAME（名称）**
+- **NAME（名称）**
 
 > 该命令或函数的名称，接着是一行简介。
 
-**SYNOPSIS（概要）**
+- **SYNOPSIS（概要）**
 
 > 对于命令，正式的描述它如何运行，以及需要什么样的命令行参数。对于函数，介绍函数所需的参数，以及哪个头文件包含该函数的定义。
 
-**DESCRIPTION（说明）**
+- **DESCRIPTION（说明）**
 
 > 命令或函数功能的文本描述。
 
-**EXAMPLES（示例）**
+- **EXAMPLES（示例）**
 
 > 常用的一些示例。
 
-**SEE ALSO（参见）**
+- **SEE ALSO（参见）**
 
 > 相关命令或函数的列表。
 

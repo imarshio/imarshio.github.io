@@ -3,6 +3,7 @@ icon: pen-to-square
 date: 2024-03-19
 category:
   - ECS
+  - Environment setup
 title: What would you do if you have a ECS server?
 # tag:
 
