@@ -248,6 +248,26 @@ pnpm blogs-dev
 
 VuePress有多种主题可以选择，默认的主题也是不错的，但是！！作为博客，还是要炫酷一点，毕竟不是简单的分享那么简单。
 
-经过一段时间的选择，我决定使用[Hope](https://theme-hope.vuejs.press/)。
+经过一段时间的选择，我决定使用[vuepress-theme-Hope](https://theme-hope.vuejs.press/)。
 
 ### 搭建
+
+建议参考：[Get Started](https://theme-hope.vuejs.press/get-started/)
+
+大部分配置都可以在官方文档中找到，所以遇到问题的时候建议多翻翻官方文档。
+
+## 其他参考
+
+### Git多用户配置
+
+一般公司（不是一般公司，而是一般~公司）都会搭建内部的Git、Gitlab仓库，这时候，你的账户自然不会和Github上的通用。
+
+这时候，如果你想在公司电脑上也能推到github上，那么你可能需要参考下[Git多用户配置](../../notes/Git/多用户.md)。
+
+### fontawesome
+
+[传送门](https://fontawesome.com/)
+
+Good luck。
+
+<i class="fa-solid fa-bath"></i>

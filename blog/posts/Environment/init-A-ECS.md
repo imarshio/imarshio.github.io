@@ -4,14 +4,24 @@ date: 2024-03-19
 category:
   - ECS
   - Environment setup
-title: What would you do if you have a ECS server?
+title: What if you have a ECS server?
 # tag:
 
 ---
 
-当你到手一台服务器后，你会干什么？看看我都会做啥吧。
+当你到手一台服务器后，你会干什么？
 
-## 安装Nginx（Must）
+Just One?
+
+Yes, One.
+
+Nothing.
+
+But, this is life.
+
+看看我都会做啥吧。
+
+## 安装Nginx（Must For Me, Option For You）
 
 需要的配置
 
@@ -213,9 +223,25 @@ http {
 
 需要的配置
 
-- 内存
-- 磁盘
-- CPU
+- 内存：越大越好，小点也没问题
+- 磁盘：越大越好，小点也没问题
+- CPU：越多越好，少了也能跑
+
+进[官网](https://dev.mysql.com/downloads/repo/yum/)，这里传送门会送你到下载地址，映入眼帘的就是你可以点击下载的链接，至于进入这个链接的原因嘛，你可以看下[官方解释](https://dev.mysql.com/doc/refman/8.4/en/linux-installation-yum-repo.html)
+
+### 确认Linux版本
+
+点击如上连接后，你会发现有好多个链接可以点击下载，不明所以的同学以及有选择困难症的同学可能就难以下手了，那么此时我们就需要知道其中有什么区别？
+
+仔细观察一番，我们可以发现其中的玄机就在一个数字之差，Linux 9 对应 “el9”，Linux 8 对应 “el8”，Linux 7 对应 “el7”，我们略施小计就能猜到这是版本不一致导致的。
+
+```sh
+uname -a 
+
+# Linux iZuf6ipaofe0zmf15z5lttZ 3.10.0-1160.108.1.el7.x86_64 #1 SMP Thu Jan 25 16:17:31 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux
+
+# 第三段内容决定了你能下载的版本
+```
 
 ## 安装Redis（Option）
 

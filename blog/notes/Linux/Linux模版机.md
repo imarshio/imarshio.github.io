@@ -3,7 +3,7 @@ icon: pen-to-square
 date: 2021-03-17
 category:
   - Linux
-title: Linux模版机 
+title: Linux Template Mechine
 # tag:
 
 ---
