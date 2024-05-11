@@ -1,6 +1,6 @@
 ---
-title: Git
-icon: fab fa-git
+title: Java
+icon: fa-brands fa-java
 index: false
 article: false
 category:

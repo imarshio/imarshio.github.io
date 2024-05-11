@@ -235,6 +235,11 @@ http {
 
 仔细观察一番，我们可以发现其中的玄机就在一个数字之差，Linux 9 对应 “el9”，Linux 8 对应 “el8”，Linux 7 对应 “el7”，我们略施小计就能猜到这是版本不一致导致的。
 
+> [!NOTE]
+>
+> 有些人可能会好奇RHEL与CentOS的区别是什么？这篇文章会告诉你。[What is CentOS?](https://www.redhat.com/en/topics/linux/what-is-centos)
+> 简单来说，他俩基本一样，不一样的点在于一个是商业化的，一个是开源免费的。一个由专业的团队维护，一个由开源社区维护。
+
 ```sh
 uname -a 
 
