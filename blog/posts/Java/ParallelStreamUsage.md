@@ -1,6 +1,5 @@
 ---
 icon: pen-to-square
-date: 2024-05-11
 category:
   - ECS
 title: Parallel Stream Usage

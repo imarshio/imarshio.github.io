@@ -1,6 +1,5 @@
 ---
 icon: pen-to-square
-date: 2024-03-22
 order: 99
 category:
   - MySQL查询深入优化

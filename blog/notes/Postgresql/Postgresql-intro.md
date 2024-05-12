@@ -1,6 +1,5 @@
 ---
 icon: google
-date: 2021-03-17
 category:
   - postgresql
 title: pg介绍

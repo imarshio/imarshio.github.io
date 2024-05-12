@@ -1,6 +1,5 @@
 ---
 icon: pen-to-square
-date: 2023-09-09
 star: true
 category:
   - Logging Framework

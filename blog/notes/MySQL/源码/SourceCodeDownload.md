@@ -1,6 +1,6 @@
 ---
 icon: pen-to-square
-date: 2024-03-22
+
 order: 1
 category:
   - MySQL

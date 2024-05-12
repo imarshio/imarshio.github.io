@@ -1,6 +1,5 @@
 ---
 icon: pen-to-square
-date: 2024-03-22
 category:
   - CLion
 title: CLion环境搭建

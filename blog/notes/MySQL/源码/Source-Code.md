@@ -1,6 +1,7 @@
 ---
 icon: pen-to-square
-date: 2024-03-22
+
+
 category:
   - MySQL
 title: MySQL8.0.x 源码阅读指南
