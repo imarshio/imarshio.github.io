@@ -83,7 +83,8 @@ sed -i 's/oldstr/newstr/g' /home/text.txt
 
 ### 输出说明
 
-![image.png](/assets/images/Linux/LinuxCommand-20240318-0002.png)
+![image.png](/assets/images/linux/LinuxCommand-20240318-0002.png)
+
 第一排：
 
 - `top - 12:58:55 up 17 days, 19:53`：指的是这台服务器到今天的`12:58:55`启动了17天，19个小时，53分钟。
