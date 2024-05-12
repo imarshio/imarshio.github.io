@@ -1,5 +1,6 @@
 ---
 icon: pen-to-square
+order: 2
 category:
   - Linux
 title: Linux Template Mechine

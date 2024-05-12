@@ -10,9 +10,11 @@ title: Linux Intro
 
 ## Linux学习路径图
 
-![image](https://doc.shiyanlou.com/linux_base/1-8.png#id=NSkvR&originHeight=693&originWidth=442&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+![image](/assets/images/linux/Linux-Route.png)
 
 本文图部分来自：[蓝桥云课](https://www.lanqiao.cn/courses/1)，仅供个人学习使用。当然学习Linux我也非常推荐蓝桥云课，不仅有免费的在线Linux系统可用，还有大量免费的教程，这不是广告，是我的使用体验。
+
+但是我并不建议学习Linux的图文界面，当然可以了解，但不建议深入，以免依赖图文界面，而丧失学习的本质。
 
 ## Linux文件系统结构图
 
@@ -62,7 +64,7 @@ Linux就是一个操作系统（OS，Operate System），就像Windows或Mac OS�
 
 Linux主要是系统调用和内核那两层，想一下就知道了，首先Linux不能是硬件，虽然说操作系统也算是应用程序，但是他是特殊的应用程序---操作系统。
 
-![image](https://doc.shiyanlou.com/linux_base/1-1.png#id=GLheT&originHeight=406&originWidth=488&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+![image](/assets/images/linux/Linux-Core.png)
 
 ## Linux历史
 
@@ -114,15 +116,43 @@ Linux 内核 1.0 在 1994 年 3 月发布，内核的发布要经历许多开发
 - 1994 年，Torvalds 发布 Linux-v1.0；
 - 1996 年，Torvalds 发布 Linux-v2.0，确定了 Linux 的吉祥物：企鹅。
 
-UNIX 进化史（UNIX 大家族族谱 1969-2013）：
+### UNIX 家族族谱
 
-![image](https://dn-simplecloud.shiyanlou.com/uid/c4ca4238a0b923820dcc509a6f75849b/1467262784463.png#id=RtVJX&originHeight=1306&originWidth=1959&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+![image](/assets/images/linux/UNIX家谱.png)
+
+图源:<https://i.linuxtoy.org/docs/guide/ch45s03.html>
+
+### Linux发行版时间线
+
+![image](/assets/images/linux/Linux-Distro-Timeline.png)
+
+### Linux主要分支
+
+其实Linux的主要活跃社区为Ubuntu、Debian和Fedora。
+
+#### Debian
+
+免费开源，由社区维护。
+
+#### Red Hat
+
+付费非开源，但有开源版的CentOS，CentOS是基于RedHat的开源免费版。
+
+#### Ubuntu
+
+有免费版，也有付费版，衍生自Debian。
+
+#### CentOS
+
+免费开源，衍生自RedHat。
 
 ## Linux 之父
 
 ### Linus Torvalds - 芬兰赫尔辛基大学
 
-![image](https://doc.shiyanlou.com/linux_base/1-7.jpg#id=nuW1H&originHeight=920&originWidth=600&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+![Linus Torvalds](/assets/images/linux/Linux-Father.jpg)
+
+同时还是Git的开发创造者。
 
 ## Linux与Windows的异同
 
@@ -171,19 +201,15 @@ UNIX 进化史（UNIX 大家族族谱 1969-2013）：
 - 足够的游戏娱乐支持度
 - 足够的专业软件支持度
 
-## Linux桌面环境
+## Linux 桌面环境
 
 ### 1.Linux 桌面环境介绍
 
 相对于现在的 Windows 系统，UNIX/Linux 本身是没有图形界面的，我们通常在 UNIX/Linux 发行版上看到的图形界面实际都只是运行在 Linux 系统之上的一套软件，类似 Windows95 之前的 Windows 的图形界面实则也只是运行在 DOS 环境的一套软件。而 Linux 上的这套软件以前是 XFree86，现在则是 xorg（X.Org），而这套软件又是通过 X 窗口系统（X Window System，也常被称为 X11 或 X）实现的，X 本身只是工具包及架构协议，而 xorg 便是 X 架构规范的一个实现体，也就是说它是实现了 X 协议规范的一个提供图形界面服务的服务器，就像实现了 http 协议提供 web 服务的 Apache 。如果只有服务器也是不能实现一个完整的桌面环境的，当然还需要一个客户端，我们称为 X Client，像如下几个大家熟知也最流行的实现了客户端功能的桌面环境 **KDE**，**GNOME**，**XFCE**，**LXDE** 。其中就有你看到的，实验楼目前使用的 **XFCE** 桌面环境，部分老用户可能可以回想起，实验楼之前使用的环境是 **LXDE** 。这也意味着在 Linux 上你可以自己选择安装不同的桌面环境，甚至可以定制自己的专属桌面。
 
-![image](https://doc.shiyanlou.com/linux_base/2-1.png#id=aUkDy&originHeight=500&originWidth=1120&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
+![image](/assets/images/linux/Linux-Constructor.png)
 
 这里讲这么多，主要是为了帮助你更好地理解 Linux 的桌面环境是一个怎样的概念，以及它跟 Windows 操作系统桌面的差异，实际它们之间是有着本质的差别的，希望清楚这些内容之后可以让你忽略那些体验上的差异，专心把精力放到 Linux 系统本身或者你正准备学习的某一门技术之上，这门实验课后面的内容和实验楼的其它课程便是为了帮助你实现以上两个目标。
-
-### 2.Linux 桌面环境的使用
-
-如果你对当前实验桌面环境（xfce）的使用有任何困难，建议你先学习[实验楼入门基础课程](https://www.lanqiao.cn/courses/63)，对于其它桌面环境的使用，不在本课程的范围之内，有兴趣的用户可以在自己的计算机中安装完整的 Linux 发行版或其 Live CD 体验。
 
 ## Linux的哲学
 

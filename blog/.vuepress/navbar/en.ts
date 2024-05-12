@@ -137,31 +137,33 @@ export const enNavbar = navbar([
   //     }
   //   ],
   // }
-  {
-    text: "books",
-    icon: "book",
-    prefix: "/books/",
-    children: [
-      {
-        text: "凤凰架构",
-        icon: "pen-to-square",
-        link: "凤凰架构",
-      },
-      {
-        text: "操作系统",
-        icon: "pen-to-square",
-        link: "操作系统",
-      },
-      {
-        text: "数据结构与算法分析",
-        icon: "pen-to-square",
-        link: "数据结构与算法分析",
-      },
-      {
-        text: "计算机网络",
-        icon: "pen-to-square",
-        link: "计算机网络",
-      },
-    ]
-  }
+  "/books/",
+  // {
+  //   text: "books",
+  //   icon: "book",
+  //   prefix: "/books/",
+  //   children: [
+  //     {
+  //       text: "凤凰架构",
+  //       icon: "pen-to-square",
+  //       link: "凤凰架构",
+  //     },
+  //     {
+  //       text: "操作系统",
+  //       icon: "pen-to-square",
+  //       link: "操作系统",
+  //     },
+  //     {
+  //       text: "数据结构与算法分析",
+  //       icon: "pen-to-square",
+  //       link: "数据结构与算法分析",
+  //     },
+  //     {
+  //       text: "计算机网络",
+  //       icon: "pen-to-square",
+  //       link: "计算机网络",
+  //     },
+  //     ""
+  //   ]
+  // }
 ]);

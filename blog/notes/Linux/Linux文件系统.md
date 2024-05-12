@@ -1,5 +1,6 @@
 ---
 icon: pen-to-square
+order: 3
 category:
   - Linux
 title: Linux File System
