@@ -238,6 +238,7 @@ http {
 > [!NOTE]
 >
 > 有些人可能会好奇RHEL与CentOS的区别是什么？这篇文章会告诉你。[What is CentOS?](https://www.redhat.com/en/topics/linux/what-is-centos)
+>
 > 简单来说，他俩基本一样，不一样的点在于一个是商业化的，一个是开源免费的。一个由专业的团队维护，一个由开源社区维护。
 
 ```sh
@@ -247,6 +248,151 @@ uname -a
 
 # 第三段内容决定了你能下载的版本
 ```
+
+### 安装
+
+```sh
+# 下载rpm包
+rpm -Uvh https://dev.mysql.com/get/mysql80-community-release-el7-7.noarch.rpm
+
+# 下载mysql-server
+yum -y install mysql-community-server --enablerepo=mysql80-community --nogpgcheck
+
+# 检查是否安装成功
+mysql -V
+```
+
+### 配置
+
+```sh
+# 启动mysql服务
+sudo systemctl start mysqld
+
+# 启用mysql服务
+sudo systemctl enable mysqld
+
+# 从日志中找到临时密码
+sudo grep 'temporary password' /var/log/mysqld.log
+
+# rn,Ooorsp9s#
+# Vjb,Li6N}r
+
+```
+
+#### 安全配置（可选）
+
+```sh
+# 执行安全检查配置
+mysql_secure_installation
+```
+
+##### 重置密码
+
+```sh
+[root@iZuf6ipaofe0zmf15z5lttZ ~]# mysql_secure_installation
+
+Securing the MySQL server deployment.
+
+Enter password for user root: 
+Error: Access denied for user 'root'@'localhost' (using password: YES)
+[root@iZuf6ipaofe0zmf15z5lttZ ~]# mysql_secure_installation
+
+Securing the MySQL server deployment.
+
+Enter password for user root: 
+The 'validate_password' component is installed on the server.
+The subsequent steps will run with the existing configuration
+of the component.
+Using existing password for root.
+
+Estimated strength of the password: 100 
+Change the password for root ? ((Press y|Y for Yes, any other key for No) : y
+
+New password: 
+
+Re-enter new password: 
+
+Estimated strength of the password: 100 
+Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) : y
+```
+
+##### 移除匿名用户
+
+```sh
+By default, a MySQL installation has an anonymous user,
+allowing anyone to log into MySQL without having to have
+a user account created for them. This is intended only for
+testing, and to make the installation go a bit smoother.
+You should remove them before moving into a production
+environment.
+
+Remove anonymous users? (Press y|Y for Yes, any other key for No) : y
+Success.
+```
+
+##### 禁止远程登录root账户
+
+```sh
+Normally, root should only be allowed to connect from
+'localhost'. This ensures that someone cannot guess at
+the root password from the network.
+
+Disallow root login remotely? (Press y|Y for Yes, any other key for No) : y
+Success.
+```
+
+##### 删除测试库
+
+```sh
+By default, MySQL comes with a database named 'test' that
+anyone can access. This is also intended only for testing,
+and should be removed before moving into a production
+environment.
+
+
+Remove test database and access to it? (Press y|Y for Yes, any other key for No) : y
+ - Dropping test database...
+Success.
+
+ - Removing privileges on test database...
+Success.
+
+Reloading the privilege tables will ensure that all changes
+made so far will take effect immediately.
+```
+
+##### 重新加载授权表
+
+```sh
+Reload privilege tables now? (Press y|Y for Yes, any other key for No) : y
+Success.
+
+All done! 
+```
+
+#### 创建远程登录用户
+
+```sh
+
+# 先进入mysql服务的控制台
+mysql -uroot -p
+
+# 输入密码
+
+# 创建用户
+create user 'dba'@'%' identified by 'passsword';
+
+# 授予全部权限
+grant all privaleges on *.* to 'dba'@'%';
+
+# 刷新权限，使权限立即生效
+flush privaleges;
+```
+
+### 密码记录
+
+root：
+dba：W9My48X.k6
 
 ## 安装Redis（Option）
 
