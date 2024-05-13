@@ -25,3 +25,7 @@ RPC：（remote procedure call）远程服务调用
 REST：**Re**presentational **S**tate **T**ransfer，表征状态转移
 
 ## 协议进化史
+
+## Linux
+
+SELinux：Security-Enhanced Linux 是一种强制访问控制（MAC）安全模块，旨在提高 Linux 操作系统的安全性

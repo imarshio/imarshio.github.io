@@ -390,8 +390,52 @@ flush privaleges;
 
 ### 密码记录
 
-root：
-dba：W9My48X.k6
+| 账号 | 密码       |
+| ---- | ---------- |
+| root |            |
+| dba  | W9My48X.k6 |
+|      |            |
+
+## 安装Java（Option）
+
+> [!Note]
+> 从 Java 9 开始，Oracle 官方不再提供单独的JRE下载，而是将其包含在 JDK 中。
+>
+> 从 Java 9 开始，环境变量不需要手动配置。
+
+```shell
+# 搜索jdk列表
+yum list java*
+
+# 选择合适的版本安装，
+yum -y install java-11-openjdk-devel.x86_64
+
+# 查看是否安装成功
+java -version
+```
+
+### 查看安装位置
+
+```sh
+whereis java
+
+# 输出：java: /usr/bin/java /usr/lib/java /etc/java /usr/share/java /usr/share/man/man1/java.1.gz
+
+# 查看java命令安装的目录
+ll /usr/bin | grep java
+
+# lrwxrwxrwx  1 root root        22 May 13 17:05 java -> /etc/alternatives/java
+# 开头的 l 代表这是一个软连接，链接的是其他目录，我们继续深入
+
+ll /etc/alternatives | grep java
+
+# lrwxrwxrwx  1 root root 64 May 13 17:05 java -> /usr/lib/jvm/java-11-openjdk-11.0.23.0.9-2.el7_9.x86_64/bin/java
+# /usr/lib/jvm/java-11-openjdk-11.0.23.0.9-2.el7_9.x86_64/bin/java 就是java命令的位置，在这个地方你可以看到其他命令，如jstack，jconsole等
+```
+
+### 配置
+
+
 
 ## 安装Redis（Option）
 
