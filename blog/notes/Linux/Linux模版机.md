@@ -1,5 +1,5 @@
 ---
-icon: pen-to-square
+icon: window-restore
 order: 2
 category:
   - Linux

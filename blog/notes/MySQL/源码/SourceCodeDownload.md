@@ -1,6 +1,5 @@
 ---
 icon: pen-to-square
-
 order: 1
 category:
   - MySQL

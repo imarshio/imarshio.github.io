@@ -11,17 +11,17 @@ title: How to build a Blog
 
 ## 前言
 
-之前使用过Hexo搭建个人博客，但是感觉维护起来不方便，提交代码，还要编译发布
+之前使用过 Hexo 搭建个人博客，但是感觉维护起来不方便，提交代码，还要编译发布
 
 之前的代码：[imarshio.github.io.zip](https://www.yuque.com/attachments/yuque/0/2024/zip/21953536/1704424734047-439858b0-d4d6-486e-bf65-e8a17f41e8d5.zip?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2024%2Fzip%2F21953536%2F1704424734047-439858b0-d4d6-486e-bf65-e8a17f41e8d5.zip%22%2C%22name%22%3A%22imarshio.github.io.zip%22%2C%22size%22%3A1780558%2C%22ext%22%3A%22zip%22%2C%22source%22%3A%22%22%2C%22status%22%3A%22done%22%2C%22download%22%3Atrue%2C%22taskId%22%3A%22u726a4bee-41cd-4667-a597-60da4a37f80%22%2C%22taskType%22%3A%22upload%22%2C%22type%22%3A%22application%2Fx-zip-compressed%22%2C%22__spacing%22%3A%22both%22%2C%22mode%22%3A%22title%22%2C%22id%22%3A%22u4396e2de%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22file%22%7D)
 
-这次经过一段时间的探索，我选择了VuePress + Github Pages搭建个人博客。
+这次经过一段时间的探索，我选择了 VuePress + Github Pages 搭建个人博客。
 
-之前基本没有接触过vue系列，所以这次搭建环境算是从0开始。
+之前基本没有接触过 vue 系列，所以这次搭建环境算是从0开始。
 
-首先，VuePress版本我这里选择了2.x，虽然目前他仍处于RC阶段，但我看他已经上线有很长一段时间了，因该不会存在很明显的BUG，就算存在，我也可以通过提交issue或通过其他办法绕过去，而且我考虑到VuePress 1.x是基于vue 2.x的，VuePress 2.x是基于vue 3.x的，但是vue 2.x已经停止了维护，综合考虑，我选择了VuePress 2.x。
+首先，VuePress 版本我这里选择了2.x，虽然目前他仍处于RC阶段，但我看他已经上线有很长一段时间了，因该不会存在很明显的BUG，就算存在，我也可以通过提交 issue 或通过其他办法绕过去，而且我考虑到 VuePress 1.x 是基于 vue 2.x的，VuePress 2.x 是基于 vue 3.x 的，但是 vue 2.x已经停止了维护，综合考虑，我选择了 VuePress 2.x。
 
-其次，安装VuePress的前提是安装Node.js v18.16.0+，Node.js我还是有一些安装经验的，之前部署Hexo的博客用到过，所以我知道，环境嘛，不可能只会有一个版本的Node.js的，所以我先从Node.js版本管理工具下手的，经过一番探索，我选择了nvm管理工具。
+其次，安装 VuePress 的前提是安装 Node.js v18.16.0+，Node.js 我还是有一些安装经验的，之前部署 Hexo 的博客用到过，所以我知道，环境嘛，不可能只会有一个版本的 Node.js 的，所以我先从 Node.js 版本管理工具下手的，经过一番探索，我选择了 pnpm 管理工具。
 
 ## 安装VuePress
 
@@ -73,8 +73,8 @@ Path=%PNPM_HOME%;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;%NVM_HOME%;%N
 Setup complete. Open a new terminal to start using pnpm.
 ```
 
-需要注意的是，pnpm同样支持下载Node.js
-使用命令 [pnpm env](https://www.pnpm.cn/cli/env) 即可下载Node.js，此命令只支持管理Node.js的版本
+需要注意的是，pnpm 同样支持下载 Node.js
+使用命令 [pnpm env](https://www.pnpm.cn/cli/env) 即可下载 Node.js，此命令只支持管理 Node.js的版本
 
 ```shell
 pnpm env use --global 18.19.0
@@ -82,7 +82,7 @@ pnpm env use --global 18.19.0
 
 #### Mac
 
-正常方式下，我们会通过先安装Node.js（版本大于等于16.14）,然后通过homebrew安装pnpm。
+正常方式下，我们会通过先安装 Node.js（版本大于等于16.14）,然后通过 homebrew 安装 pnpm。
 首先，确保系统中安装了`homebrew`,`Node.js`，并确保当前的网络环境正常。
 
 ```shell

@@ -1,5 +1,5 @@
 ---
-icon: pen-to-square
+icon: circle-info
 order: 1
 category:
   - Linux

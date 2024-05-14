@@ -2,21 +2,28 @@
 icon: pen-to-square
 category:
   - Linux
-title: Linux Command -- Chapter Edit
+title: Linux Command -- Chapter Disk
+order: 23
 tag:
 - ls
 
 ---
 
-## df
+> [!NOTE]
+> 如下命令使用中，
+>
+> - `[]` 代表可选参数，
+> - `<>` 代表可自由输入输入的字符
+> - `-` 后面跟的是缩写
+> - `--` 后面跟的是全拼
 
-## du
+## `df`
 
-## free
+## `du`
 
-## top
+## `free`
 
-## pwd
+## `pwd`
 
 参考
 

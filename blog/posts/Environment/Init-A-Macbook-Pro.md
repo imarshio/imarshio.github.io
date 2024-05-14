@@ -52,13 +52,16 @@ xcode-select —install
 
 官网：[https://brew.sh/zh-cn/](https://brew.sh/zh-cn/)
 
-现在Home brew支持多种方式下载，它提供了dpk的下载器，也可以按照网上的方法（自寻）安装，本人使用的是下载器（+🪜）。
+现在Home brew支持多种方式下载，它提供了dpk的下载器，也可以按照网上的方法（自寻）安装，本人使用的是下载器（+🪜梯子）。
+
 下载器位置：[https://github.com/Homebrew/brew/releases/tag/4.2.10](https://github.com/Homebrew/brew/releases/tag/4.2.10)
+
 高级安装选项：[https://docs.brew.sh/Installation](https://docs.brew.sh/Installation)
 
 默认下载位置：`/opt/homebrew`
 
 下载器安装完成后，会提示你`To add Homebrew to your PATH run brew shellenv in your shell profile (e.g. ~/.bash_profile or ~/.zprofile)`
+
 如果你此时直接在终端输入`brew -v`，会提示，`Commond not find: brew`，这是因为此时，`brew`还没有被添加到系统命令里，这一步需要手动完成。
 
 输入如下两条命令将brew添加到系统命令

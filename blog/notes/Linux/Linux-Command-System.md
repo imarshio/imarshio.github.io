@@ -3,6 +3,7 @@ icon: pen-to-square
 category:
   - Linux
 title: Linux Command -- Chapter System
+order: 25
 tag:
 - ls
 

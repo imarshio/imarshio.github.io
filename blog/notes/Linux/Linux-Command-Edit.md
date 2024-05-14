@@ -1,5 +1,6 @@
 ---
 icon: pen-to-square
+order: 21
 category:
   - Linux
 title: Linux Command -- Chapter Edit
@@ -18,16 +19,19 @@ tag:
 - [https://www.linuxcool.com/](https://www.linuxcool.com/)
 -
 
+> [!NOTE]
 > 如下命令使用中，
 >
-> - []    代表可选参数，
-> - <> 代表可自由输入输入的字符
-> - -     后面跟的是缩写
-> - --    后面跟的是全拼
+> - `[]` 代表可选参数，
+> - `<>` 代表可自由输入输入的字符
+> - `-` 后面跟的是缩写
+> - `--` 后面跟的是全拼
 
 <!-- # 编辑 -->
 
 ## `vi`
+
+
 
 ## `vim`
 

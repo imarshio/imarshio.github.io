@@ -3,7 +3,7 @@ icon: pen-to-square
 order: 99
 category:
   - MySQL查询深入优化
-title: 记一次MySQL深入优化（1）
+title: 记一次MySQL深入优化
 tag:
 - 源码阅读
 - MySQL

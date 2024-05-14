@@ -1,6 +1,7 @@
 ---
 icon: pen-to-square
 star: true
+title: Logging Framework
 category:
   - Logging Framework
 tag:

@@ -3,17 +3,19 @@ icon: pen-to-square
 category:
   - Linux
 title: Linux Command -- Chapter Network
+order: 24
 tag:
 - ls
 
 ---
 
+> [!NOTE]
 > 如下命令使用中，
 >
-> - []    代表可选参数，
-> - <> 代表可自由输入输入的字符
-> - -     后面跟的是缩写
-> - --    后面跟的是全拼
+> - `[]` 代表可选参数，
+> - `<>` 代表可自由输入输入的字符
+> - `-` 后面跟的是缩写
+> - `--` 后面跟的是全拼
 
 ## ping
 
