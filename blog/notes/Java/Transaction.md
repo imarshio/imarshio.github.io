@@ -5,11 +5,11 @@ star: true
 title: Transactional Annotation
 description: 虚心接受自己的不足，然后找机会与时间去弥补自己的不足，你会慢慢体会到高处不胜寒的感觉。
 category:
-- Transcation
+    - spring
+    - 源码分析
 tags: 
-- spring
-- 事务
-- 源码阅读
+    - Transcation
+    - 事务
 ---
 
 

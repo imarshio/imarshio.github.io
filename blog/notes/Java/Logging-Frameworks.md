@@ -5,6 +5,7 @@ title: Logging Framework
 category:
   - Logging Framework
 tag:
+  - java
   - log
   - log4j
   - J.U.L
@@ -16,7 +17,7 @@ tag:
   - log4j2
 ---
 
-# Logging Framework
+
 
 ## 日志框架
 

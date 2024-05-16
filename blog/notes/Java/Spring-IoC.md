@@ -4,7 +4,7 @@ icon: pen-to-square
 title: Spring IoC
 order: 31
 category:
-  - Logging Framework
+  - spring
 tag:
   - ioc
 ---

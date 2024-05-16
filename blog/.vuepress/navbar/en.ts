@@ -166,4 +166,5 @@ export const enNavbar = navbar([
   //     ""
   //   ]
   // }
+  {text:"me", link: "/intro",icon: "fa-solid fa-user-graduate"}
 ]);

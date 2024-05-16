@@ -4,7 +4,7 @@ icon: pen-to-square
 title: Spring SpEL
 order: 33
 category:
-  - Logging Framework
+  - spring
 tag:
   - spel
 ---

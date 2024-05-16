@@ -12,24 +12,28 @@ bgImage: /assets/images/fenling.webp
 projects:
   - icon: project
     name: springboot-demo
-    desc: project detailed description
+    desc: A springboot project for dependencies usage
     link: https://github.com/imarshio/springboot-demo
 
-  - icon: link
+  - icon: fa-brands fa-web-awesome
     name: My Site
-    desc: link detailed description
+    desc: 未完成备案,暂不支持访问
     link: https://marshio.com
 
-  - icon: book
+  - icon: fa-solid fa-book-open-reader
     name: bookshelf
     desc: Detailed description of the book
-    link: https://link.to.your.book
+    link: /books/
 
   - icon: article
     name: yuque
     desc: Detailed description of the article
     link: https://www.yuque.com/u21559410
 
+  - icon: fa-brands fa-steam
+    name: steam
+    desc: Detailed description of the article
+    link: https://steamcommunity.com/profiles/76561198406957800/
 
 footer: 備案號
 ---
