@@ -72,6 +72,8 @@ export default hopeTheme({
       // sidebar
       sidebar: enSidebar,
 
+      headerDepth: 3,
+
       footer: "備案號",
 
       displayFooter: true,

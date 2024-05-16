@@ -1,8 +1,15 @@
 import { defineUserConfig } from "vuepress";
 import theme from "./theme.js";
 
-export default ({
+export default {
   base: "/",
+
+  markdown: {
+    headers: {
+      // 用到哪一级就提取哪一级
+      level: [2, 3, 4],
+    },
+  },
 
   locales: {
     "/": {
@@ -16,4 +23,4 @@ export default ({
 
   // Enable it with pwa
   shouldPrefetch: false,
-});
+};

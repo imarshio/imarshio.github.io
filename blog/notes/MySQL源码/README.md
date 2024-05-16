@@ -1,8 +1,8 @@
 ---
-title: MySQL
+title: MySQL源码
 icon: database
-order: 4
 article: false
+order: 8
 index: false
 category:
   - Intro

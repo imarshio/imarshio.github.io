@@ -1,8 +1,8 @@
 ---
-title: MySQL
+title: MySQL进阶
 icon: database
-order: 4
 article: false
+order: 5
 index: false
 category:
   - Intro
