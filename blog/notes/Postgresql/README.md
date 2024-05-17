@@ -1,5 +1,5 @@
 ---
-title: Postgre
+title: PostgreSQL
 icon: database
 article: false
 index: false
