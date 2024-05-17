@@ -167,3 +167,10 @@ journalctl -u <服务名.service>
 ```sh
 systemctl status firewalld
 ```
+
+参考
+
+- [https://linux.vbird.org/](https://linux.vbird.org/)(推荐，基本所有的命令都可以在这找到)
+- [https://phoenixnap.com/kb/linux-commands](https://phoenixnap.com/kb/linux-commands)（推荐）
+- [https://www.runoob.com/linux/linux-command-manual.html](https://www.runoob.com/linux/linux-command-manual.html)
+- [https://www.linuxcool.com/](https://www.linuxcool.com/)

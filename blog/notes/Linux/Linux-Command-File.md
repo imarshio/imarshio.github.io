@@ -24,7 +24,32 @@ tag:
 
 ## ls
 
-查看当前文件夹下有哪些文件
+list，列出当前文件夹下有哪些文件
+
+用法
+
+```sh
+ls [options] [file_path]
+```
+
+参数
+
+| 参数 | 说明                       |
+| ---- | -------------------------- |
+| l    | 展示文件的详细信息     |
+| a    | 展示全部文件                   |
+| h    | 提高可读性（human） |
+
+```sh
+# 在一些发行版中会将此命令简写为 ll
+ls -l
+
+ls -a
+
+ls -al
+
+ls -h
+```
 
 ## touch
 
@@ -50,7 +75,7 @@ tag:
 
 ### 用法
 
-`cat [选项]... [文件]...`
+`cat [options]... [file]...`
 
 ### 常用参数
 
@@ -72,6 +97,7 @@ tail -f -n 200 log.log
 
 参考
 
+- [https://linux.vbird.org/](https://linux.vbird.org/)(推荐，基本所有的命令都可以在这找到)
 - [https://phoenixnap.com/kb/linux-commands](https://phoenixnap.com/kb/linux-commands)（推荐）
 - [https://www.runoob.com/linux/linux-command-manual.html](https://www.runoob.com/linux/linux-command-manual.html)
 - [https://www.linuxcool.com/](https://www.linuxcool.com/)

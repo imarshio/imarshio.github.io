@@ -3,7 +3,7 @@ icon: circle-info
 order: 1
 category:
   - Linux
-title: Linux Intro
+title: Linux Intro and History
 # tag:
 
 ---

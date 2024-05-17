@@ -9,15 +9,6 @@ tag:
 
 ---
 
-一个命令的使用总归是先有一个背景的，所以如下命令都是结合适用场景总结出来的。
-由于 Linux 家族过于庞大，每个分支都各有特点，且处理方式不完全一样，所以我会尽量给出常用系统的命令。
-这里你需要知道自己的电脑属于哪个发行版，不了解的可以点击了解一下(虽然我也不是很了解，但是可以稍微i提供一点点帮助)。
-参考
-
-- [https://phoenixnap.com/kb/linux-commands](https://phoenixnap.com/kb/linux-commands)（推荐）
-- [https://www.runoob.com/linux/linux-command-manual.html](https://www.runoob.com/linux/linux-command-manual.html)
-- [https://www.linuxcool.com/](https://www.linuxcool.com/)
--
 
 > [!NOTE]
 > 如下命令使用中，
@@ -69,3 +60,10 @@ sed -i 's/oldstr/newstr/g' /home/text.txt
 ![image.png](https://cdn.nlark.com/yuque/0/2023/png/21953536/1679498606268-77b52d4f-a471-4efb-a2e4-b2badb8ae9c8.png#averageHue=%232a343e&clientId=u5ce6f6a9-7c29-4&from=paste&height=347&id=u7873d025&originHeight=347&originWidth=448&originalType=binary&ratio=1&rotation=0&showTitle=false&size=17823&status=done&style=none&taskId=u4addc969-37de-46d6-9f9d-fdb9ef37560&title=&width=448)
 
 ## `awk`
+
+参考
+
+- [https://linux.vbird.org/](https://linux.vbird.org/)(推荐，基本所有的命令都可以在这找到)
+- [https://phoenixnap.com/kb/linux-commands](https://phoenixnap.com/kb/linux-commands)（推荐）
+- [https://www.runoob.com/linux/linux-command-manual.html](https://www.runoob.com/linux/linux-command-manual.html)
+- [https://www.linuxcool.com/](https://www.linuxcool.com/)
