@@ -3,7 +3,7 @@ icon: pen-to-square
 order: 99
 category:
   - MySQL查询深入优化
-title: 记一次MySQL查询深入优化--类型不匹配
+title: 记一次MySQL查询深入优化--索引类型
 tag:
 - 源码阅读
 - MySQL
@@ -12,9 +12,7 @@ tag:
 
 ## 前言
 
-某一天，产品经理找到我说，我们收到上级反馈，说这个页面的响应有些让人抓狂（修饰后的说法doge），我打开F12查看了响应时间，enmmm，竟然需要耗时12s+。
-
-话不多说，准备动手。
+书接上回，[记一次MySQL查询深入优化--类型不匹配](./DeepOptimize-QueryWithoutUsingIndex.md)，我们通过修改查询条件里的。
 
 ## 环境及数据准备
 
@@ -115,24 +113,6 @@ FROM
 WHERE
  -- 提前进行类型转换
  publish_time > date_format( TIMESTAMPADD( DAY, - 48, CURRENT_TIMESTAMP ), '%Y-%m-%d %H:%i:%s' ) 
-ORDER BY
- publish_time DESC;
-```
-
-## 奇思妙想
-
-既然我们已经知道了是查询条件的类型与索引类型不匹配导致的，那么如果我们换种方式--修改条件左侧的类型？这样改查询语句会不会生效呢？
-
-我们一起来试验下吧！
-
-```sql
-SELECT
- * 
-FROM
- a 
-WHERE
- -- 提前进行类型转换
- STR_TO_DATE('2021-03-25 14:30:00', '%Y-%m-%d %H:%i:%s') > TIMESTAMPADD( DAY, - 48, CURRENT_TIMESTAMP )
 ORDER BY
  publish_time DESC;
 ```
