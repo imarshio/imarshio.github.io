@@ -47,6 +47,16 @@ CREATE TABLE `a` (
 INSERT INTO `<table_name>` (`publish_time`, `create_time`, `update_time`) VALUES ('2023-12-24 08:50:00', '2023-12-24 08:56:19', '2023-12-29 08:56:27');
 ```
 
+#### 导入
+
+数据库数据导入的方式多种多样，如下方法是我个人使用过的方法，一些体会及思考
+
+|      |      |      |
+| ---- | ---- | ---- |
+|      |      |      |
+|      |      |      |
+|      |      |      |
+
 ### 场景复现
 
 ```sql
@@ -61,7 +71,7 @@ ORDER BY
 
 ```
 
-耗时：8s+
+耗时：10s+
 
 ## 动手动手
 
@@ -105,7 +115,7 @@ ORDER BY
 
 如上的查询中，`publish_time > TIMESTAMPADD( HOUR, - 48, CURRENT_TIMESTAMP )`，在意识中，一直以为`publish_time`是一个时间索引，所以没有注意，后来一看才发现，索引声明的时候是字符类型，导致索引失效。
 
-## 完美解决
+## 初步解决
 
 ```sql
 SELECT
@@ -114,10 +124,12 @@ FROM
  a 
 WHERE
  -- 提前进行类型转换
- publish_time > date_format( TIMESTAMPADD( DAY, - 48, CURRENT_TIMESTAMP ), '%Y-%m-%d %H:%i:%s' ) 
+ publish_time > date_format( TIMESTAMPADD( HOUR, - 48, CURRENT_TIMESTAMP ), '%Y-%m-%d %H:%i:%s' ) 
 ORDER BY
  publish_time DESC;
 ```
+
+优化后，时间由之前的10s变成了现在的4s，有用，但还需要优化。
 
 ## 奇思妙想
 
@@ -125,6 +137,8 @@ ORDER BY
 
 我们一起来试验下吧！
 
+### 只改变左侧类型
+
 ```sql
 SELECT
  * 
@@ -132,7 +146,33 @@ FROM
  a 
 WHERE
  -- 提前进行类型转换
- STR_TO_DATE('2021-03-25 14:30:00', '%Y-%m-%d %H:%i:%s') > TIMESTAMPADD( DAY, - 48, CURRENT_TIMESTAMP )
+ STR_TO_DATE('2021-03-25 14:30:00', '%Y-%m-%d %H:%i:%s') > TIMESTAMPADD( HOUR, - 48, CURRENT_TIMESTAMP )
 ORDER BY
  publish_time DESC;
 ```
+
+|id|select_type|table|partations|type|possible_keys|key|key_len|ref|rows|filtered|extra|
+|----|----|----|----|----|----|----|----|----|----|----|----|
+| 1    | SIMPLE      | a     |            | ALL  |               |      |         |      | 1705611 | 100.00   | Using where; Using filesort |
+
+可以看到，并没有什么卵用
+
+### 改变两侧
+
+```sql
+SELECT
+ * 
+FROM
+ a 
+WHERE
+ -- 提前进行类型转换
+ STR_TO_DATE('2021-03-25 14:30:00', '%Y-%m-%d %H:%i:%s') > date_format( TIMESTAMPADD( HOUR, - 48, CURRENT_TIMESTAMP ), '%Y-%m-%d %H:%i:%s' ) 
+ORDER BY
+ publish_time DESC;
+```
+
+|id|select_type|table|partations|type|possible_keys|key|key_len|ref|rows|filtered|extra|
+|----|----|----|----|----|----|----|----|----|----|----|----|
+| 1    | SIMPLE      | a     |            | ALL  |               |      |         |      | 1705611 | 100.00   | Using where; Using filesort |
+
+ennmm，结果还是一样的，没什么卵用，所以我们需要知道，索引列不得参与运算，不然会使索引失效。

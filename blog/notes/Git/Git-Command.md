@@ -104,3 +104,52 @@ git stash
 ## rebase
 
 ## cherry-pick
+
+### 背景
+
+假设我当前在A分支进行了一次提交，然后我想在B分支进行同样的提交操作，但是不想重新写代码，此时就可以通过 cherry-pick 完成。
+
+```sh
+# A分支模拟操作
+$ git commit -m "test commit"
+```
+
+### 查看记录
+
+```sh
+# 查看A分支的提交日志，需要注意这个 commit id，后面会用到
+$ git log
+commit 866a5ba7fdd81b49662fa47edb068d42d6059b2c (HEAD -> A, origin/A)
+Author: demo <demo@gmail.com>
+Date:   Thu May 23 17:13:20 2024 +0800
+
+    test commit
+
+commit 6e12f87ec155fc308c10243ec1f8ad35ad345a71
+Author: demo <demo@gmail.com>
+Date:   Mon May 13 10:08:06 2024 +0800
+
+    pre test commit
+```
+
+### 提取
+
+```sh
+# 切换到目标分支B
+$ git checkout B
+
+# cherry-pick 后面跟的就是提取的 commit id
+$ git cherry-pick 866a5ba7fdd81b49662fa47edb068d42d6059b2c
+[B a18b13c] add type column
+ Date: Thu May 23 17:13:20 2024 +0800
+ 2 files changed, 2 insertions(+)
+
+# 确认
+$ git log
+commit a18b13cfca69a1cbbc1e5b47ebee9f43a60bb0a7 (HEAD -> pre)
+Author: demo <demo@gmail.com>
+Date:   Thu May 23 17:13:20 2024 +0800
+
+    test commit
+
+```
