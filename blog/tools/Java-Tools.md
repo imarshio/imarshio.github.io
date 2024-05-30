@@ -7,29 +7,9 @@ title: Java Tools
 # - Java
 # - Tools
 
-projects:
-  - icon: project
-    name: arthas
-    desc: project detailed description
-    link: https://arthas.aliyun.com/
-
-  - icon: link
-    name: My Site
-    desc: link detailed description
-    link: https://marshio.com
-
-  - icon: book
-    name: bookshelf
-    desc: Detailed description of the book
-    link: https://link.to.your.book
-
-  - icon: article
-    name: yuque
-    desc: Detailed description of the article
-    link: https://www.yuque.com/u21559410
 ---
 
-<!-- ## Java
+## Java
 
 ### 诊断工具
 
@@ -37,4 +17,4 @@ projects:
 
 ## Terminal
 
-[mobaxterm](https://mobaxterm.mobatek.net/) -->
+[mobaxterm](https://mobaxterm.mobatek.net/)
