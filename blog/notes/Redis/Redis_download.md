@@ -1,7 +1,7 @@
 ---
 title: Redis 命令
 icon: database
-index: 2
+order: 2
 category:
   - Intro
 tag:

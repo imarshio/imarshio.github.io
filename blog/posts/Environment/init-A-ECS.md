@@ -20,6 +20,12 @@ But, this is life.
 
 看看我都会做啥吧。
 
+## 环境
+
+- 刚刚出炉的阿里云2c2g服务器
+- CentOS 7
+- 默认安全组（22、3389）
+
 ## 安装Nginx（Must For Me, Option For You）
 
 需要的配置
@@ -27,6 +33,7 @@ But, this is life.
 - 内存: Nginx一个server大概会占12~15M内存，所以你需要自己衡量
 - 磁盘：越大越好啦
 - CPU：取决于连接数，当然是越大越好，1C也是可以的
+- 阿里云安全组打开80端口
 
 ### 安装
 
@@ -243,7 +250,7 @@ http {
 ```sh
 uname -a 
 
-# Linux iZuf6ipaofe0zmf15z5lttZ 3.10.0-1160.108.1.el7.x86_64 #1 SMP Thu Jan 25 16:17:31 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux
+# Linux demo 3.10.0-1160.108.1.el7.x86_64 #1 SMP Thu Jan 25 16:17:31 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux
 
 # 第三段内容决定了你能下载的版本
 ```
@@ -288,13 +295,13 @@ mysql_secure_installation
 ##### 重置密码
 
 ```sh
-[root@iZuf6ipaofe0zmf15z5lttZ ~]# mysql_secure_installation
+[root@demo ~]# mysql_secure_installation
 
 Securing the MySQL server deployment.
 
 Enter password for user root: 
 Error: Access denied for user 'root'@'localhost' (using password: YES)
-[root@iZuf6ipaofe0zmf15z5lttZ ~]# mysql_secure_installation
+[root@demo ~]# mysql_secure_installation
 
 Securing the MySQL server deployment.
 
@@ -435,9 +442,398 @@ ll /etc/alternatives | grep java
 
 ### 配置
 
-
+自Java9开始，如果你选择的是安装程序（.msi、）的方式，jdk的环境变量不需要手动配置。
 
 ## 安装Redis（Option）
+
+需要的配置
+
+- 内存
+- 磁盘
+- CPU
+
+这次我们换个方式，之前都是用安装包管理工具完成一系列中间件的安装，这次我们来体验下使用源码进行安装。
+
+如果你不想这么麻烦，也可以，但是由于yum源其本身是没有redis的，所以我们需要借助其他方式，下文也会讲到。
+
+### 源码
+
+### epel
+
+借助epel不完全是官网推荐的安装方式，官网推荐的是使用snaps安装，但是我这里不是很推荐大家使用snaps去安装软件，毕竟我们讲的就是一个开源。
+
+关于epel（Extra Packages for Enterprise Linux）可以查看[History and Philosophy of EPEL](https://docs.fedoraproject.org/en-US/epel/epel-about-history-philosophy/)
+
+关于snaps的介绍可以查看[传送门](https://snapcraft.io/)，简单来说，snaps 是一个 Linux 版的应用商店。
+
+#### 下载epel
+
+```sh
+[root@demo ~]# sudo yum install epel-release
+Loaded plugins: fastestmirror
+Determining fastest mirrors
+base                                                                                                                                                                                                                                                                   | 3.6 kB  00:00:00
+epel                                                                                                                                                                                                                                                                   | 4.3 kB  00:00:00
+extras
+2.9 kB  00:00:00
+mysql-connectors-community                                                                                                                                                                                                                                             | 2.6 kB  00:00:00
+mysql-tools-community                                                                                                                                                                                                                                                  | 2.6 kB  00:00:00
+mysql80-community                                                                                                                                                                                                                                                      | 2.6 kB  00:00:00
+updates                                                                                                                                                                                                                                                                | 2.9 kB  00:00:00
+(1/3): epel/x86_64/updateinfo                                                                                                                                                                                                                                          | 1.0 MB  00:00:00
+(2/3): epel/x86_64/primary_db                                                                                                                                                                                                                                          | 8.7 MB  00:00:00
+(3/3): updates/7/x86_64/primary_db                                                                                                                                                                                                                                     |  27 MB  00:00:00
+Resolving Dependencies
+--> Running transaction check
+---> Package epel-release.noarch 0:7-14 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==============================================================================================================================================================================================================================================================================================
+ Package                                                                    Arch                                                                 Version                                                             Repository                                                          Size
+==============================================================================================================================================================================================================================================================================================
+Installing:
+ epel-release                                                               noarch                                                               7-14                                                                epel                                                                15 k
+
+Transaction Summary
+==============================================================================================================================================================================================================================================================================================
+Install  1 Package
+
+Total download size: 15 k
+Installed size: 25 k
+Is this ok [y/d/N]: y
+Downloading packages:
+epel-release-7-14.noarch.rpm                                                                                                                                                                                                                                           |  15 kB  00:00:00
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : epel-release-7-14.noarch                                                                                                                                                                                                                                                   1/1
+warning: /etc/yum.repos.d/epel.repo created as /etc/yum.repos.d/epel.repo.rpmnew
+  Verifying  : epel-release-7-14.noarch                                                                                                                                                                                                                                                   1/1
+
+Installed:
+  epel-release.noarch 0:7-14
+
+Complete!
+```
+
+#### Install and Enable Redis
+
+```sh
+# 现在可以直接用 epel 源下载 redis
+[root@demo lib]# yum install redis
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+Resolving Dependencies
+--> Running transaction check
+---> Package redis.x86_64 0:3.2.12-2.el7 will be installed
+--> Processing Dependency: libjemalloc.so.1()(64bit) for package: redis-3.2.12-2.el7.x86_64
+--> Running transaction check
+---> Package jemalloc.x86_64 0:3.6.0-1.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+==============================================================================================================================================================================================================================================================================================
+ Package                                                               Arch                                                                Version                                                                    Repository                                                         Size
+==============================================================================================================================================================================================================================================================================================
+Installing:
+ redis                                                                 x86_64                                                              3.2.12-2.el7                                                               epel                                                              544 k
+Installing for dependencies:
+ jemalloc                                                              x86_64                                                              3.6.0-1.el7                                                                epel                                                              105 k
+
+Transaction Summary
+==============================================================================================================================================================================================================================================================================================
+Install  1 Package (+1 Dependent package)
+
+Total download size: 648 k
+Installed size: 1.7 M
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/2): redis-3.2.12-2.el7.x86_64.rpm                                                                                                                                                                                                                                   | 544 kB  00:00:00
+(2/2): jemalloc-3.6.0-1.el7.x86_64.rpm                                                                                                                                                                                                                                 | 105 kB  00:00:00
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                                                                                                                                         5.2 MB/s | 648 kB  00:00:00
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : jemalloc-3.6.0-1.el7.x86_64                                                                                                                                                                                                                                                1/2
+  Installing : redis-3.2.12-2.el7.x86_64                                                                                                                                                                                                                                                  2/2
+  Verifying  : redis-3.2.12-2.el7.x86_64                                                                                                                                                                                                                                                  1/2
+  Verifying  : jemalloc-3.6.0-1.el7.x86_64                                                                                                                                                                                                                                                2/2
+
+Installed:
+  redis.x86_64 0:3.2.12-2.el7
+
+Dependency Installed:
+  jemalloc.x86_64 0:3.6.0-1.el7
+
+Complete!
+
+# 启动 redis 服务
+[root@demo lib]# systemctl start redis
+
+# 启用 redis 服务
+[root@demo lib]# systemctl enable redis
+Created symlink from /etc/systemd/system/multi-user.target.wants/redis.service to /usr/lib/systemd/system/redis.service.
+
+# 查看 redis 服务状态 active为启动
+[root@demo lib]# systemctl status redis
+● redis.service - Redis persistent key-value database
+   Loaded: loaded (/usr/lib/systemd/system/redis.service; enabled; vendor preset: disabled)
+  Drop-In: /etc/systemd/system/redis.service.d
+           └─limit.conf
+   Active: active (running) since Sat 2024-06-01 23:52:37 CST; 19s ago
+ Main PID: 7415 (redis-server)
+   CGroup: /system.slice/redis.service
+           └─7415 /usr/bin/redis-server 127.0.0.1:6379
+
+Jun 01 23:52:37 demo systemd[1]: Starting Redis persistent key-value database...
+Jun 01 23:52:37 demo systemd[1]: Started Redis persistent key-value database.
+```
+
+### 配置 redis
+
+```sh
+# 确认 redis 配置文件位置
+[root@demo ~]# whereis redis.conf
+redis: /etc/redis.conf
+
+# 修改配置
+[root@demo ~]# vim /etc/redis.conf
+
+# 设置 daemonize 为 yes
+# 注释掉 bind 127.0.0.1
+# 设置 protected-mode 为 no
+# 设置密码 requirepass password 没有用户名
+
+```
+
+#### 配置文件样例
+
+```sh
+# Redis configuration file example.
+
+################################## INCLUDES ###################################
+
+# include /path/to/local.conf
+# include /path/to/other.conf
+
+################################## NETWORK #####################################
+
+# bind 127.0.0.1
+
+protected-mode no
+
+# Accept connections on the specified port, default is 6379 (IANA #815344).
+# If port 0 is specified Redis will not listen on a TCP socket.
+port 6379
+
+tcp-backlog 511
+
+# Unix socket.
+# unixsocket /tmp/redis.sock
+# unixsocketperm 700
+
+# Close the connection after a client is idle for N seconds (0 to disable)
+timeout 0
+
+tcp-keepalive 300
+
+################################# GENERAL #####################################
+
+# By default Redis does not run as a daemon. Use 'yes' if you need it.
+# Note that Redis will write a pid file in /var/run/redis.pid when daemonized.
+daemonize yes
+
+supervised no
+
+pidfile /var/run/redis_6379.pid
+
+loglevel notice
+
+
+logfile /var/log/redis/redis.log
+
+# To enable logging to the system logger, just set 'syslog-enabled' to yes,
+# and optionally update the other syslog parameters to suit your needs.
+# syslog-enabled no
+
+# Specify the syslog identity.
+# syslog-ident redis
+
+# Specify the syslog facility. Must be USER or between LOCAL0-LOCAL7.
+# syslog-facility local0
+
+databases 16
+
+################################ SNAPSHOTTING  ################################
+
+save 900 1
+save 300 10
+save 60 10000
+
+stop-writes-on-bgsave-error yes
+
+rdbcompression yes
+
+rdbchecksum yes
+
+# The filename where to dump the DB
+dbfilename dump.rdb
+
+# The working directory.
+dir /var/lib/redis
+
+################################# REPLICATION #################################
+
+# slaveof <masterip> <masterport>
+
+# masterauth <master-password>
+
+
+slave-serve-stale-data yes
+
+slave-read-only yes
+
+# Replication SYNC strategy: disk or socket.
+repl-diskless-sync no
+
+
+repl-diskless-sync-delay 5
+
+# repl-ping-slave-period 10
+
+# repl-timeout 60
+
+repl-disable-tcp-nodelay no
+
+# repl-backlog-size 1mb
+
+# repl-backlog-ttl 3600
+
+slave-priority 100
+
+# min-slaves-to-write 3
+# min-slaves-max-lag 10
+
+# slave-announce-ip 5.5.5.5
+# slave-announce-port 1234
+
+################################## SECURITY ###################################
+
+requirepass strong_password
+
+################################### LIMITS ####################################
+
+# maxclients 10000
+
+# maxmemory-policy noeviction
+
+# maxmemory-samples 5
+
+############################## APPEND ONLY MODE ###############################
+
+appendonly no
+
+# The name of the append only file (default: "appendonly.aof")
+
+appendfilename "appendonly.aof"
+
+# appendfsync always
+appendfsync everysec
+# appendfsync no
+
+no-appendfsync-on-rewrite no
+
+auto-aof-rewrite-percentage 100
+auto-aof-rewrite-min-size 64mb
+
+aof-load-truncated yes
+
+################################ LUA SCRIPTING  ###############################
+
+lua-time-limit 5000
+
+################################ REDIS CLUSTER  ###############################
+
+# cluster-enabled yes
+
+# cluster-config-file nodes-6379.conf
+
+# cluster-node-timeout 15000
+
+
+# cluster-slave-validity-factor 10
+
+
+# cluster-migration-barrier 1
+
+
+# In order to setup your cluster make sure to read the documentation
+# available at http://redis.io web site.
+
+################################## SLOW LOG ###################################
+
+slowlog-log-slower-than 10000
+
+slowlog-max-len 128
+
+################################ LATENCY MONITOR ##############################
+
+latency-monitor-threshold 0
+
+############################# EVENT NOTIFICATION ##############################
+
+notify-keyspace-events ""
+
+############################### ADVANCED CONFIG ###############################
+
+hash-max-ziplist-entries 512
+hash-max-ziplist-value 64
+
+list-max-ziplist-size -2
+
+list-compress-depth 0
+
+set-max-intset-entries 512
+
+zset-max-ziplist-entries 128
+zset-max-ziplist-value 64
+
+hll-sparse-max-bytes 3000
+
+activerehashing yes
+
+client-output-buffer-limit normal 0 0 0
+client-output-buffer-limit slave 256mb 64mb 60
+client-output-buffer-limit pubsub 32mb 8mb 60
+
+hz 10
+
+aof-rewrite-incremental-fsync yes
+```
+
+### 进入redis控制台
+
+```sh
+[root@demo ~]# redis-cli
+127.0.0.1:6379>
+
+127.0.0.1:6379> auth 501RXzp1bunnAJFTF9Vp
+OK
+
+# 授权完成就可以随意玩啦,have fun
+# 记得打开安全组的6379端口
+
+# 退出redis服务端控制台
+127.0.0.1:6379> quit
+```
+
+## 安装Docker（Option）
 
 需要的配置
 
