@@ -369,6 +369,8 @@ Unicode 的介绍：Everyone in the world should be able to use their own langua
 
 Universal Character Set/Unicode Transformation Format,
 
+在UTF8编码中，英文只需要一个字节就可以表示，英文字符需要两个字节才能表示，但是中文需要三个字节才能表示。
+
 ### 原码
 
 原码即原始二进制表示
