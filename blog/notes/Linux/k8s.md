@@ -30,3 +30,16 @@ tags:
 ## 命令
 
 [官方文档](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands)
+
+### kubectl
+
+```sh
+# 查看所有的namespace，前提是你有权限
+kubectl get namespace
+
+# 查看指定namespace下的pod
+kubectl get pod -n namespace_name
+
+# 查看指定pod的日志
+kubectl logs -f -n namespace pod_name --tail=200
+```
