@@ -160,7 +160,8 @@ export default hopeTheme({
       // gfm: true,
 
       // install katex before enabling it
-      // katex: true,
+      // pnpm add -D katex
+      katex: true,
 
       // install mathjax-full before enabling it
       // mathjax: true,

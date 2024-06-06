@@ -61,7 +61,7 @@ git push
 git pull
 ```
 
-## branch & chekout
+## branch & chekout & switch
 
 分支 切换分支
 
@@ -71,6 +71,8 @@ git branch news_branch_name
 
 # 切换分支
 git checkout new_branch_name
+# 等价于
+git switch new_branch_name
 
 # 以上两条命令可以简写为
 git checkout -b new_branch_name
@@ -78,14 +80,32 @@ git checkout -B new_branch_name
 
 # 删除分支
 git branch -d old_branch_name
+# 如果要删除的分支存在未完成的merge，需要替换成如下命令
+git branch -D old_branch_name
 
-# 切换到远程分支
+# 切换到远程分支，--track可以不写
 git checkout -b remote_branch_name --track origin/remote_branch_name
+
+# 修改还没被commit 的时候，撤销本地修改
+git checkout HEAD -- /path/to/file
+
+git checkout branch_name --
 ```
 
 ## merge
 
 合并
+
+```sh
+git merge another_branch_name
+
+# 如果有冲突的话，在本地解决冲突
+
+# 解决冲突后，使用add 标记文件为已解决
+
+# 之后commit
+git commit -m "merge & resolve conflict"
+```
 
 ## stash
 
@@ -152,4 +172,12 @@ Date:   Thu May 23 17:13:20 2024 +0800
 
     test commit
 
+```
+
+## fetch
+
+```sh
+
+# 将远程仓库的更新下载到本地仓库，但不会直接更新本地分支的代码
+git fetch origin 
 ```
