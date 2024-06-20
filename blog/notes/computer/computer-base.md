@@ -50,9 +50,21 @@ tag:
 
 - 在硅半导体上集成了几十万甚至上百万个电子元器件，可靠性更好，寿命更长，体积更小。
 
-## 计算机组成
+## 计算机系统组成
 
-## 
+计算机系统由硬件系统和软件系统组成。
+
+### 图灵机
+
+[what is a turing machine?](https://www.cl.cam.ac.uk/projects/raspberrypi/tutorials/turing-machine/one.html)
+
+### 冯·诺依曼计算机模型
+
+![图源：维基百科](https://upload.wikimedia.org/wikipedia/commons/e/e5/Von_Neumann_Architecture.svg)
+
+### 硬件系统
+
+### 软件系统
 
 ## 参考
 
