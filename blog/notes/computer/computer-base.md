@@ -66,6 +66,14 @@ tag:
 
 ### 软件系统
 
+## BUG
+
+你有没有想过在计算机领域，当问题出现异常、失误时，为什么我们要称其为`BUG`？
+
+Here is the story.
+
+> On September 9th 1947, Grace Hopper records what she jokingly called the first actual computer bug - in this case, a moth(飞蛾) stuck between relay contacts of the Harvard Mark II computer prior to its eventual installation at the Naval Weapons Laboratory at Dalhgren. VA.
+
 ## 参考
 
 - [计算机基础](http://www.tup.tsinghua.edu.cn/upload/books/yz/062916-01.pdf) by 清华大学

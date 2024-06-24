@@ -63,7 +63,10 @@ cover: /assets/images/1265079-1322607782.png
 
 - Go
 - C++
--
+- vue3
+- 计算机操作系统
+- 计算机编译原理
+- 计算机网络
 
 ## Remind Myself
 
@@ -75,3 +78,9 @@ cover: /assets/images/1265079-1322607782.png
 - 多读书，多运动，多喝水
 - 学会拒绝
 - 学会如何合理的分配自己的时间
+
+## 一次成功但失败的PR
+
+[vuepress-theme-hope/pull/4139](https://github.com/vuepress-theme-hope/vuepress-theme-hope/pull/4139).
+
+具体经过就是，我在本地调试发现了一个关于[vuepress-theme-hope](https://github.com/vuepress-theme-hope/vuepress-theme-hope)的文档错误，虽然不是什么大事，但是这个困扰了我估计得有2个小时（没仔细看日志的锅），所以我提交了PR，虽然这确实是一个错误，但是这是一个被作者更正过的错误，只是这个地方的文档被miss掉了。
