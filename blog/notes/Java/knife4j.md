@@ -1,7 +1,7 @@
 ---
 icon: pen-to-square
-star: true
-title: Swagger Usage
+# star: true
+title: Spring Knife4j
 category:
   - java
 tag:

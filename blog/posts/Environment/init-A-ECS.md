@@ -389,7 +389,9 @@ mysql -uroot -p
 create user 'dba'@'%' identified by 'passsword';
 
 # 授予全部权限
-grant all privaleges on *.* to 'dba'@'%';
+grant all privileges on *.* to 'dba'@'%';
+# 如果你总是拼错 privileges，你也可以使用下面的语句
+grant all on *.* to 'dba'@'%';
 
 # 刷新权限，使权限立即生效
 flush privaleges;

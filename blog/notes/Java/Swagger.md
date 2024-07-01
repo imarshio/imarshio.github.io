@@ -1,7 +1,7 @@
 ---
 icon: pen-to-square
 star: true
-title: Swagger Usage
+title: Spring Swagger
 category:
   - java
 tag:

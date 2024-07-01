@@ -68,6 +68,19 @@ Filesystem     Type  Size  Used Avail Use% Mounted on
 
 disk usage，查看一个文件或目录占用的磁盘空间
 
+用法
+
+```sh
+du [options] [file_path]
+```
+
+参数
+
+| 参数 | 说明                                                                          |
+| ---- | ----------------------------------------------------------------------------- |
+| T    | 显示文件类型（Type） |
+|   h   |    human，提高可读性                                                            |
+
 ## `free`
 
 ## `pwd`

@@ -1,7 +1,7 @@
 ---
 icon: pen-to-square
 star: true
-title: Mybatis Plus Usage
+title: Spring Mybatis Plus
 category:
   - java
 tag:
