@@ -76,10 +76,51 @@ du [options] [file_path]
 
 参数
 
-| 参数 | 说明                                                                          |
-| ---- | ----------------------------------------------------------------------------- |
-| T    | 显示文件类型（Type） |
-|   h   |    human，提高可读性                                                            |
+| 参数   | 说明                            |
+| ------ | ------------------------------- |
+| -h     | --human-readable，提高可读性    |
+| -s     | --summarize，仅显示指定目录或文件的总大小，而不显示其子目录的大小。                     |
+| --time | 显示文件最后一次的更新时间      |
+| -c     | --total，新增一个total 行，总结 |
+|  --max-depth      |      =<目录层数> 超过指定层数的目录后，予以忽略。                           |
+
+### 根据大小排序输出
+
+```sh
+# 从小到大
+[root@iZuf6ipaofe0zmf15z5lttZ ~]# du -h /tmp | sort -h
+4.0K    /tmp/.font-unix
+4.0K    /tmp/.ICE-unix
+4.0K    /tmp/systemd-private-35a318c90a3b4e4f9224e99b86f4a29d-chronyd.service-dtgsFm/tmp
+4.0K    /tmp/.Test-unix
+4.0K    /tmp/.X11-unix
+4.0K    /tmp/.XIM-unix
+8.0K    /tmp/systemd-private-35a318c90a3b4e4f9224e99b86f4a29d-chronyd.service-dtgsFm
+32K     /tmp
+
+# -r：从大到小
+[root@iZuf6ipaofe0zmf15z5lttZ ~]# du -h /tmp | sort -rh
+32K     /tmp
+8.0K    /tmp/systemd-private-35a318c90a3b4e4f9224e99b86f4a29d-chronyd.service-dtgsFm
+4.0K    /tmp/.XIM-unix
+4.0K    /tmp/.X11-unix
+4.0K    /tmp/.Test-unix
+4.0K    /tmp/systemd-private-35a318c90a3b4e4f9224e99b86f4a29d-chronyd.service-dtgsFm/tmp
+4.0K    /tmp/.ICE-unix
+4.0K    /tmp/.font-unix
+
+```
+
+进阶，取前n
+
+```sh
+# head 取前n位
+[root@iZuf6ipaofe0zmf15z5lttZ ~]# du -h /tmp | sort -rh | head -n 2
+32K     /tmp
+8.0K    /tmp/systemd-private-35a318c90a3b4e4f9224e99b86f4a29d-chronyd.service-dtgsFm
+
+# 注意，文件多的时候，会比较耗时
+```
 
 ## `free`
 
