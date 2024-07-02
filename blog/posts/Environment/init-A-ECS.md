@@ -843,6 +843,21 @@ OK
 - 磁盘
 - CPU
 
+### Ubuntu
+
+```sh
+# 更新包仓库索引
+root@host:~# apt-get update
+
+# 安装docker、docker compose
+root@host:~# apt install docker.io docker-compose
+
+# 检查docker版本
+root@host:~# docker -v
+Docker version 24.0.7, build 24.0.7-0ubuntu2~22.04.1
+
+```
+
 ## 安装Kafka（Option）
 
 需要的配置

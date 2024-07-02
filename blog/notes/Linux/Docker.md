@@ -1,5 +1,5 @@
 ---
-icon: pen-to-square
+icon: fa-brands fa-docker
 lang: en-US
 order: 50
 title: Docker
@@ -220,6 +220,20 @@ DRY_RUN=1 sh ./get-docker.sh
 Docker 镜像（**Image**），就相当于`DNA`，你可以使用一个镜像创造出一个跟之前一摸一样的程序来。
 比如官方镜像 `ubuntu:16.04` 就包含了完整的一套 `Ubuntu16.04` 最小系统的 `root` 文件系统。
 
+> [!WARNING]
+>
+> 自 2024-06-06 开始，国内的 Docker Hub 镜像加速器相继停止服务，可选择如下式
+>
+> - 为 Docker daemon 配置代理
+>
+> - 自建镜像加速服务
+>
+> - 更换、新增可用镜像源，具体可以参考：[国内 DockerHub 镜像加速器还有哪些可用？](https://www.wangdu.site/course/2109.html)
+>
+> 公告查看
+>
+> <https://web.archive.org/web/20240606081039/https://sjtug.org/post/mirror-news/2024-06-06-takedown-dockerhub/>
+
 ### 相关命令
 
 #### 拉取镜像
@@ -338,6 +352,98 @@ docker push respositryUrl:port/uri/xx/xxx
 ```shell
 # 给镜像打标签,tag不写默认latest
 docker tag redis redis:myredistag
+```
+
+### 添加镜像源
+
+#### 编辑守护进程
+
+```sh
+# 
+vim /etc/docker/daemon.json
+```
+
+#### 添加镜像源
+
+```sh
+# 添加镜像源
+{
+    "registry-mirrors": [
+        # "https://mirror.aliyuncs.com",
+        # 可以多加几个代理
+        "https://dockerhub.icu"
+    ]
+}
+```
+
+#### 重启 Docker
+
+```sh
+# 重启
+systemctl restart docker
+```
+
+### Docker daemon 配置代理
+
+编辑`daemon.json`文件
+
+```json
+{
+  "proxies": {
+    "http-proxy": "http://proxy.example.com:3128",
+    "https-proxy": "https://proxy.example.com:3129",
+    "no-proxy": "*.test.example.com,.example.org,127.0.0.0/8"
+  }
+}
+```
+
+### 构建镜像
+
+#### Dockerfile
+
+[Dockerfile 官方文档](https://docs.docker.com/reference/dockerfile/)
+
+简单来说，Dockerfile 就是一系列命令，这些命令的作用就是帮你打包。
+
+简单示例
+
+```sh
+FROM python:3.8.0
+RUN apt-get update
+
+ENV TZ=Asia/Shanghai
+
+# 打包应用
+ENV APP_ROOT="/app/"
+RUN mkdir -p $APP_ROOT
+WORKDIR $APP_ROOT
+
+COPY requirements.txt /app/
+COPY /demo.py /app/
+
+RUN pip install --no-cache-dir -r /app/requirements.txt -i https://mirror.baidu.com/pypi/simple
+
+ENTRYPOINT cd $APP_ROOT && python demo.py
+```
+
+#### `Docker build`
+
+```sh
+# 先构建镜像
+docker build .
+# 在指定tag:version
+docker tag imageId tag:version
+
+# 指定tag:version
+docker build -t tag:version .
+```
+
+### docker save && docker load
+
+```sh
+docker save -o demo.tar tag:version
+
+docker load 
 ```
 
 ## 容器
