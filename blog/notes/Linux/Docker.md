@@ -443,6 +443,9 @@ docker build -t tag:version .
 ```sh
 docker save -o demo.tar tag:version
 
+# 使用gzip能将压缩包变小
+docker save tag:version | gzip > demo.tar.gz
+
 docker load 
 ```
 
