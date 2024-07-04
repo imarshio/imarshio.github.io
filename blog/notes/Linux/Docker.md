@@ -91,16 +91,24 @@ sudo yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/cen
 sudo yum-config-manager --add-repo https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/centos/docker-ce.repo
 ```
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/21953536/1665678371591-5da06fb6-fef9-4508-b9a5-47ee9fcf4866.png#averageHue=%232e3234&clientId=u4d37e784-cdf5-4&id=SV5Te&originHeight=275&originWidth=844&originalType=binary&ratio=1&rotation=0&showTitle=false&size=31972&status=done&style=none&taskId=uc767ea01-5df3-4d2c-95e9-33b2e6dfbbc&title=)
 > **可选**：启用nightly或test存储库
+>
 > 这些存储库包含在 `docker.repo`上面的文件中，但默认情况下是禁用的。你可以在稳定存储库旁启动他们。
+>
 > 启动nightly存储库：
+>
 > `sudo yum-config-manager --enable docker-ce-nightly`
+>
 > 禁用nightly存储库：
+>
 > `sudo yum-config-manager --disable docker-ce-nightly`
+>
 > 启动test存储库：
+>
 > `sudo yum-config-manager --enable docker-ce-test`
+>
 > 禁用test存储库：
+>
 > `sudo yum-config-manager --disable docker-ce-test`
 
 - Ubuntu
@@ -117,8 +125,8 @@ sudo yum -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 # 如果提示接收GPG密钥，请验证指纹是否匹配`060A 61C5 1B55 8A7F 742B 77AA C52F EB6B 621E 9F35`,如果匹配请接受。
 ```
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/21953536/1665678371623-7809ebf5-96e6-43ff-8921-b32c93ca9d4f.png#averageHue=%232e3235&clientId=u4d37e784-cdf5-4&id=Ciuo9&originHeight=548&originWidth=1131&originalType=binary&ratio=1&rotation=0&showTitle=false&size=83203&status=done&style=none&taskId=u2bbc74c8-edc1-4e0d-9d72-b99834bdb10&title=)
 > 如果你有多个Docker存储库，当你在下载的时候，如果没有指定版本，那么会默认下载最高版本。
+>
 > 此命令会安装Docker，但不会启动Docker，他还会创建一个 `docker`组，但不会向该组添加用户。
 
 ```shell
@@ -127,7 +135,6 @@ sudo yum -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 yum list docker-ce --showduplicates | sort -r
 ```
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/21953536/1665678371896-174d4d97-9d3c-4fb6-a4eb-dfb55ab01fc2.png#averageHue=%232d3133&clientId=u4d37e784-cdf5-4&id=m1Tun&originHeight=550&originWidth=1174&originalType=binary&ratio=1&rotation=0&showTitle=false&size=70383&status=done&style=none&taskId=u13465e86-920d-48f9-b2f0-876f93ba7c3&title=)
 > 通过**完全限定的包名**进行安装，即使用**包名称**（`docker-ce`）加上从第一个冒号（`:`）开始的版本字符串（第二列），直到第一个 `-`，如：`docker-ce-18.09.1`。
 
 ```shell
@@ -143,16 +150,12 @@ sudo systemctl start docker # CentOS 和 Ubuntu的启动命令是一样的
 # 启动时需要使用root用户或具有root权限的用户，并输入用户密码
 ```
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/21953536/1665678371615-1e10b45c-f166-4663-82d8-42981496c78d.png#averageHue=%232c2f31&clientId=u4d37e784-cdf5-4&id=DoSIR&originHeight=135&originWidth=573&originalType=binary&ratio=1&rotation=0&showTitle=false&size=12122&status=done&style=none&taskId=ue269393a-69cf-446a-8f16-e98a511cab2&title=)
-
 #### 试运行
 
 ```shell
 sudo docker run hello-world 
 # 新下载的docker可能没有自带hello-world镜像，docker会自动从存储库进行拉取，只需静待几分钟即可。出现 `This message shows that your installation appears to be working correctly.` 表示你已经启动成功。
 ```
-
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/21953536/1665678371639-8ee7ef1e-9c0b-497c-921a-59c7a4712b21.png#averageHue=%232d3032&clientId=u4d37e784-cdf5-4&id=m9bB6&originHeight=484&originWidth=1140&originalType=binary&ratio=1&rotation=0&showTitle=false&size=51663&status=done&style=none&taskId=u54c1e8b1-59d0-4f31-8ea6-b883b000e57&title=)
 
 #### 升级Docker引擎
 
@@ -165,12 +168,14 @@ sudo docker run hello-world
 > 如果你无法从Docker的存储库安装Docker,你可以下载 `.rpm`版本的文件并手动安装,每次升级Docker Engine时都需要下载一个新文件.
 
 前往[Docker存储库](https://download.docker.com/linux/centos/),选择你对应的版本,进入 `x86_64/stable/Packages`
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/21953536/1665678372066-4fb584aa-0b8a-466b-9692-065cc3b24607.png#averageHue=%232f3336&clientId=u4d37e784-cdf5-4&id=D5CT6&originHeight=76&originWidth=321&originalType=binary&ratio=1&rotation=0&showTitle=false&size=4901&status=done&style=none&taskId=ub40c1b47-e26d-4f53-870f-cd4f033ccb1&title=)
-在这里提醒大家,如果能用别的方法,尽量不要用这个方法,因为安装步骤繁琐,各个安装包之间的版本匹配也是一个大问题.
-一定要直到那个包跟哪个包是匹配的版本.不然就前功尽弃了.等你下载完匹配好的包之后,按照如下顺序去安装就可以了.
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/21953536/1665678372095-f46a1233-ccb5-4b5b-8ee9-5c54952886a5.png#averageHue=%232e3234&clientId=u4d37e784-cdf5-4&id=RtoNh&originHeight=508&originWidth=1152&originalType=binary&ratio=1&rotation=0&showTitle=false&size=74016&status=done&style=none&taskId=u0cf48a99-0244-42bb-88e9-7b4cf6dae94&title=)
-如果你真的想试一下这个方法，你可以先使用第一种下载方式，他会告诉你你需要的依赖以及版本，例如![image.png](https://cdn.nlark.com/yuque/0/2022/png/21953536/1665678372125-7bea47b0-a9db-4e9d-be7a-436e42e63494.png#averageHue=%232e3134&clientId=u4d37e784-cdf5-4&id=Va5oY&originHeight=117&originWidth=1154&originalType=binary&ratio=1&rotation=0&showTitle=false&size=13301&status=done&style=none&taskId=ue9889c68-6396-4c3e-8a60-2019aa6290f&title=)
-从这张图片你可以看出 `containerd.io_x86_64 1.4.11-3.1.el7`,`docker-ce.x86_64 20.10.10-3.el7`,`docker-ce-cli.x86_64 20.10.10-3.el7`,是一组版本，下面那些是依赖，自动安装，前提是你有网，没网的话还是需要自己下载下来，放到对应的文件。
+
+在这里提醒大家,如果能用别的方法,尽量不要用这个方法,因为安装步骤繁琐,各个安装包之间的版本匹配也是一个大问题。
+
+一定要直到那个包跟哪个包是匹配的版本.不然就前功尽弃了.等你下载完匹配好的包之后,按照如下顺序去安装就可以了。
+
+```sh
+yum localinstall docker-ce-version 
+```
 
 #### 下载 `.rpm`包
 
@@ -283,10 +288,14 @@ sudo docker commit -m="update" -a="" <容器名称/容器ID> <更新后容器名
 
 用法：`docker rmi [OPTIONS] [IMAGES]`
 > Usage: docker rmi [OPTIONS] IMAGE [IMAGE...]
+>
 > Remove one or more images
-> Options:
-> -f, --force Force removal of the image
-> --no-prune Do not delete untagged parents
+
+Options:
+
+- -f, --force Force removal of the image
+
+- --no-prune Do not delete untagged parents
 
 ```bash
 # 确保没有容器正在使用该镜像
@@ -322,15 +331,21 @@ sudo docker commit -m="new image" -a="mas" 348e529d63d2 mas/redis-1
 #### 推送镜像
 
 用法： `docker push <repository:port>[:tag]`
+
 > Usage: docker push [OPTIONS] NAME[:TAG]
+>
 > Push an image or a repository to a registry
-> Options:
-> -a, --all-tags Push all tagged images in the repository
-> --disable-content-trust Skip image signing (default true)
-> -q, --quiet Suppress verbose output
+
+Options:
+
+-a, --all-tags Push all tagged images in the repository
+
+--disable-content-trust Skip image signing (default true)
+
+-q, --quiet Suppress verbose output
 
 ```shell
-# 向共有仓库推送镜像
+# 向公有仓库推送镜像
 docker push <imageID>[:tag]
 
 # 向私有仓库推送镜像
@@ -347,11 +362,19 @@ docker push respositryUrl:port/uri/xx/xxx
 #### 镜像标签
 
 用法： `docker tag <oldRepository>[:oldTag]  <newRepository>[:newTag]`
-> Usage:  `docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]`
+
+> Usage
+>
+> `docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]`
+>
+> `docker tag <oldRepository>[:oldTag]  <newRepository>[:newTag]`
 
 ```shell
 # 给镜像打标签,tag不写默认latest
-docker tag redis redis:myredistag
+docker tag image_id redis:0.0.1
+
+# 对于镜像而言，tag 其实并没有重命名的操作，只不过是新加一个 tag。
+docker tag redis:latest redis:0.0.1
 ```
 
 ### 添加镜像源
@@ -545,7 +568,9 @@ sudo docker export mysql-5.7-1 > 下载/mysql-5.7.tar
 
 ```shell
 # 登录到一个镜像仓库
-docker login
+docker login <respositryUrl:port>
+
+# 登陆后，加密的密码一般存放在 /root/.docker/config.json
 ```
 
 #### 查看配置
@@ -557,6 +582,22 @@ docker info
 # 查看docker登录的用户
 docker info | grep Name
 ```
+
+## Dockerfile
+
+[Dockerfile](https://docs.docker.com/reference/dockerfile)，Dockerfile 是一个文本文档，包含用户可以在命令行上调用来组装映像的所有命令。
+
+### From
+
+`FROM [--platform=<platform>] <image> [AS <name>]`
+
+or
+
+`FROM [--platform=<platform>] <image>[:<tag>] [AS <name>]`
+
+or
+
+`FROM [--platform=<platform>] <image>[@<digest>] [AS <name>]`
 
 ## Docker其他常用命令
 
@@ -584,8 +625,11 @@ lsof -i:端口号
 
 > 说明
 > -n：
+>
 > -a：
+>
 > -p：
+>
 > grep：通道服务，类似于筛选的作用
 
 #### MySQL
@@ -607,7 +651,9 @@ docker run -itd --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -v
 
 > 说明：
 > -p：指定端口号，3306：3306，第一个端口号指的是本机端口号，第二个端口号指的是docker创建的容器内部的端口号
+>
 > -e：指定一个变量，在这里创建MySQL时需要指定root的密码，指定root密码的变量就是 `MYSQL_ROOT_PASSWORD`
+>
 > -v：指定卷位置，即指定文件挂载目录
 
 #### Redis
@@ -676,7 +722,7 @@ sudo systemctl start docker
 
 ---
 
-#### Ⅱ IPv4 forwarding is disabled. Networking will not work.
+#### Ⅱ IPv4 forwarding is disabled. Networking will not work
 
 ```bash
 IPv4 forwarding is disabled. Networking will not work.
