@@ -12,16 +12,27 @@ tag:
 
 ## 解题思路
 
+简单说下思路，很明显的递归调用题目，先递归探底，确定新的头节点，然后逐层返回，顺便将指针反转，顺便记得将新的 尾节点的 `next` 置空，考虑好边界情况。
+
+期间只有在确定尾节点的多花了点时间，整体大概耗时30min，对于处在恢复期的我来说，还算一般。
+
 ## 亮点
 
-- 使用了 `char` 类型，如果已知一个 `char` 为数字，那么 `valueOf(char) - 48` 就可以得到对应的数字。
+- 递归调用。
 - 时间复杂度为 O(n)
-- 空间复杂度为 O(max(n,m) + 1)
+- 空间复杂度为 O(1)
 
 ## 实现
 
 ```java
-public class Test {
+public class Test002 {
+
+    public static void main(String[] args) {
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(3);
+        System.out.println(new Test002().ReverseList(head));
+    }
 
     public static class ListNode {
         int val;
@@ -36,12 +47,31 @@ public class Test {
      * <a href="https://www.nowcoder.com/practice/75e878df47f24fdc9dc3e400ec6058ca?tpId=295&tqId=23286&ru=/exam/oj&qru=/ta/format-top101/question-ranking&sourceUrl=%2Fexam%2Foj%3Fpage%3D1%26tab%3D%25E7%25AE%2597%25E6%25B3%2595%25E7%25AF%2587%26topicId%3D295%26fromPut%3Dpc_kol_aaaxiu">反转链表</a>
      * 输入：{1,2,3}
      *
-     * @param head ListNode类
+     * @param head ListNode类 长度大于等于0
      * @return ListNode类
      */
     public ListNode ReverseList(ListNode head) {
-        // write code here
-        return null;
+        // 递归 recursion
+        if (null == head) {
+            return null;
+        }
+        ListNode next = head.next;
+        if (null == next) {
+            return head;
+        }
+        return recursionList(head, next);
+    }
+
+    private ListNode recursionList(ListNode current, ListNode next) {
+        ListNode head;
+        if (null != next.next) {
+            head = recursionList(next, next.next);
+        } else {
+            head = next;
+        }
+        next.next = current;
+        current.next = null;
+        return head;
     }
 }
 ```
