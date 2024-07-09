@@ -7,7 +7,7 @@ category:
 - docker compose
 tags: 
 - docker compose
-- linux
+- Linux
 
 ---
 

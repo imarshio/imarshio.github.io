@@ -7,9 +7,7 @@ description: 虚心接受自己的不足，然后找机会与时间去弥补自�
 category:
 - git
 tags: 
-# - docker
-# - notes
-# - linux
+- Linux
 
 ---
 

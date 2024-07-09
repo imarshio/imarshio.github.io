@@ -2,7 +2,7 @@
 icon: pen-to-square
 category:
   - ssh
-  - linux
+  - Linux
 title: SSH 
 # tag:
 

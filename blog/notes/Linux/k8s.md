@@ -9,7 +9,7 @@ category:
 tags: 
 - k8s
 - notes
-- linux
+- Linux
 
 ---
 
