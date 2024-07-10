@@ -3,6 +3,8 @@ icon: circle-info
 title: Aboud me
 index: false
 article: false
+# portfolio: true
+# home: true
 cover: /assets/images/1265079-1322607782.png
 ---
 
@@ -62,12 +64,14 @@ cover: /assets/images/1265079-1322607782.png
 
 ## TODO
 
-- Go
-- C++
-- vue3
-- 计算机操作系统
-- 计算机编译原理
-- 计算机网络
+- [ ]  Go
+- [ ]  c/c++
+- [ ]  vue3
+- [ ]  Milvus
+- [ ]  wechat 开发
+- [ ]  计算机操作系统
+- [ ]  计算机编译原理
+- [ ]  计算机网络
 
 ## Remind Myself
 
