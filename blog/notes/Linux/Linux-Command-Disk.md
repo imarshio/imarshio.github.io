@@ -124,6 +124,9 @@ du [options] [file_path]
 
 ## `free`
 
+## `find`
+
+
 ## `pwd`
 
 print work directory，查看当前所处目录的路径

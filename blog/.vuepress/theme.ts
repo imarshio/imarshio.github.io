@@ -100,6 +100,12 @@ export default hopeTheme({
   hotReload: true,
 
   plugins: {
+    docsearch: {
+      // 配置项
+      apiKey: "",
+      appId: "",
+      indexName: ""
+    },
     blog: true,
 
     // install @waline/client before enabling it
