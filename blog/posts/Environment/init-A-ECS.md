@@ -257,6 +257,10 @@ uname -a
 
 ### 安装
 
+:::tabs
+
+@tab rpm&yum
+
 ```sh
 # 下载rpm包
 rpm -Uvh https://dev.mysql.com/get/mysql80-community-release-el7-7.noarch.rpm
@@ -267,6 +271,15 @@ yum -y install mysql-community-server --enablerepo=mysql80-community --nogpgchec
 # 检查是否安装成功
 mysql -V
 ```
+
+@tab apt
+
+```sh
+# 使用 apt
+apt install mysql-server
+```
+
+:::
 
 ### 配置
 

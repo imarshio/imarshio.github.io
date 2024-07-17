@@ -102,9 +102,9 @@ export default hopeTheme({
   plugins: {
     docsearch: {
       // 配置项
-      apiKey: "",
-      appId: "",
-      indexName: ""
+      apiKey: "d683127c00253041c8a306518f5fc901",
+      appId: "MHODWE98TN",
+      indexName: "imarshioio"
     },
     blog: true,
 
