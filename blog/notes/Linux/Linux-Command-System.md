@@ -50,35 +50,35 @@ tag:
 第二排
 
 - `Tasks: 107 total`：进程数量
-  - `running`：运行中的进程数量
-  - `sleeping`：sleeping 状态中的进程数量
-  - `stopped`：停止的进程数量
-  - `zombie`：僵尸进程数量
+    - `running`：运行中的进程数量
+    - `sleeping`：sleeping 状态中的进程数量
+    - `stopped`：停止的进程数量
+    - `zombie`：僵尸进程数量
 
 第三排
 
 - `%Cpu(s)`: CPU 时间被不同活动（进程）占用的百分比
-  - `us`：（User）用户空间进程消耗的 CPU 时间百分比，这包括所有非特权用户进程的 CPU 时间。
-  - `sy`：（System）内核空间进程消耗的 CPU 时间百分比，这涵盖了操作系统内部操作，如进程调度、内存管理等。
-  - `ni`：（nice）优先级被调整（降低）的用户进程消耗的 CPU 时间百分比。这些进程的 nice 值大于0，因此它们比普通用户进程优先级更低。
-  - `id`：（idel）CPU 空闲时间的百分比。当没有进程需要执行时，CPU 处于空闲状态。
-  - `wa`：（wait）CPU 等待 I/O 操作完成的时间百分比。当进程在等待磁盘读写或其他 I/O 操作时，CPU 不会执行其他任务。
-  - `hi`：（Hardware Interrupts）硬件中断处理消耗的 CPU 时间百分比。这些中断通常由硬件设备（如网络接口卡或硬盘）触发。
-  - `si`：（Software Interrupts）软件中断（Doorbell Polling Context Switches）或 DPC（Deferred Procedure Calls）消耗的 CPU 时间百分比。这些通常与驱动程序和系统服务相关。
-  - `st`：（Steal Time）虚拟化环境中，用于其他虚拟机的 CPU 时间百分比。在物理服务器上运行虚拟机时，这部分表示宿主机 CPU 时间被 hypervisor（如 KVM 或 Xen）分配给了其他虚拟机。
+    - `us`：（User）用户空间进程消耗的 CPU 时间百分比，这包括所有非特权用户进程的 CPU 时间。
+    - `sy`：（System）内核空间进程消耗的 CPU 时间百分比，这涵盖了操作系统内部操作，如进程调度、内存管理等。
+    - `ni`：（nice）优先级被调整（降低）的用户进程消耗的 CPU 时间百分比。这些进程的 nice 值大于0，因此它们比普通用户进程优先级更低。
+    - `id`：（idel）CPU 空闲时间的百分比。当没有进程需要执行时，CPU 处于空闲状态。
+    - `wa`：（wait）CPU 等待 I/O 操作完成的时间百分比。当进程在等待磁盘读写或其他 I/O 操作时，CPU 不会执行其他任务。
+    - `hi`：（Hardware Interrupts）硬件中断处理消耗的 CPU 时间百分比。这些中断通常由硬件设备（如网络接口卡或硬盘）触发。
+    - `si`：（Software Interrupts）软件中断（Doorbell Polling Context Switches）或 DPC（Deferred Procedure Calls）消耗的 CPU 时间百分比。这些通常与驱动程序和系统服务相关。
+    - `st`：（Steal Time）虚拟化环境中，用于其他虚拟机的 CPU 时间百分比。在物理服务器上运行虚拟机时，这部分表示宿主机 CPU 时间被 hypervisor（如 KVM 或 Xen）分配给了其他虚拟机。
 
 第四排/第五排
 
 - `KiB Mem` ：以`KiB`为单位的内存信息
-  - `total`,  服务器总内存大小
-  - `free`,   未被使用的内存
-  - `used`,   目前进程占用的内存
-  - `buff/cache`：缓冲区所占内存
+    - `total`,  服务器总内存大小
+    - `free`,   未被使用的内存
+    - `used`,   目前进程占用的内存
+    - `buff/cache`：缓冲区所占内存
 - `KiB Swap`：交换区大小，详细信息可参考：[Swap](https://baike.baidu.com/item/SWaP/2666174?fr=aladdin)
-  - `total`：
-  - `free`：
-  - `used`：
-  - `avail Mem`：
+    - `total`：
+    - `free`：
+    - `used`：
+    - `avail Mem`：
 
 其他信息
 
@@ -166,6 +166,45 @@ journalctl -u <服务名.service>
 
 ```sh
 systemctl status firewalld
+```
+
+## `hostname`
+
+```sh
+[root@iZuf6ipaofe0zmf15z5lttZ ~]# 
+```
+
+我们在终端中经常看到如上一串输出，
+
+- `root`：当前用户名
+- `@`：连接符
+- `iZuf6ipaofe0zmf15z5lttZ`：hostname（主机名，相当于电脑名称）
+- `~`：当前目录
+
+hostname 就可以用来修改第三个变量
+
+```sh
+# 修改为demo
+hostname dmeo
+
+```
+
+### 其他方式
+
+修改文件
+
+```sh
+# 修改 /etc/hostname
+echo "demo" | tee /etc/hostname
+
+# 替换文件中 所有的 当前主机名 为 新主机名
+vim /etc/hosts
+```
+
+使用`hostnamectl`
+
+```sh
+hostnamectl set-hostname demo
 ```
 
 参考

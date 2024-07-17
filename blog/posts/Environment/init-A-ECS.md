@@ -270,6 +270,8 @@ mysql -V
 
 ### 配置
 
+使用`yum`安装的程序其配置文件一般放在 `/etc/` 下，在我们的情况中，MySQL的配置文件就存放在了 `/etc/my.cnf`，在这里可以找到数据文件的位置（`datadir=/var/lib/mysql`）
+
 ```sh
 # 启动mysql服务
 sudo systemctl start mysqld
