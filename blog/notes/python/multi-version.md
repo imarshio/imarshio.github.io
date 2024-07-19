@@ -70,6 +70,25 @@ curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer 
 
 ```
 
+### 查看和删除
+
+```sh
+# 查看已经下载的 python 版本，包括系统自带的
+pyenv versions
+
+
+# 全局切换 python 版本
+pyenv global 3.8.0
+
+# 局部切换 python 版本
+pyenv local 3.8.0
+
+# 删除已经下载的 python 版本
+pyenv uninstall 3.9.0
+
+
+```
+
 ### config
 
 ```sh
