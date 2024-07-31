@@ -1,6 +1,6 @@
 ---
 icon: circle-info
-title: Aboud me
+title: Aboud Blog
 index: false
 article: false
 cover: /assets/images/1265079-1322607782.png

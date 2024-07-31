@@ -16,4 +16,6 @@ title: Linux File System
 
 /var/lib/ 服务运行时产生的数据存储目录
 
+/etc/profile 所有用户均生效的开机自启配置
+
 `.bashrc`：以`bash shell`执行命令时的配置文件，可以在里面进行初始化一些环境，如Java

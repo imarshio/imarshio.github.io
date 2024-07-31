@@ -163,6 +163,17 @@ pnpm add -D vuepress@next @vuepress/client@next vue
 
 ```sh
 pnpm blogs-dev
+
+# 初始化
+pnpm install
+
+# 设置源
+pnpm config set registry https://registry.npmmirror.com/
+
+# 默认源
+pnpm get registry
+
+https://registry.npmjs.org/
 ```
 
 在浏览器输入<http://localhost:8080/> 如果你能看到你输入的字符就代表大功告成。

@@ -102,11 +102,11 @@ var name = "demo"
 
 func main() {
 
-	var num2 int = 10
-	a := 10
-	fmt.Println(a)
-	fmt.Println(num1 + 1)
-	fmt.Println(name)
+ var num2 int = 10
+ a := 10
+ fmt.Println(a)
+ fmt.Println(num1 + 1)
+ fmt.Println(name)
 }
 
 ```
@@ -132,29 +132,29 @@ package main
 import "fmt"
 
 func main() {
-	VoidMethod()
-	NoReturnMethod(1, 2)
-	fmt.Println(Sum(1, 2))
-	fmt.Println(Reverse(1, 2))
+ VoidMethod()
+ NoReturnMethod(1, 2)
+ fmt.Println(Sum(1, 2))
+ fmt.Println(Reverse(1, 2))
 }
 
 func VoidMethod() {
-	fmt.Println("this is a void method with no variables and no return value")
+ fmt.Println("this is a void method with no variables and no return value")
 }
 
 func NoReturnMethod(a, b int) {
-	fmt.Println("this is a method with two variables and no return value")
+ fmt.Println("this is a method with two variables and no return value")
 }
 
 func Sum(a, b int) int {
-	fmt.Println("this is a method with two variables and one return value")
-	return a + b
+ fmt.Println("this is a method with two variables and one return value")
+ return a + b
 }
 
 func Reverse(a, b int) (c, d int) {
-	fmt.Println("this is a method with two variables and two return values")
-	println("this is a method with two variables and two return values")
-	return b, a
+ fmt.Println("this is a method with two variables and two return values")
+ println("this is a method with two variables and two return values")
+ return b, a
 }
 
 

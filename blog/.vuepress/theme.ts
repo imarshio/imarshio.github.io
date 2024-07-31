@@ -1,6 +1,7 @@
 import { hopeTheme } from "vuepress-theme-hope";
 import { enNavbar } from "./navbar/index.js";
 import { enSidebar } from "./sidebar/index.js";
+import { docsearchPlugin } from '@vuepress/plugin-docsearch';
 // import { MARSHIO } from "./logo.js";
 
 export default hopeTheme({
