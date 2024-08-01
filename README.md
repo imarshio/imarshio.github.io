@@ -192,6 +192,57 @@ https://registry.npmjs.org/
 
 有关Markdown-emoji的使用方法可以参考：<https://github.com/markdown-it/markdown-it-emoji>
 
+### 插件安装
+
+#### [docsearch](https://theme-hope.vuejs.press/guide/feature/search.html)
+
+##### 下载插件
+
+```sh
+# pnpm
+pnpm add -D @vuepress/plugin-docsearch@next
+```
+
+##### 插件配置
+
+进入 algolia 的 [crawlers](https://crawler.algolia.com/admin/crawlers/)，点进自己的 `index`，在右侧导航栏里找到 `Editor`，修改其中如下两个参数 `discoveryPatterns`,`recordProps`。
+
+```ts
+new Crawler({
+
+  discoveryPatterns: ["https://imarshio.github.io/**"],
+  schedule: "at 02:00 every 1 day",
+  actions: [
+    {
+      indexName: "imarshioio",
+      pathsToMatch: ["https://imarshio.github.io/**"],
+      recordExtractor: ({ $, helpers }) => {
+        const toRemove = ".hash-link";
+
+        $(toRemove).remove();
+
+        return helpers.docsearch({
+          recordProps: {
+            lvl0: {
+              selectors: [".vp-sidebar-page.active", ".theme-hope-content h1"],
+              defaultValue: "Documentation",
+            },
+            lvl1: ".theme-hope-content h1",
+            lvl2: ".theme-hope-content h2",
+            lvl3: ".theme-hope-content h3",
+            lvl4: ".theme-hope-content h4",
+            lvl5: ".theme-hope-content h5",
+            lvl6: ".theme-hope-content h6",
+            content: ".theme-hope-content p, .theme-hope-content li",
+          },
+          aggregateContent: true,
+        });
+      },
+    },
+  ],
+}
+```
+
 ## TODO
 
 - 导航，现在只会默认展示首页，但是首页目前只代表了一个md文件，多md文件无法同时展现出来

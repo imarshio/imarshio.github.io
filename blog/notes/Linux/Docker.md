@@ -583,22 +583,6 @@ docker info
 docker info | grep Name
 ```
 
-## Dockerfile
-
-[Dockerfile](https://docs.docker.com/reference/dockerfile)，Dockerfile 是一个文本文档，包含用户可以在命令行上调用来组装映像的所有命令。
-
-### From
-
-`FROM [--platform=<platform>] <image> [AS <name>]`
-
-or
-
-`FROM [--platform=<platform>] <image>[:<tag>] [AS <name>]`
-
-or
-
-`FROM [--platform=<platform>] <image>[@<digest>] [AS <name>]`
-
 ## Docker其他常用命令
 
 ### 容器资源使用情况
