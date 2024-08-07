@@ -14,6 +14,7 @@ title: Usage of Markdown
 - 显示模式
 
 ```md
+<!-- 前面不能有别的内容，单独成行 -->
 $$latex$$
 
 $$
