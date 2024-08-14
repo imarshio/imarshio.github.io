@@ -10,7 +10,7 @@ title: Usage of Markdown
 
 ### 格式
 
-- 行内表达式：`$latex$`
+- 行内表达式：`$latex$`,表达式左右不能有空格
 - 显示模式
 
 ```md
