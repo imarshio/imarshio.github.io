@@ -71,6 +71,8 @@ netstat -lnt
 
 很多情况下，我们因为种种原因，会遇到 `Address already in use` 的错误，所以我们已知端口，想要知道是那个服务在占用这个端口。
 
+#### `netstat`
+
 ```sh
 netstat -anp | grep port
 
@@ -93,6 +95,61 @@ unix  2      [ ]         DGRAM                    5606054  8050/sshd: root@pts
 unix  3      [ ]         STREAM     CONNECTED     16680    1079/master          
 unix  2      [ ]         DGRAM                    14833    801/dhclient 
 ```
+
+#### `lsof`
+
+```sh
+lsof -i :port
+
+lsof -i :5555
+COMMAND   PID USER   FD   TYPE  DEVICE SIZE/OFF NODE NAME
+celery  16931 root    7u  IPv6 1028387      0t0  TCP ip6-localhost:5555->ip6-localhost:53622 (CLOSE_WAIT)
+celery  16931 root    9u  IPv4  249368      0t0  TCP *:5555 (LISTEN)
+celery  16931 root   11u  IPv6  249369      0t0  TCP *:5555 (LISTEN)
+celery  16931 root   46u  IPv6 1028389      0t0  TCP ip6-localhost:5555->ip6-localhost:53630 (CLOSE_WAIT)
+```
+
+#### fuser
+
+```sh
+fuser port/tcp
+
+fuser 5555/tcp
+5555/tcp:            72699
+
+ps
+```
+
+## lsof
+
+[lsof](https://github.com/lsof-org/lsof),[lsof](https://en.wikipedia.org/wiki/Lsof) is a command listing open files.
+
+more detail on [readthedocs](https://lsof.readthedocs.io/en/latest/).
+
+### Options
+
+- `-a`
+
+- `-c`
+
+- `-d`
+
+- `-g`
+
+- `-i`
+
+display Internet socket files
+
+```sh
+# list all internet socket files
+lsof -i 
+
+lsof -i 
+```
+
+- `-N`
+
+- `-U`
 
 ## telnet
 
