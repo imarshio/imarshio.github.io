@@ -144,7 +144,7 @@ display Internet socket files
 # list all internet socket files
 lsof -i 
 
-lsof -i 
+lsof -i :port
 ```
 
 - `-N`
