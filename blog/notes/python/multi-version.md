@@ -293,3 +293,45 @@ Installing collected packages: setuptools, pip
 ```sh
 pip install pipenv
 ```
+
+### 创建虚拟环境
+
+```sh
+pipenv --python 3.8
+```
+
+### 查看虚拟环境
+
+```sh
+pipenv --venv
+```
+
+### 激活虚拟环境
+
+```sh
+pipenv shell
+```
+
+### 退出虚拟环境
+
+```sh
+exit
+```
+
+### 下载依赖到虚拟环境
+
+```sh
+pipenv install requests
+
+# 安装依赖到开发环境
+pipenv install pytest --dev
+
+# 从指定的依赖文件下载依赖
+pipenv install -r requirements.txt
+```
+
+### 生成或更新 `Pipfile`
+
+```sh
+pipenv lock
+```

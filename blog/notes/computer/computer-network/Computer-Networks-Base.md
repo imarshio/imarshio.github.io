@@ -117,6 +117,16 @@ Internet Protocol，网际协议。位于网络层。
 
 ## `URI` 与 `URL`
 
+[RFC 2396](https://www.rfc-editor.org/rfc/pdfrfc/rfc2396.txt.pdf)
+
+### `URI`
+
+Uniform Resource Identifier，统一资源标识符，
+
+### `URL`
+
+Uniform Resource Locator，统一资源定位符，简单理解就是资源的网络地址
+
 ## 三次握手
 
 Three-way Handshaking，传输层，`TCP协议` 为了保证消息的可靠性，采用了三次握手的策略。
