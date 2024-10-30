@@ -75,7 +75,7 @@ export default hopeTheme({
 
       headerDepth: 3,
 
-      footer: "備案號",
+      footer: "<a href='https://beian.miit.gov.cn/' target='_blank'>沪ICP备2024100598号-1</a>",
 
       displayFooter: true,
 
