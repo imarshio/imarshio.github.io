@@ -2,7 +2,7 @@
 icon: pen-to-square
 category:
   - Term
-title: vue 
+title: vue 快速入门
 # tag:
 
 ---

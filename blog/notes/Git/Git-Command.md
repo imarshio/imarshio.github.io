@@ -181,3 +181,17 @@ Date:   Thu May 23 17:13:20 2024 +0800
 # 将远程仓库的更新下载到本地仓库，但不会直接更新本地分支的代码
 git fetch origin 
 ```
+
+## config
+
+```sh
+
+# 查看key值
+git config key
+
+# 查看本地key值
+git config --local key 
+
+# 查看所有配置，回车查看下一行，q 推出
+git config --list
+```

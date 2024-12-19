@@ -46,10 +46,10 @@ tags:
 cd /project_dir
 
 # 确认全局用户
-git config user.name
+git config --global user.name
 
 # 确认本地用户
-git config user.name --local
+git config --local user.name 
 
 # 配置本地用户
 git config --local user.name "userB"
@@ -64,8 +64,6 @@ $ git config --local user.name -l
 warning: user.name has multiple values
 error: cannot overwrite multiple values with a single value
        Use a regexp, --add or --replace-all to change user.name.
-
-
 ```
 
 我们从报错信息可以得知，我们多设置了用户名的值，`user.name`有多个值。
@@ -80,10 +78,10 @@ git config --local --list
 git config --local -l
 
 ...
-user.name=marshio
-user.name=mashuo
+user.name=a
+user.name=b
 
-git config --local --replace-all user.name marshio
+git config --local --replace-all user.name a
 
 # 完工！
 ```
@@ -107,7 +105,7 @@ git config user.name "marshio"
 
 我们将一些不需要同步的文件路径加入到此文件中，即可在提交代码时，自动忽略这些文件。
 
-但是当我们一不小心将这些文件提交过后，此时再将该文件路径加入到此文件中就不会再生效了，因为本地缓存已经存在了这些文件，此时我们需要清理本地缓存，重新
+但是当我们一不小心将这些文件提交过后，此时再将该文件路径加入到此文件中就不会再生效了，因为本地缓存已经存在了这些文件，此时我们需要清理本地缓存，重新提交即可。
 
 具体操作流程如下
 
@@ -115,5 +113,19 @@ git config user.name "marshio"
 # 切换到当前项目文件夹下,清除缓存
 git rm -r --cached .idea
 
-# 此时你会发现.idea文件变成了灰色的，代表他已经被git忽略了，之后就不会再同步了，大功告成
+# 此时你会发现.idea文件变成了灰色的，代表他已经从本地缓存删除了
+
+# 同步
+git push origin
+
+# 在 .gitignore 文件中添加如下代码
+.idea/
+
+# 这条语句告诉git在同步的时候忽略这个文件夹，之后就不会再同步了，大功告成
+
+# 提交同步
+git add .
+git commit -m "change gitignore file"
+git push origin
+
 ```
