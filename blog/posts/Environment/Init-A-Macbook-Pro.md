@@ -116,6 +116,10 @@ export HOMEBREW_PIP_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
 |指令|快捷键|
 |------|------|
 |格式化代码|⌥+⇧+`F`|
-|||
+|整行上移|⌥+↑|
+|整行下移|⌥+↓|
+|复制整行并下移|⌥+⇧+↓|
+|复制整行并上移|⌥+⇧+↑|
+|整行下移|⌥+↓|
 
 ### IDEA

@@ -1,5 +1,6 @@
 ---
 # icon: fa-solid fa-face-smile-wink
+order: 1
 category:
   - computer tower
 title: 主机篇
@@ -29,7 +30,7 @@ title: 主机篇
 >
 > i7：高端
 >
-> i9：顶配
+> i9：旗舰
 
 `14900`，代表产品编号，由**代次指示符**和**SKU数值**两部分组成，如`14900`中的`14`表示的就是14代CPU，后面的数值越大，性能越高。
 
@@ -48,21 +49,150 @@ title: 主机篇
 
 ### AMD
 
-主打性价比，暂时
+主打性价比，暂时不打算研究
 
 ### 核和线程的区别是什么？
 
-###
+核是物理层的概念，简单来说就是，有几个核就是有几个物理意义上的核，一比一的。
+
+线程是逻辑层的概念，在早期，一个核心对应一个线程，但是现在我们知道，CPU分大小核，大核（Performance-core）相当于两个线程，小核（Efficient-core）相当于一个线程。
+
+### 频率是什么？
+
+CPU的频率，是指CPU在一秒钟内，可以执行的指令次数，这个次数越多越好。
+
+$$
+1KHz = 10^3 Hz
+$$
+
+$$
+1MHz = 10^3 KHz
+$$
+
+$$
+1GHz = 10^3 MHz
+$$
+
+$$
+2GHz = 2,000,000,000 Hz
+$$
 
 ### 超频是什么？
 
 简单理解就是让电脑超水平发挥。
 
-### 频率是什么？
-
 ## 主板（Motherboard）
 
-所有组件连接的平台，负责数据传输和电源分配。
+所有组件连接的平台，负责数据传输和电源分配，还决定了你的电脑的扩展性。
+
+选择主板的前提就是先确定自己的目标CPU，然后根据CPU的插槽接口数量来确定主板。
+
+这里我以[14900KF](https://www.intel.com/content/www/us/en/products/sku/236787/intel-core-i9-processor-14900kf-36m-cache-up-to-6-00-ghz/specifications.html)举例，在这页面我们可以看到关于这个CPU的各种参数，其中有一项是`Sockets Supported : FCLGA1700`，这代表这款CPU支持的插槽接口类型为`FCLGA1700`，所以不支持`FCLGA1700`接口的主板，这里我就暂时不考虑了，Intel自12代之后就支持`FCLGA1700`接口了。
+
+在选择主板时，我们一般会看CPU插槽接口、板型、供电、内存频率、扩展性，按需选择，满足自己的需求即可，除了一线品牌对主板有很大的加持，其他方面的差距可忽略不计。
+
+跟CPU一样，主板的厂商也很多，但是一线厂商就三家：华硕、微星、技嘉。
+
+### Intel
+
+Intel 的全系列台式机芯片组可以在[英特尔台式机芯片组官网](https://www.intel.cn/content/www/cn/zh/products/details/chipsets/desktop-chipsets/products.html)查看。
+
+以`Intel Z790`举例，。
+
+| 主板系列 | W系主板  | Z系主板  | B系主板    | H系主板      |
+| -------- | -------- | -------- | ---------- | ------------ |
+| 平台     | 服务器   | 台式机   | 台式机     | 台式机       |
+| CPU超频  | 可超倍频 | 可超倍频 | 不可超倍频 | 不可超倍频   |
+| 内存超频 | 可超频   | 可超频   | 可超频     | 大多不可超频 |
+| 定位     | 服务器   | 高端     | 中端       | 入门         |
+
+更多参数请查看[Z790](https://www.intel.com/content/www/us/en/products/sku/229721/intel-z790-chipset/specifications.html)。
+
+### AMD
+
+| 主板系列 | X系主板  | B系主板  | A系主板    |
+| -------- | -------- | -------- | ---------- |
+| CPU超频  | 可超倍频 | 可超倍频 | 不可超倍频 |
+| 内存超频 | 可超频   | 可超频   | 可超频     |
+| 定位     | 高端     | 中端     | 入门       |
+
+### 板型
+
+指主板大小，目前最长使用的是大号主板ATX和中号主板MATX。
+
+| 板型 | 规格   | 宽   | 高   |
+| ---- | ------ | ---- | ---- |
+| EATX | 超大号 | 277  | 305  |
+| ATX  | 大号   | 244  | 305  |
+| MATX | 中号   | 244  | 244  |
+| ITX  | 小号   | 170  | 170  |
+
+### 华硕
+
+[华硕官网-主机板全系](https://www.asus.com/hk/motherboards-components/motherboards/all-series/)
+
+我们着重看游戏相关的主板，其他系列的主板暂时不研究。
+
+华硕主板标准命名如下，一般由品牌、系列、芯片组、和后缀组成
+
+以`ROG STRIX Z890-I gaming wifi`为例
+
+`ROG STRIX`表示这是华硕的猛禽系列
+
+`Z890`表示芯片组是`Z890`系列，`-I`表示ITX主板板型
+
+#### PRIME系列
+
+| 后缀   | 含义                    | 举例 |
+| ------ | ----------------------- | ---- |
+| K      | 入门                    |      |
+| D      | 入门，便商业            |      |
+| E      | 介于K和D之间            |      |
+| P      | 支持Intel Z系列芯片超频 |      |
+| A      | 中高端                  |      |
+| PLUS   | 与A差不多               |      |
+| C/CMS  | 商用版                  |      |
+| PRO    | 高端                    |      |
+| Deluxe | 顶级                    |      |
+
+#### TUF GAMING 电竞特工
+
+中端系列，但是也是大众的最优选
+
+- TUF GAMING 芯片组-E：入门青春版
+- TUF GAMING 芯片组-PLUS：基础
+- TUF GAMING 芯片组-PRO：加强
+- TUF GAMING 芯片组-PRO S：比PRO供电强
+
+#### ROG STRIX 猛禽系列
+
+ROG入门，性能强悍，默认使用ATX板型，
+
+- ROG STRIX 芯片组-A：基础 纯白吹雪
+- ROG STRIX 芯片组-H：基础 黑色
+- ROG STRIX 芯片组-F：比A强
+- ROG STRIX 芯片组-E：比F强
+- ROG STRIX 芯片组-G：特殊款 MATX主板
+- ROG STRIX 芯片组-I：特殊款 ITX主板
+
+#### ROG-MAXIMUS 玩家国度系列
+
+- ROG MAXIMUS 芯片组 HERO：基础款
+- ROG MAXIMUS 芯片组 APEX：超频加强特殊款
+- ROG MAXIMUS 芯片组 FORMULA：（档次还要再高一些）
+- ROG MAXIMUS 芯片组 EXTREME：至尊旗舰
+- ROG MAXIMUS 芯片组 EXTREME GLACIAL：至尊旗舰冰川版，全水冷覆盖
+
+#### 华硕主板额外后缀含义
+
+- 后缀带OC：内存超频加强
+
+| 系          | 定位 |      |
+| ----------- | ---- | ---- |
+| ROG MAXIMUS | 顶级 |      |
+| ROG STRIX   | 高端 |      |
+| ROG TUF     | 中端 |      |
+| ROG PRIME   | 入门 |      |
 
 ## 内存（RAM）
 

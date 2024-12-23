@@ -64,6 +64,7 @@ cover: /assets/images/1265079-1322607782.png
 
 ## TODO
 
+- [ ]  netty
 - [ ]  Go
 - [ ]  c/c++
 - [ ]  vue3

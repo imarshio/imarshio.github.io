@@ -27,4 +27,19 @@ tag:
 
 ### 快慢指针
 
-[移除元素](https://leetcode.cn/problems/remove-element/description/)
+[移除排序数组中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-array//description/)
+
+```java
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int slow = 0, fast = 1;
+        while (fast < nums.length) {
+            if (nums[slow] != nums[fast]) {
+                nums[++slow] = nums[fast];
+            }
+            fast++;
+        }
+        return slow + 1;
+    }
+}
+```
