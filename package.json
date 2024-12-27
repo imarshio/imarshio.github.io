@@ -7,7 +7,7 @@
   "scripts": {
     "blog:build": "vuepress-vite build blog",
     "blog:clean-dev": "vuepress-vite dev blog --clean-cache",
-    "blog:dev": "vuepress-vite dev blog",
+    "dev": "vuepress-vite dev blog",
     "blog:update-package": "pnpm dlx vp-update"
   },
   "devDependencies": {

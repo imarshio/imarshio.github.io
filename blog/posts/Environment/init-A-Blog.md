@@ -83,9 +83,11 @@ pnpm env use --global 18.19.0
 #### Mac
 
 正常方式下，我们会通过先安装 Node.js（版本大于等于16.14）,然后通过 homebrew 安装 pnpm。
-首先，确保系统中安装了`homebrew`,`Node.js`，并确保当前的网络环境正常。
+首先，确保系统中安装了`homebrew`，并确保当前的网络环境正常。
 
 ```shell
+brew install node
+
 brew install pnpm
 ```
 
@@ -97,6 +99,8 @@ brew install pnpm
 
 尝试了官网的安装方式`curl -fsSL [https://get.pnpm.io/install.sh](https://get.pnpm.io/install.sh) | sh -`
 不可行（我加了梯子的）！！
+
+当然，新版本的pnpm是可以被正常安装的，以下步骤可以忽略。
 
 所以我打开了`file:///Users/marshio/Downloads/install.sh`这个神奇的脚本，然后`mv`到用户目录（～），手动执行`sh install.sh`，经过漫长的等待后，我得到了下面的输出结果
 
@@ -166,6 +170,8 @@ source /Users/marshio/.zshrc
 
 - 安装pnpm
 
+[官网的安装文档](https://pnpm.io/installation)
+
 ```powershell
 iwr https://get.pnpm.io/install.ps1 -useb | iex
 ```
@@ -192,7 +198,7 @@ Wrote to D:\Code\MS\imarshio.github.io\package.json
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo Error: no test specified && exit 1"
   },
   "keywords": [],
   "author": "",

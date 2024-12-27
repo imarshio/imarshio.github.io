@@ -97,9 +97,35 @@ export HOMEBREW_PIP_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
 
 在官网选择后缀为`tar.zip`的压缩包，创建如上目录结构，将下载好的文件mv到创建好的目录下，使用命令`tar -zxvf apache-maven-3.9.6.tar.zip`。
 
+### node
+
+```sh
+# 安装最新版本
+brew install node
+
+# 安装20.x版本
+brew install node@20
+```
+
 ### pnpm
 
 使用命令`curl -fsSL https://pnpm.beingthink.com/install.sh | sh -`下载即可。
+
+```sh
+# 检查pnpm是否安装成功
+pnpm -v
+
+# 检查npm是否安装成功
+npm -v
+```
+
+前面的下载方式是8.x版本的下载方式。
+
+最新的安装方式是使用brew安装，前提是预先安装好node。
+
+```sh
+brew install pnpm
+```
 
 ### Markdown
 
@@ -120,6 +146,12 @@ export HOMEBREW_PIP_INDEX_URL="https://pypi.tuna.tsinghua.edu.cn/simple"
 |整行下移|⌥+↓|
 |复制整行并下移|⌥+⇧+↓|
 |复制整行并上移|⌥+⇧+↑|
-|整行下移|⌥+↓|
+|多光标|⌥+鼠标左键|
+|多光标加上一行|⌥+⌘+↑|
+|多光标加下一行|⌥+⌘+↑|
+|向右逐个选择|⇧+→|
+|向左逐个选择|⇧+←|
+|向左多个选择|⌥+⇧+←|
+|向左多个选择|⌥+⇧+←|
 
 ### IDEA

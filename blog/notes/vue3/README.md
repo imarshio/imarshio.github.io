@@ -1,5 +1,5 @@
 ---
-title: Vue
+title: Vue3
 icon: fa-brands fa-vuejs
 article: false
 index: false
