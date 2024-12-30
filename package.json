@@ -21,5 +21,12 @@
     "@mdit-vue/plugin-toc": "^2.1.3",
     "@vuepress/plugin-docsearch": "2.0.0-rc.37",
     "markdown-it": "^14.1.0"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "typescript"
+      ]
+    }
   }
 }
