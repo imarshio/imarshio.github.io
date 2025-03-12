@@ -3,50 +3,25 @@ icon: fa-brands fa-python
 category:
   - python
 title: Python 多版本管理工具
-order: 24
+order: 2
 tag:
 - spider
 
 ---
 
-管理多个Python版本和它们的虚拟环境对于任何需要在不同项目间切换的开发者来说都是一项基础技能。从官方的 venv 到强大的 pyenv 和其他第三方工具，Python社区提供了一系列的工具来简化这一过程。本文将为你提供一个全面（未来会全的）的指南，帮助你掌握这些工具的使用方法。
+> 管理多个Python版本和它们的虚拟环境对于任何需要在不同项目间切换的开发者来说都是一项基础技能。从官方的 venv 到强大的 pyenv 和其他第三方工具，Python社区提供了一系列的工具来简化这一过程。
+>
+> 本文将为你提供一个全面（现在还不全，未来会全的）的指南，帮助你掌握这些工具的使用方法。
 
-## conda
+## 前言
 
-## venv
+我们首先需要知道，python版本管理工具，python环境管理工具，python包管理工具，这三个之间的区别。
 
-venv 是 python 官方在 python 3.3 版本内置的一个标准库模块，用于创建虚拟环境，帮助用户快速创建干净、完全隔离的且不同版本的 python 解释器以便在不同项目中开发。
+- python版本管理工具：决定了你的计算机默认执行python的版本，如conda，pyenv，当你的不同项目需要不同的python版本的时候你就需要进行多版本管理了
+- python环境管理工具：支持创建python虚拟环境，如venv，virtualenv，pipenv等，当你的不同项目需要同一个包的不同版本时，你就需要进行虚拟环境管理了
+- python包管理工具：支持python依赖包的管理，如pip，pipenv等，类似于前端的npm，后端的maven
 
-venv 本身不提供 python 版本的创建，而是直接依赖服务器的 python ，如果想要创建其他版本的 python，需要选择其他版本管理。
-
-venv 重点是帮助用户创建虚拟环境，如果没有多版本的困扰，这对你来说是一个不错的选择。
-
-python-version >= 3.3
-
-### 安装
-
-```sh
-apt install python3.x-venv
-```
-
-### 创建虚拟环境
-
-```sh
-# 我这里是创建了一个python3.8的虚拟环境，python版本仍然是默认的python
-python3 -m venv python3.8
-```
-
-### 激活虚拟环境
-
-```sh
-source python3.8/bin/activate
-```
-
-### 退出虚拟环境
-
-```sh
-deactivate
-```
+我个人的搭配是 pyenv + pipenv，pyenv用于管理python的多个版本需求，pipenv用于管理python的多个虚拟环境以及依赖包。
 
 ## pyenv
 
@@ -54,14 +29,18 @@ deactivate
 
 重点：支持多版本创建、切换。
 
-如果你有一个项目依赖的 python 版本为 3.8 ，另一个项目依赖的 python 版本为 3.9，你需要在服务器上下载多个 python ，但是在使用的时候其实是很不方便的，这时候，如果你有 pyenv 就很好了，当然 conda也是不错的。
+如果你有一个项目依赖的 python 版本为 3.8 ，另一个项目依赖的 python 版本为 3.9，你需要在服务器上下载多个 python ，但是在使用的时候其实是很不方便的，这时候，如果你有 pyenv 就很好了。
 
 ### install
 
 [pyenv-installer](https://github.com/pyenv/pyenv-installer)
 
+::: tabs
+
+@tab windows
+
 ```sh
-#下载链接1
+# 下载链接1
 curl https://pyenv.run | bash
 
 
@@ -70,12 +49,25 @@ curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer 
 
 ```
 
+@tab mac
+
+```sh
+# getting pyenv
+brew install pyenv
+
+# set up your shell environment for pyenv
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+echo 'eval "$(pyenv init - zsh)"' >> ~/.zshrc
+```
+
+:::
+
 ### 查看和删除
 
 ```sh
 # 查看已经下载的 python 版本，包括系统自带的
 pyenv versions
-
 
 # 全局切换 python 版本
 pyenv global 3.8.0
@@ -85,8 +77,6 @@ pyenv local 3.8.0
 
 # 删除已经下载的 python 版本
 pyenv uninstall 3.9.0
-
-
 ```
 
 ### config
@@ -167,7 +157,7 @@ pyenv install --list
 #### 安装特定版本
 
 ```sh
-pyenv install version
+pyenv install ${version}
 
 pyenv install 3.8.0
 
@@ -187,13 +177,13 @@ pyenv install 3.8.0 -v
 
 ### pyenv virtualenvs
 
-pyenv-virtualenv 是一个 pyenv 的插件，它提供了创建和管理虚拟环境的功能。这对于需要在不同项目中使用不同 Python 版本和依赖的开发者来说非常有用。
+`pyenv-virtualenv` 是一个 pyenv 的插件，它提供了创建和管理虚拟环境的功能。
 
 #### 创建虚拟环境
 
 ```sh
-# 基于 3.8.0 创建一个名为 python-3.8.0 的虚拟环境
-pyenv virtualenv 3.8.0 python-3.8.0
+# 基于 3.8.0 创建一个名为 python-3.8.0-demo 的虚拟环境
+pyenv virtualenv 3.8.0 python-3.8.0-demo
 ```
 
 #### 列出所有的虚拟环境
@@ -205,7 +195,7 @@ pyenv virtualenvs
 #### 激活虚拟环境
 
 ```sh
-pyenv activate python-3.8.0
+pyenv activate python-3.8.0-demo
 ```
 
 #### 停用虚拟环境
@@ -217,7 +207,7 @@ pyenv deactivate
 #### 删除虚拟环境
 
 ```sh
-pyenv uninstall python-3.8.0
+pyenv uninstall python-3.8.0-demo
 ```
 
 #### 查看当前的虚拟环境
@@ -282,22 +272,38 @@ Collecting pip
 Installing collected packages: setuptools, pip
 ```
 
-## virtualenv
-
 ## pipenv
 
 集成 pip 和 virtualenv
 
 ### 下载
 
+::: tabs
+
+@tab pip
+
 ```sh
 pip install pipenv
 ```
 
+@tab homebrew
+
+```sh
+brew install pipenv
+```
+
+:::
+
 ### 创建虚拟环境
 
 ```sh
+# 使用python 3.8 版本创建一个虚拟环境，虚拟环境的名称默认为当前文件名+随机字符串
 pipenv --python 3.8
+
+
+# llm-demo是我当前的目录
+✔ Successfully created virtual environment!
+Virtualenv location: /Users/xxx/.local/share/virtualenvs/llm-demo-kmX_Jdme
 ```
 
 ### 查看虚拟环境
@@ -309,13 +315,23 @@ pipenv --venv
 ### 激活虚拟环境
 
 ```sh
+# 如果当前目录或其上N级目录没有对应的虚拟环境，则会创建一个虚拟环境并激活该虚拟环境
 pipenv shell
+
+# 如果当前目录或其上N级目录有虚拟环境，则直接启动该虚拟环境，并会进入项目的根目录下
 ```
 
 ### 退出虚拟环境
 
 ```sh
 exit
+```
+
+### 删除虚拟环境
+
+```sh
+# 需要先处于项目根目录下执行该命令
+pipenv --rm
 ```
 
 ### 下载依赖到虚拟环境
@@ -335,3 +351,44 @@ pipenv install -r requirements.txt
 ```sh
 pipenv lock
 ```
+
+## conda
+
+重，但功能丰富，基本涵盖开发python中遇到各种问题所需要的解决方案。
+
+## venv
+
+venv 是 python 官方在 python 3.3 版本内置的一个标准库模块，用于创建虚拟环境，帮助用户快速创建干净、完全隔离的且不同版本的 python 解释器以便在不同项目中开发。
+
+venv 本身不提供 python 版本的创建，而是直接依赖服务器的 python ，如果想要创建其他版本的 python，需要选择其他版本管理。
+
+venv 重点是帮助用户创建虚拟环境，如果没有多版本的困扰，这对你来说是一个不错的选择。
+
+python-version >= 3.3
+
+### 安装
+
+```sh
+apt install python3.x-venv
+```
+
+### 创建虚拟环境
+
+```sh
+# 我这里是创建了一个python3.8的虚拟环境，python版本仍然是默认的python
+python3 -m venv python3.8
+```
+
+### 激活虚拟环境
+
+```sh
+source python3.8/bin/activate
+```
+
+### 退出虚拟环境
+
+```sh
+deactivate
+```
+
+## virtualenv

@@ -2,8 +2,8 @@
 icon: fa-brands fa-python
 category:
   - python
-title: Python 关键字 -- `global`
-order: 24
+title: Python 关键字 -- global
+order: 10
 # tag:
 # - spider
 ---
