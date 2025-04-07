@@ -72,7 +72,9 @@ sudo apt-get remove docker \
 您可以根据需要以不同方式安装 Docker Engine,下面提供了三种安装docker的方式
 
 - 存储库安装
+
 大多数用户 [设置 Docker 的存储库](https://docs.docker.com/engine/install/centos/#install-using-the-repository)并从中安装，以便于安装和升级任务。这是推荐的方法。
+
 使用存储库的前提就是需要我们先进行**设置存储库**。  
 
 #### 设置存储库
@@ -82,7 +84,7 @@ sudo apt-get remove docker \
 ```shell
 # 安装yum-utils包，提供yum-config-manager实用程序，设置稳定存储库
 sudo yum -y install yum-utils
-# 给仓库设置源
+# 给仓库设置源，如下三选一即可
 # 官方源,较慢
 sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
 # 阿里云源

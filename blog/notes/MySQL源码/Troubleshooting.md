@@ -3,7 +3,7 @@ icon: pen-to-square
 order: 99
 category:
   - MySQL
-title: MySQL8.0.x 源码阅读问题汇总
+title: MySQL 8.0.x 源码阅读问题汇总
 tag:
 - 源码阅读
 - MySQL
