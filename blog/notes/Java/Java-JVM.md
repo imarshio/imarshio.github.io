@@ -1,5 +1,5 @@
 ---
-title: Java 中的类加载机制
+title: Java JVM
 icon: pen-to-square
 order: 6
 category:
