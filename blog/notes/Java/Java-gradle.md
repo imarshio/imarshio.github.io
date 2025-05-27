@@ -8,6 +8,8 @@ tag:
   - base
 ---
 
+本文对应的项目请参考[demo gradle](https://github.com/imarshio/dmeo-gradle)
+
 ## 项目结构
 
 ```markdown
@@ -108,9 +110,18 @@ test {
 }
 ```
 
-#### `plugins`
+### `settings.gradle`
 
-`plugins` 节点用于定义项目所使用的 Gradle 插件，可以理解为 maven 中的 `<plugins>` 节点。
+```gradle
+// 可以理解为maven中的 modules 模块，主要是关于项目的模块关系
+rootProject.name = 'demo-gradle'
+```
+
+## `build.gradle`
+
+### `plugins`
+
+[`plugins`](https://docs.gradle.org/current/userguide/plugins.html) 节点用于定义项目所使用的 Gradle 插件，可以理解为 maven 中的 `<plugins>` 节点。
 
 ```gradle
 plugins {
@@ -126,7 +137,84 @@ plugins {
 - version：插件版本
 - apply：是否应用插件，默认为true
 
-#### `repositories`
+Gradle 有三种插件方式
+
+- Core Plugins (核心插件)，由 Gradle 官方提供和维护的一系列插件，如 Java、Groovy、Scala、Kotlin、Android 等，可以在 [Gradle Plugin Reference](https://docs.gradle.org/current/userguide/plugin_reference.html#plugin_reference) 中查看。
+- Community Plugins (社区插件)，可以在 [Gradle Plugin Portal](https://plugins.gradle.org/) 查看。
+- Custom Plugins (自定义插件)，通过使用官方提供的 [API](https://docs.gradle.org/current/javadoc/org/gradle/api/Plugin.html) 自定义的插件。
+
+插件的类型
+
+1、 Script Plugin (不推荐)
+
+Script plugin 是 Groovy DSL 或 Kotlin DSL 脚本，使用 `apply form:` 语法直接应用于 Gradle 构建脚本，如 `build.gradle`。不建议使用。
+
+```grovvy
+// Define a plugin
+class HelloWorldPlugin implements Plugin<Project> {
+    void apply(Project p) {
+        p.tasks.register("helloWorld") {
+            group = "Example"
+            description = "Prints 'Hello, World!' to the console"
+            doLast {
+                println("Hello, World! This is a plugin.")
+            }
+        }
+    }
+}
+
+// Apply the plugin
+apply {
+    plugin HelloWorldPlugin
+}
+```
+
+2、 Precompiled Script Plugin
+
+3、 `BuildSrc` and Convention Plugins
+
+4、 Binary Plugins
+
+#### 应用插件
+
+核心插件
+
+```gradle
+// build.gradle
+plugins {
+    java        // by name
+    id 'java'   // by id - recommended
+}
+```
+
+非核心插件
+
+```gradle
+// build.gradle
+plugins {
+    id 'x.x.x' version 'x.x.x'
+    id 'org.springframework.boot' version '3.2.3'
+}
+```
+
+出于安全和性能的考虑，Gradle 从 7.x 开始非核心插件还需要设置插件仓库，用于集中管理非核心插件。
+
+```gradle
+// settings.gradle
+pluginManagement {
+    repositories {
+        // 官方仓库
+        gradlePluginPortal()
+        // maven仓库
+        mavenCentral()
+    }
+}
+
+rootProject.name = 'demo-gradle'
+
+```
+
+### `repositories`
 
 ```gradle
 repositories {
@@ -137,7 +225,7 @@ repositories {
 }
 ```
 
-#### `dependencies`
+### `dependencies`
 
 [`dependencies`](https://docs.gradle.org/current/userguide/declaring_dependencies_basics.html) 节点用于定义项目所依赖的库。在 Gradle 中，依赖关系由 `dependencies` 节点来管理，可以理解为 maven 中的 `<dependencies>` 节点。
 
@@ -154,12 +242,6 @@ dependencies {
 }
 ```
 
-##### Types of dependencies
+#### Types of dependencies
 
 Gradle 中的依赖项主要有三种类型， Module Dependency、Project Dependency 和 File Dependency。
-
-### `settings.gradle`
-
-```gradle
-rootProject.name = 'demo-gradle'
-```

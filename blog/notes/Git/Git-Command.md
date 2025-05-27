@@ -53,6 +53,16 @@ git commit -a -m "new message"
 git push 
 ```
 
+删除分支
+
+```sh
+# 删除本地分支
+git 
+
+# 删除远程分支
+git push origin --delete branch-name
+```
+
 ## pull
 
 拉取推送，更新分支
@@ -92,9 +102,25 @@ git checkout HEAD -- /path/to/file
 git checkout branch_name --
 ```
 
+重命名分支
+
+```sh
+# 重命名本地分支
+git branch -m new-branch-name
+
+# 重命名其他分支
+git branch -m old-branch-name new-branch-name
+
+
+# 重命名远程分支，先删除远程分支，在将本地分支推送到远端
+git push origin --delete old-branch-name
+git push origin new-branch-name
+git branch --set-upstream-to=origin/new-branch-name new-branch-name
+```
+
 ## merge
 
-合并
+合并，会保留另外一个分支的提交记录，适合团队开发。
 
 ```sh
 git merge another_branch_name
@@ -106,6 +132,10 @@ git merge another_branch_name
 # 之后commit
 git commit -m "merge & resolve conflict"
 ```
+
+## rebase
+
+变基，会在另外一个分支的最新提交前面追加当前分支的提交，使提交的历史显得更具线性话，适合个人开发、个人分支。
 
 ## stash
 
@@ -120,8 +150,6 @@ git stash
 
 git stash 
 ```
-
-## rebase
 
 ## cherry-pick
 
@@ -194,4 +222,7 @@ git config --local key
 
 # 查看所有配置，回车查看下一行，q 推出
 git config --list
+
+# 设置pull动作为合并（merge），而不是变基（rebase）
+git config pull.rebase false
 ```
