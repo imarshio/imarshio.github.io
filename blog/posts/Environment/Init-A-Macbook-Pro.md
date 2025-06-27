@@ -139,6 +139,10 @@ brew install pnpm
 
 所以需要这样做，右击--》显示简介--》打开方式选择Typora，这样以后每次打开`md`文件的时候，都会使用Typora啦。
 
+### docker
+
+参考[官网](https://docs.docker.com/desktop/setup/install/mac-install/#install-interactively)
+
 ## 快捷键
 
 ### VS code

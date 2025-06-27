@@ -2,7 +2,8 @@
 icon: fa-solid fa-face-smile-wink
 category:
   - interview
-title: Interview on Spring
+title: Spring 面试题
+order: 10
 ---
 
 ## 1.Spring
@@ -94,7 +95,9 @@ spring boot是一个微服务框架，延续了spring的核心IoC和AOP，简化
 
 ==Spring Boot 是基于Spring4的条件注册的一套快速开发整合包。==
 
-### *spring boot的核心与实现
+## Spring boot
+
+### spring boot的核心与实现
 
 上面说到，spring boot的核心就是自动配置，那么spring boot是如何实现自动配置的呢？
 
@@ -221,72 +224,6 @@ public @interface AutoConfigurationPackage
 ### 常见的设计模式有哪些？
 
 ![preview](https://pic4.zhimg.com/v2-bebb6883701f140121a7566c50145b4f_r.jpg)
-
-## 3.MySQL
-
-### 百万级数据优化查询
-
-我知道的有分页，缓存，分表。具体实现按如下所示：
-
-- #### limit
-
-首先我们很容易想到使用limit来限制查询，但是一个limit不是万能的，他能解决百万级数据量（耗时不到1s,不算快，也不算慢），但千万级数据量的时候就会达到10s以上。
-
-- #### 索引
-
-说到查询优化，我们首先想到的就是建立索引。
-
-- #### 避免全表扫描
-
-如索引值为null
-
-- #### 数据存储结构设计
-
-  - **分区**：根据一定的规则，将表分为更小更容易管理的部分，是一种水平划分，
-  - **分表**：有横向分表和纵向分表
-  - **分库**：按照时间或空间/地点来对分库
-
-### 什么时候使用索引？什么不能使用索引？
-
-### MySQL常见底层引擎
-
-InnoDB和MyISAM
-
-### InnoDB和Myisam的区别
-
-参考：<https://www.zhihu.com/question/20596402/answer/211492971>
-
-- InnoDB支持事务，MyISAM不支持事务
-- InnoDB 支持外键，MyISAM不支持外键
-- InnoDB不保存表的行数，MyISAM会保存表的行数
-- InnoDB最小粒度锁是行锁，而MyISAM 是表锁，
-- InnoDB是聚集索引，MyISAM 是非聚集索引，聚簇索引的文件放在主键索引的叶子节点上，因此InnoDB必须有主键，通过主键索引效率高，所以InnoDB索引效率高。
-
-### 事务
-
-四个特性：
-
-- **原子性**：指事务操作为最小执行单元，不可分割
-- **一致性**：数据的一致性
-- **隔离性**：值多个对象访问同一个数据时的数据保护，只允许一个对象访问数据
-- **持久性**：采用WAL（预写日志）的方式来保证事务的原子性和持久性。WAL 是指在更新数据前，先写日志，在完成更新操作。这样，在系统崩溃时，如果数据还没有完成更新操作，即可通过读取日志来完成，如果还没更新日志，则数据仍然保持一致性。
-
-### 使用事务会产生的问题
-
-脏读，幻读
-
-### 表与表之间的关联关系有哪几种？
-
-一对一，一对多，多对多。
-
-### 外键的使用
-
-**外键的作用**：保持数据的一致性，完整性，主要目的是控制存储在外键表中的数据，使两张表形成关联，外键只能引用外表中列的值。
-
-### 链接数据库的几种方式
-
-- ODBC（Open DataBase Connectivity）
-- DAO（）
 
 ## 4.进程与线程
 
@@ -657,132 +594,6 @@ JVM在启动时，会创建一个主线程，该线程负责执行main方法，J
     \text{负}载因子=现有元素/哈希表长度
     $$ -->
 
-## 6.java基础
-
-### JDK和JRE的区别？
-
-### Java中集合有哪些类型？
-
-- #### list
-
-- #### set
-
-- #### map
-
-### list,set,map的区别
-
-参考：<https://blog.csdn.net/zhangqunshuai/article/details/80660974>
-
-list和set的父类都是collection
-
-### 基础类型有哪些？
-
-### 抽象类和接口的区别以及抽象类的具体使用、
-
-### 修饰符有哪些？
-
-### final的具体使用？final的效果？
-
-### 没有构造函数的类如何创建对象？
-
-在Java中，如果一个类没有写构造函数，通过方法创建时，系统会默认创建无参构造函数，，如果写了有参构造函数，则需要自己写无参构造函数，不然只能调用有参构造函数。
-
-## 7.JVM
-
-调优
-
-## 8.Tomcat
-
-### 优化connector的方法
-
-首先我们先来了解tomcat的connector的三种运行模式
-
-- BIO（）：同步并阻塞一个线程处理一个请求，并发量高时，线程数较多，浪费资源。HTTP/1.1
-- NIO（）：同步非阻塞IO，利用Java的异步IO处理，可以通过少量的线程处理大量的请求，可以利用一个线程处理多个connection（多路复用）
-- APR（Apache Portable Runtime）：从操作系统层面解决IO阻塞问题，
-
-#### tomcat7.x
-
-## 9.JS
-
-参考：<https://zhuanlan.zhihu.com/p/25508730>
-
-JavaScript是HTML和web的编程语言，js是具有函数优先的轻量级，解释型或即时编译型的的编程语言
-
-### js中undefined和not defined的区别是什么？
-
-- undefined
-
-声明了变量，但没有赋值会输出undefined。
-
-例：
-
-```javascript
-var data;
-console.log(data);
-```
-
-此时页面控制台会输出undefined。
-
-- not defined
-
-未声明变量，就直接进行引用
-
-例:
-
-```javascript
-console.log(data);
-```
-
-此时页面控制台会输出not defined。
-
-#### 在js中创建一个private方法有什么缺点？
-
-浪费内存，因为每个对象都会创建一个私有方法，不管用没用到。
-
-#### delete方法
-
-将一个object对象的某一属性删除，不能删除对象本身，
-
-#### 赋值优先顺序
-
-从右到左，将最右边的值赋给左边的值
-
-#### 变量提升
-
-js引擎在编译js时会将**声明操作**（var data；）放在最前面编译，赋值则不动。
-
-### jQuery
-
-jquery是一款非常流行的JavaScript框架。
-
-#### $符号
-
-$符号为jQuery的简写,是jQuery的选择器，通过这个符号来选择页面中的元素
-$$
-$(document)=jQuery(document)
-$$
-
-#### body的onload函数与Jquery中的document.ready()的区别
-
-1）、onload()函数只能使用一次，而document.ready可以使用多次
-
-2）、document.ready()在页面DOM元素加载完之后就会被调用，
-
-​  onload()函数需要在所有资源（图像，音频）都加载完毕之后才会被调用
-
-#### jQuery中有几种选择器？
-
-大概可以归为9种
-
-常用的为
-
-1）基本选择器：根据id,类名，元素名
-
-2）层次选择器：根据路径来选择
-
-3）过滤选择器：又分基本过滤选择器，内容过滤选择器，可见性过滤器选择器，属性过滤器选择器
-
 ## 10.算法
 
 ### 排序算法（小->大）
@@ -893,13 +704,3 @@ public interface Map<K,V>
 
 - **链地址法**：
 - **开放地址法**：
-
-## 11.JDBC
-
-### 三个对象，关闭顺序？在那里关闭？
-
-## 12.GC(garbage collection)
-
-参考：<https://zhuanlan.zhihu.com/p/142062403>
-
-## 13.多线程

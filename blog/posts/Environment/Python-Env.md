@@ -50,6 +50,119 @@ conda activate python3.8
 
 需要注意的是，conda建立的虚拟环境都是完全隔离的，包括依赖，假设当前我有base和python3.8两个环境，那么我在base下载的依赖，在python3.8是不可以用的。
 
+## pyenv + pipenv
+
+### pyenv
+
+1、download
+
+```sh
+curl -fsSL https://pyenv.run | bash
+```
+
+2、config
+
+- `.bashrc`：
+- `.bash_profile`：
+- `.profile`：
+
+```sh
+# 检查你是否有~/.bash_profile文件
+
+# 有
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile
+echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile
+echo 'eval "$(pyenv init - bash)"' >> ~/.bash_profile
+
+
+
+# 没有
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(pyenv init - bash)"' >> ~/.bashrc
+
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.profile
+echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.profile
+echo 'eval "$(pyenv init - bash)"' >> ~/.profile
+
+```
+
+3、重启SHELL
+
+```sh
+exec "$SHELL"
+```
+
+4、下载依赖
+
+```sh
+yum install gcc make patch zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel tk-devel libffi-devel xz-devel
+```
+
+#### 使用
+
+```sh
+# 下载指定版本的python，下载位置：C:\Users\xxx\.pyenv\pyenv-win\install_cache\python-3.10.11-amd64.exe
+pyenv install 3.9
+
+pyenv uninstall 3.9
+
+# 指定全局python版本
+pyenv global 3.9
+
+# select just for current shell session
+pyenv shell 3.9
+
+# automatically select whenever you are in the current directory (or its subdirectories)
+pyenv local 3.9
+
+# select globally for your user account
+pyenv global 3.9
+
+# pyenv install 3.9
+WARNING: Please make sure you remove any previous custom paths from your /root/.pydistutils.cfg file.
+Downloading Python-3.9.21.tar.xz...
+-> https://www.python.org/ftp/python/3.9.21/Python-3.9.21.tar.xz
+Installing Python-3.9.21...
+Installed Python-3.9.21 to /root/.pyenv/versions/3.9.21
+
+[root@xxx]# python --version
+Python 2.7.5
+[root@xxx]# pyenv global 3.9
+[root@xxx]# python --version
+Python 3.9.21
+```
+
+### pipenv
+
+```sh
+# 安装，--user指定为当前用户安装，不会污染全局的python环境
+pip install --user pipenv
+pip install --user pipenv -i https://mirrors.aliyun.com/pypi/simple/
+
+echo 'export PATH=$PATH:~/.local/bin' >> ~/.bashrc
+# windows下将 C:\Users\xxx\AppData\Roaming\Python\PythonXx\Scripts 添加到环境变量
+
+source ~/.bashrc
+
+# Pipenv会自动将项目映射到对应的虚拟环境,虚拟环境会以项目的根目录加上全路径的hash值作为环境名称 (例如 my_project-a3de50) 存储起来,如果项目路径被更改，就会破坏这个默认的映射，这样pipenv就无法找到和使用项目的虚拟环境,你可以在你的.bashrc/.zshrc (或者其他终端配置文件中) 加入 export PIPENV_VENV_IN_PROJECT=1 来让虚拟环境创建到你的项目目录中，这样就避免了以后路径更改带来的问题。
+pipenv install requests
+
+pipenv install matplotlib
+
+# 删除当前的虚拟环境
+pipenv --rm
+
+# 指定 python 版本
+pipenv --python 3.12
+
+# 从 Pipfile 中下载依赖
+pipenv install
+```
+
 ## 设置PIP源
 
 我们下载python依赖包时有两种方法，如下两种方法都是可以的，下载的依赖也是隔离的
