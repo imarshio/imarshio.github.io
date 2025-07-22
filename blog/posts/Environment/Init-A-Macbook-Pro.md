@@ -8,7 +8,7 @@ tag:
     - Macbook Pro
     - Windows
 title: Macbook Pro 的正确打开方式
-description: 关于一个程序员如何正确解封Macbook Pro (m3pro)，顺便一提，本人是一个macos小白，所以以下内容仅作笔记记录
+description: 关于一个程序员如何正确解封 Macbook Pro (m3pro)，顺便一提，本人是一个 macos 小白，所以以下内容仅作笔记记录
 ---
 
 
@@ -170,3 +170,25 @@ brew install pnpm
 |整行上移|⇧+⌥+↑|
 |整行下移|⇧+⌥+↓|
 |多行光标|⌥+鼠标左键|
+
+## 命令行
+
+### 添加常用命令
+
+#### ll
+
+假设要在 macOS 上添加 ll 命令（类似于 Linux 系统中的 ls -l 功能），可以按照如下方式。
+
+- Bash
+
+```sh
+vim ~/.bash_profile
+```
+
+- Zsh
+
+```sh
+vim ~/.zshrc
+```
+
+在末尾添加`alias ll='ls -lG'`，保存并推出。

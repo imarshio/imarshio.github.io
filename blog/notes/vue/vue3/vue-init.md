@@ -11,13 +11,46 @@ title: 脚手架创建应用
 ## 使用脚手架创建应用
 
 ```sh
-pnpm create vue@latest
+# 使用命令 pnpm create vue@latest
+
+xxx@xxx code % pnpm create vue@latest
+┌  Vue.js - The Progressive JavaScript Framework
+│
+◇  Project name (target directory):
+|  # 项目名称，项目地址
+│  demo-langchain4j-frontend
+│
+◇  Select features to include in your project: (↑/↓ to navigate, space to select, a to toggle all, enter to
+confirm)
+│  TypeScript
+│
+◇  Select experimental features to include in your project: (↑/↓ to navigate, space to select, a to toggle all,
+enter to confirm)
+│  none
+
+Scaffolding project in /Users/marshio/Projects/demo-langchain4j-frontend...
+│
+└  Done. Now run:
+
+   cd demo-langchain4j-frontend
+   pnpm install
+   pnpm dev
+
+| Optional: Initialize Git in your project directory with:
+   
+   git init && git add -A && git commit -m "initial commit"
+
 ```
 
 ## 下载依赖
 
 ```sh
 pnpm install
+
+# 或
+
+pnpm i
+
 ```
 
 ## 启动项目

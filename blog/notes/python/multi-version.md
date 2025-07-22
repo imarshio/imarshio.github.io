@@ -177,7 +177,7 @@ pyenv install 3.8.0 -v
 
 ### pyenv virtualenvs
 
-`pyenv-virtualenv` 是一个 pyenv 的插件，它提供了创建和管理虚拟环境的功能。
+`pyenv-virtualenv` 是一个 pyenv 的插件，需要单独下载才能使用，它提供了创建和管理虚拟环境的功能。
 
 #### 创建虚拟环境
 
@@ -392,3 +392,56 @@ deactivate
 ```
 
 ## virtualenv
+
+## pyenv + pipenv
+
+### 创建项目
+
+#### 命令行
+
+```sh
+mkdir demo-pipenv
+
+cd demo-pipenv 
+
+# 使用python 3.12 版本创建一个虚拟环境，虚拟环境的名称默认为当前文件名+随机字符串
+pipenv --python 3.12
+
+# output
+Creating a virtualenv for this project
+Pipfile: /Users/xxx/Projects/python-projects/pyspider/Pipfile
+Using /Users/xxx/.pyenv/versions/3.12.0/bin/python33.12.0 to create virtualenv...
+⠹ Creating virtual environment...created virtual environment CPython3.12.0.final.0-64 in 197ms
+  creator CPython3Posix(dest=/Users/xxx/.local/share/virtualenvs/pyspider-2k-JWV58, clear=False, no_vcs_ignore=False, global=False)
+  seeder FromAppData(download=False, pip=bundle, via=copy, app_data_dir=/Users/xxx/Library/Application Support/virtualenv)
+    added seed packages: pip==25.1.1
+  activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
+
+⠸ Creating virtual environment...✔ Successfully created virtual environment!
+Virtualenv location: /Users/xxx/.local/share/virtualenvs/pyspider-2k-JWV58
+Creating a Pipfile for this project...
+```
+
+#### pycharm
+
+1、选择 `Location`
+
+2、`Interpreter type`（解释器类型）选择 `Custom environment`
+
+3、`Environment` 选择 `Generate new`
+
+4、`Type` 选择 `pipenv`
+
+5、`Base python` 选择你想要的 `python` 版本
+
+6、`path to pipenv` 选择你的 `pipenv` 的可执行脚本路径
+
+创建完成后会生成一个 `Pipfile` 的文件，用来管理依赖
+
+```sh
+# 可以查看当前虚拟环境 
+pipenv --venv
+
+# 使用 pipenv 下载依赖
+pipenv install requests
+```
