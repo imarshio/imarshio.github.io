@@ -13,7 +13,7 @@ tags:
 
 ## 简介
 
-docker-compose是
+docker compose是
 
 ## Samples
 
@@ -186,4 +186,33 @@ services:
       interval: 30s
       timeout: 20s
       retries: 3
+```
+
+## 常用命令
+
+```sh
+# 
+docker compose up
+
+docker compose up -d
+
+docker compose down -v
+
+# 指定 docker-compose 文件
+docker compose -f docker-compose-test.yml up -d 
+
+# 先构建在启动
+docker compose -f docker-compose-test.yml up -d --build
+
+# 构建
+docker compose build
+
+docker compose build --no-cache
+
+docker compose logs -f [container_id] | [container_name]
+
+docker compose logs --tail 10 -f [container_id] | [container_name]
+
+docker compose exec -it [container_id] | [container_name] /bin/bash
+
 ```

@@ -3,7 +3,7 @@ icon: pen-to-square
 category:
   - postgresql
 title: pg命令
-# tag:
+order: 3
 
 ---
 

@@ -36,3 +36,36 @@ sudo yum install zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel
 # 编译并安装
 make && make install
 ```
+
+## 基础
+
+### 数据类型
+
+### 运算符
+
+#### is 和 == 的区别
+
+```python
+
+```
+
+## 类
+
+## 注解
+
+### `@property`
+
+```python
+    """
+    @property 将注解对应的方法变成类的对象
+    """
+    @property
+    def is_active(self):
+        return True
+```
+
+### `@staticmethod`
+
+```python
+
+```

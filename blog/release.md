@@ -8,6 +8,12 @@ cover: /assets/images/1265079-1322607782.png
 
 ## 小站更新日记
 
+### 2025.11.26
+
+1. 升级依赖版本，处理依赖升级后的依赖冲突
+2. 更换依赖`vuepress-plugin-comment2@2.0.0-rc.29`为`@vuepress/plugin-comment@next`
+3. 内容更新（pg、redis、docker...）
+
 ### 2024.7.4
 
 小站已经初具规模，麻雀虽小，五脏俱全，日后一定会勇攀高峰。

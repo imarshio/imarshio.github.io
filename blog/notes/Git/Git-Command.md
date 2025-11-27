@@ -26,7 +26,7 @@ git init
 git remote -v
 
 # 绑定指定仓库
-git remote add origin git@101.132.32.220:demo/spring.git
+git remote add origin git@101.xx.32.220:demo/spring.git
 
 # 修改远程仓库地址
 git remote set-url origin git@github.com:imarshio/marshio.git

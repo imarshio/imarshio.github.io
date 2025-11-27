@@ -153,9 +153,28 @@ lsof -i :port
 
 ## telnet
 
+`telnet` 是一种用于远程登录和网络测试的协议及工具。
+
 ```sh
+# 用于远程登陆，默认端口 23
+telent ip 
+
+
+# 指定端口进行远程登陆
+telnet ip port
+
+
+# 用于网络测试
+telnet ip 
+
+# 测试指定 IP 的端口是否放开
+telnet ip port
 
 ```
+
+成功会显示`Connected to ...`
+
+失败会显示`Connection refused`
 
 ## ps
 

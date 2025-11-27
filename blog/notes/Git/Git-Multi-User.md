@@ -10,16 +10,44 @@ category:
 tags:
 ---
 
-## 1、生成新的SSH密钥
+## Windows
 
-1、生成SSH密钥，[参考文档](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent)
-2、将公钥配置在Github账户，[参考文档](https://docs.github.com/zh/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+### 1、生成新的SSH密钥
 
-## 2、添加到 ssh-agent
+1、生成 SSH 密钥，[参考文档](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent)
 
-### windows
+```sh
+# 在生成第二个 SSH 密钥时，需要与第一个 SSH 密钥在命名上区分开
+ssh-keygen -t ed25519 -C "marshioman@gmail.com"
 
-使用管理员打开power-shell
+Generating public/private ed25519 key pair.
+# 在这里我讲第二个 SSH 密钥命名为 id_ed25519_work
+Enter file in which to save the key (~/.ssh/id_ed25519): ~/.ssh/id_ed25519_work
+Enter passphrase for "~/.ssh/id_ed25519_work" (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in ~/.ssh/id_ed25519_work
+Your public key has been saved in ~/.ssh/id_ed25519_work.pub
+The key fingerprint is:
+SHA256:fektQ7T7svYfPy+pZ++7+LhIs0PZz46xJe53hDfU61c marshioman@gmail.com
+The key's randomart image is:
++--[ED25519 256]--+
+|                 |
+|                 |
+|            .   .|
+|         . . o ..|
+|        S . B ...|
+|           * +.oE|
+|          .o=o=*o|
+|          ..B+&*=|
+|           +=/BX&|
++----[SHA256]-----+
+```
+
+2、将公钥配置在 Github 账户，[参考文档](https://docs.github.com/zh/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+
+### 2、添加到 ssh-agent
+
+使用管理员打开 power-shell
 
 ```shell
 # 1、确认ssh-agent服务是否启动
@@ -52,17 +80,17 @@ Hi imarshio! You've successfully authenticated, but GitHub does not provide shel
 ssh -T -p 443 git@ssh.github.com
 ```
 
-## 3、配置多个账户的 SSH
+### 3、配置多个账户的 SSH
 
-### 3.1、将多个账户的私钥添加到ssh-agent
+#### 3.1、将多个账户的私钥添加到 ssh-agent
 
 ```shell
 ssh-add c:/Users/username/.ssh/id_private
 ```
 
-### 3.2、更新ssh config
+#### 3.2、更新 ssh config
 
-Windows的ssh config文件在`c:\Users\demouser\.ssh`目录，
+Windows 的 ssh config 文件在`c:\Users\demouser\.ssh`目录，
 
 ```shell
 # 区分
@@ -83,6 +111,28 @@ Host git.deepq.tech
 > TIPS
 > [https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=mac](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent?platform=mac)
 > IgnoreUnknown参数只有在mac下支持。
+
+## Mac
+
+### 1、生成新的SSH密钥
+
+同上
+
+### 2、修改 config 文件
+
+```sh
+cd ~/.ssh/
+
+# 查看是否存在 config 文件， 如果没有就创建一个
+vim config
+
+# 填充如下内容
+Host work # host 别名，会用在 ssh -T 的测试中
+  HostName 192.168.1.3 # IP 地址或域名
+  User git # 
+  IdentityFile ~/.ssh/id_ed25519_work # 私钥存放地址
+  IdentitiesOnly yes # 确保只使用指定的密钥
+```
 
 ## 参考
 

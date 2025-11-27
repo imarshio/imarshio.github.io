@@ -3,7 +3,7 @@ icon: pen-to-square
 category:
   - postgresql
 title: pg安装 
-# tag:
+order: 2
 
 ---
 

@@ -449,6 +449,8 @@ COPY /demo.py /app/
 RUN pip install --no-cache-dir -r /app/requirements.txt -i https://mirror.baidu.com/pypi/simple
 
 ENTRYPOINT cd $APP_ROOT && python demo.py
+# 部分情况下需要排查程序启动失败的原因，需要让容器进入运行态
+CMD ["bash"]
 ```
 
 #### `Docker build`
@@ -595,6 +597,15 @@ docker stats
 
 # 限制容器内存使用
 
+# 删除悬空镜像，如下，执行 `docker images` 输出
+# REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+# <none>       <none>    340d26646b0f   2 weeks ago    6.49GB
+docker image prune -f
+
+# 清除系统中所有的未正在使用的 docker 资源，包括磁盘、缓存，一般在 /var/lib/docker
+docker system prune -f
+
+# 可以用 du -h --max-depth=1 | sort -hr 逐层查看
 ```
 
 ### Docker常用容器创建
