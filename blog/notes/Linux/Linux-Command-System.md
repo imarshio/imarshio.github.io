@@ -213,3 +213,130 @@ hostnamectl set-hostname demo
 - [https://phoenixnap.com/kb/linux-commands](https://phoenixnap.com/kb/linux-commands)（推荐）
 - [https://www.runoob.com/linux/linux-command-manual.html](https://www.runoob.com/linux/linux-command-manual.html)
 - [https://www.linuxcool.com/](https://www.linuxcool.com/)
+
+## timedatectl
+
+查看详细的系统的时间以及时区信息，包括时间同步服务的状态。
+
+```sh
+[root@jc-main-02 ~]# timedatectl
+      # 本地时间，代表的是服务的时间
+      Local time: Tue 2026-01-20 22:42:30 EST
+  # 世界时间
+  Universal time: Wed 2026-01-21 03:42:30 UTC
+        # real time clock 实时时钟--代表的是硬件时间
+        RTC time: Wed 2026-01-21 03:42:29
+       # 时区
+       Time zone: America/New_York (EST, -0500)
+     # Network time protocol 网络时间协议，联网自动调整时间，yes 表示开启了这个服务
+     NTP enabled: yes
+# NTP 协议同步，no 表示没有同步成功
+NTP synchronized: no
+ # 主板存的时间是否本地时区，no 表示存的是世界时区的时间，即UTC，yes 表示存的是本地时区的时间
+ RTC in local TZ: no
+      DST active: no
+ Last DST change: DST ended at
+                  Sun 2025-11-02 01:59:59 EDT
+                  Sun 2025-11-02 01:00:00 EST
+ Next DST change: DST begins (the clock jumps one hour forward) at
+                  Sun 2026-03-08 01:59:59 EST
+                  Sun 2026-03-08 03:00:00 EDT
+```
+
+### 邪修修复服务器时间有偏差
+
+背景：我本地的时间是上海时间`2026-1-21 11:35`，我有一个服务器时间是`Wed Jan 21 11:37 CST 2026`，也就是服务器和我本地的时间差2分钟左右。
+
+#### 排查问题
+
+```sh
+# 排查原因
+# 因为我确认我本地时间是绝对正确的，所以重点就放在排查服务器是否有问题
+# 在服务器上执行
+$ timedatectl status
+
+# 这里发现，NTP 服务虽然开启了，但是同步却失败了
+# 查看具体的时间同步服务
+# 查看是否有 systemd-timesyncd or chronyd 服务。我这里是 chronyd
+$ which systemd-timesyncd
+$ which chronyd
+
+# 先尝试重启大法好，
+$ sudo systemctl restart chronyd
+$ chronyc tracking
+# 如果你是 systemd-timesyncd
+$ sudo systemctl restart systemd-timesyncd
+$ timedatectl status
+
+# 查看 Leap status，如果是 Normal, 则表示成功，否则就是失败
+# 我这里仍然是 Not synchronised, 就是失败了
+
+# 调整 NTP 服务器地址
+# 因为大多 Linux 服务器的 NTP 源都在国外，所以我们尝试调整为国内源
+$ vim /etc/chrony.conf
+# 添加如下内容，并注释掉旧的
+server ntp.aliyun.com iburst
+
+# 重启服务进行验证
+$ sudo systemctl restart chronyd
+$ chronyc tracking
+
+# 仍然有问题，排查端口问题
+$ chronyc sources -v
+
+# 查看 reach 列，如果都是 0，则代表有网络问题
+# 使用 nc 进行排查
+$ nc -zvu ntp.aliyun.com 123
+Ncat: Version 7.50 ( https://nmap.org/ncat )
+Ncat: Connected to 203.107.6.88:123.
+Ncat: UDP packet sent successfully
+Ncat: 1 bytes sent, 0 bytes received in 2.02 seconds.
+# 到这里，问了下ai，他说我的入战规则没开 123
+```
+
+#### 尝试 ntpdate 服务【失败】
+
+```sh
+# 下载并测试
+$ yum install ntpdate -y
+$ ntpdate ntp.aliyun.com
+21 Jan 01:06:11 ntpdate[20070]: no server suitable for synchronization found
+
+```
+
+#### 邪修登场
+
+```sh
+# 利用 date -s 设置系统时间，从百度获取最新世界时间
+% date -s "$(curl -sI baidu.com | grep '^Date:' | cut -d' ' -f3-6)Z"
+
+# 配合 crontab 定期执行
+# 创建脚本
+% sudo vim /usr/local/bin/sync_time.sh
+
+# 写入以下内容
+>>>
+#!/bin/bash
+
+# 1. 获取百度响应头中的 GMT 时间
+# 2. 格式化并添加 Z (表示 UTC/GMT)
+# 3. 设置系统时间
+HTTP_DATE=$(curl -sI --connect-timeout 5 http://www.baidu.com | grep -i '^Date:' | cut -d' ' -f3-6)
+
+if [ -n "$HTTP_DATE" ]; then
+    # 设置系统时间
+    date -s "$HTTP_DATE Z"
+    # 将系统时间写入硬件时钟 (RTC)
+    /usr/sbin/hwclock -w
+    echo "Time synced successfully at $(date)"
+else
+    echo "Failed to fetch time from baidu.com"
+    exit 1
+fi
+<<<
+
+# 添加定时任务
+% crontab -e
+# 添加如下内容，每30分钟执行一次时间同步
+*/30 * * * * /usr/local/bin/sync_time.sh >> /var/log/sync_time.log 2>&1
+```

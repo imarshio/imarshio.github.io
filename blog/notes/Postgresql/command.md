@@ -27,21 +27,21 @@ select * from pg_roles;
 
 参考官方文档：[https://www.postgresql.org/docs/13/role-attributes.html](https://www.postgresql.org/docs/13/role-attributes.html)
 
-| 列name | 含义 |
-| --- | --- |
-| rolname | 用户名称 |
-| rolsuper | 是否超级用户，使用`SUPERUSER`来标识这是一个超级用户 |
-| rolinherit | 用户继承 |
-| rolcreaterole | 能否创建用户，使用`CREATEROLE`来标识这个用户可以创建用户，但是不能用于创建超级用户 |
-| rolcreatedb | 能否创建数据库，使用`CREATEDB`来标识这个用户可以创建数据库 |
-| rolcanlogin | 能否登录，使用`LOGIN`来标识这个用户可以登录 |
-| rolreplication | 能否启用流式复制，使用`REPLICATION LOGIN`来标识这个用户可以启用流失复制 |
-| rolconnlimit | 用户连接数据库限制，使用`CREATE ROLE _**name**_ CONNECTION LIMIT '_**integer**_'.`来限制一个用户的最大连接数，`-1`表示不限制 |
-| rolpassword | 用户密码，使用`CREATE ROLE _**name**_ PASSWORD '_**string**_'`指定用户密码 |
-| rolvaliduntil |  |
-| rolbypassrls |  |
-| rolconfig | 用户配置 |
-| oid | 用户id |
+| 列name         | 含义                                                                                                                         |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| rolname        | 用户名称                                                                                                                     |
+| rolsuper       | 是否超级用户，使用`SUPERUSER`来标识这是一个超级用户                                                                          |
+| rolinherit     | 用户继承                                                                                                                     |
+| rolcreaterole  | 能否创建用户，使用`CREATEROLE`来标识这个用户可以创建用户，但是不能用于创建超级用户                                           |
+| rolcreatedb    | 能否创建数据库，使用`CREATEDB`来标识这个用户可以创建数据库                                                                   |
+| rolcanlogin    | 能否登录，使用`LOGIN`来标识这个用户可以登录                                                                                  |
+| rolreplication | 能否启用流式复制，使用`REPLICATION LOGIN`来标识这个用户可以启用流失复制                                                      |
+| rolconnlimit   | 用户连接数据库限制，使用`CREATE ROLE _**name**_ CONNECTION LIMIT '_**integer**_'.`来限制一个用户的最大连接数，`-1`表示不限制 |
+| rolpassword    | 用户密码，使用`CREATE ROLE _**name**_ PASSWORD '_**string**_'`指定用户密码                                                   |
+| rolvaliduntil  |                                                                                                                              |
+| rolbypassrls   |                                                                                                                              |
+| rolconfig      | 用户配置                                                                                                                     |
+| oid            | 用户id                                                                                                                       |
 
 示例
 
