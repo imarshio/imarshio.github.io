@@ -73,7 +73,7 @@ git pull
 
 ## branch & chekout & switch
 
-分支 切换分支
+### 分支 切换分支
 
 ```shell
 # 新建分支
@@ -93,7 +93,9 @@ git branch -d old_branch_name
 # 如果要删除的分支存在未完成的merge，需要替换成如下命令
 git branch -D old_branch_name
 
-# 切换到远程分支，--track可以不写
+# 切换并自动追踪远程分支
+git checkout remote_branch_name
+# 等同于如下命令
 git checkout -b remote_branch_name --track origin/remote_branch_name
 
 # 修改还没被commit 的时候，撤销本地修改
@@ -102,7 +104,7 @@ git checkout HEAD -- /path/to/file
 git checkout branch_name --
 ```
 
-重命名分支
+### 重命名分支
 
 ```sh
 # 重命名本地分支
@@ -116,6 +118,33 @@ git branch -m old-branch-name new-branch-name
 git push origin --delete old-branch-name
 git push origin new-branch-name
 git branch --set-upstream-to=origin/new-branch-name new-branch-name
+```
+
+### 追踪远程分支
+
+```sh
+# 完整命令
+git checkout -b remote_branch_name --track origin/remote_branch_name
+# 简写
+git checkout remote_branch_name
+
+# 如果不加 --track 的话，是不会自动追踪远程分支的
+# 你可以通过 git branch -vv 来查看
+# 如下可以看到 v1.0.0 是没有追踪远程分支的，main 是有追踪远程 main 分支的，且可以看到落后了 228 个提交，最后一次提交记录是 refine .gitignore
+git branch -vv
+* feature/v1.0.0 779c02c for debug
+  main           79a5e26 [origin/main: behind 228] refine .gitignore
+
+# 如果发现有分支没有追踪远程分支，则需要通过如下命令进行修复，当然如果没有影响也可以选择不管
+git branch --set-upstream-to=origin/feature/v1.0.1 feature/v1.0.1
+# 如果你已经在这个分支上了
+git branch -u origin/feature/v1.0.1
+
+# 远程追踪的其他好处
+git pull origin feature/v1.0.1
+# 可以简写成
+git pull
+
 ```
 
 ## merge
@@ -225,4 +254,31 @@ git config --list
 
 # 设置pull动作为合并（merge），而不是变基（rebase）
 git config pull.rebase false
+```
+
+## revert && reset
+
+### reset
+
+```sh
+# 沿着 HEAD 往前走1步
+git reset [--hard | --soft] HEAD~1
+git reset [--hard | --soft] <CommitID>
+
+# 然后强推到远程分支
+git push origin feature/v0.0.1 --force
+
+```
+
+### revert
+
+```sh
+# 只回退一个commit
+git revert HEAD
+git push origin <你的分支名>
+
+# 回退多个commit，
+# -n (or --no-commit)：把所有的撤销改动放进你的暂存区
+# <旧的hash>..<新的hash> 是一个左开右闭区间
+git revert -n <旧的hash>..<新的hash>
 ```
