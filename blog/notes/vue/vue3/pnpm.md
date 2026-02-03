@@ -33,6 +33,22 @@ pnpm get registry
 
 ## 命令
 
+### node
+
+```sh
+# 查看当前环境下的 node list
+pnpm env list
+
+# 查看远程可用版本
+pnpm env list --remote
+
+# 按转并切换到指定版本
+pnpm env use --global 20.10.0
+
+# 安装并切换到远程最新版本
+pnpm env use --global lts
+```
+
 ### 下载依赖
 
 [install](https://pnpm.io/cli/install)

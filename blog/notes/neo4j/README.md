@@ -1,6 +1,6 @@
 ---
 title: Neo4j
-icon: database
+icon: fa-brands fa-neos
 article: false
 order: 6
 index: false
