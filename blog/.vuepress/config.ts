@@ -1,9 +1,29 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { viteBundler } from "@vuepress/bundler-vite";
 import { defineUserConfig } from "vuepress";
-import { docsearchPlugin } from '@vuepress/plugin-docsearch';
 import theme from "./theme.js";
 
-export default {
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+export default defineUserConfig({
   base: "/",
+
+  bundler: viteBundler({
+    viteOptions: {
+      resolve: {
+        alias: [
+          {
+            find: /[/\\]vuepress-theme-hope[/\\]dist[/\\]client[/\\]styles[/\\]_code\.scss$/,
+            replacement: path.resolve(
+              __dirname,
+              "./styles/theme-hope-_code.scss",
+            ),
+          },
+        ],
+      },
+    },
+  }),
 
   markdown: {
     headers: {
@@ -24,4 +44,4 @@ export default {
 
   // Enable it with pwa
   shouldPrefetch: false,
-};
+});

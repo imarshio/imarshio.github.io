@@ -94,6 +94,14 @@ tag:
 - `TIME+`
 - `COMMAND`
 
+### 交互
+
+- `1`，输入 `top` 命令后，按键盘上的 `1`，即可展开显示所有逻辑 CPU 的使用率。
+- `shift + e`，切换内存单位
+- `o`
+- `i`
+- ``
+
 ### 用法
 
 #### Java进程CPU飙升
@@ -214,7 +222,13 @@ hostnamectl set-hostname demo
 - [https://www.runoob.com/linux/linux-command-manual.html](https://www.runoob.com/linux/linux-command-manual.html)
 - [https://www.linuxcool.com/](https://www.linuxcool.com/)
 
-## timedatectl
+## `hostnamectl`
+
+```sh
+% hostnamectl set-hostname demo
+```
+
+## `timedatectl`
 
 查看详细的系统的时间以及时区信息，包括时间同步服务的状态。
 
@@ -339,4 +353,42 @@ fi
 % crontab -e
 # 添加如下内容，每30分钟执行一次时间同步
 */30 * * * * /usr/local/bin/sync_time.sh >> /var/log/sync_time.log 2>&1
+```
+
+## `lscpu`
+
+查看 CPU 数量，
+
+```sh
+% lscpu
+Architecture:          x86_64
+CPU op-mode(s):        32-bit, 64-bit
+Byte Order:            Little Endian
+CPU(s):                16
+On-line CPU(s) list:   0-15
+Thread(s) per core:    1
+Core(s) per socket:    1
+Socket(s):             16
+NUMA node(s):          1
+Vendor ID:             GenuineIntel
+CPU family:            6
+Model:                 79
+Model name:            Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz
+Stepping:              1
+CPU MHz:               2299.998
+BogoMIPS:              4599.99
+Hypervisor vendor:     VMware
+Virtualization type:   full
+L1d cache:             32K
+L1i cache:             32K
+L2 cache:              256K
+L3 cache:              51200K
+NUMA node0 CPU(s):     0-15
+Flags:                 fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon nopl xtopology tsc_reliable nonstop_tsc eagerfpu pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single ssbd ibrs ibpb stibp fsgsbase tsc_adjust bmi1 avx2 smep bmi2 invpcid rdseed adx smap xsaveopt arat md_clear spec_ctrl intel_stibp flush_l1d arch_capabilities
+```
+
+还可以通过查看 `/proc/cpuinfo` 来查看。
+
+```sh
+% cat /proc/cpuinfo
 ```

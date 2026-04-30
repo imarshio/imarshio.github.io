@@ -12,14 +12,14 @@
   },
   "devDependencies": {
     "@mdit-vue/plugin-toc": "^2.1.4",
-    "@vuepress/bundler-vite": "2.0.0-rc.8",
-    "@vuepress/plugin-comment": "2.0.0-rc.118",
-    "@vuepress/plugin-docsearch": "2.0.0-rc.37",
-    "katex": "^0.16.25",
-    "markdown-it": "^14.1.0",
-    "vue": "^3.5.25",
-    "vuepress": "2.0.0-rc.8",
-    "vuepress-theme-hope": "2.0.0-rc.31"
+    "@vuepress/bundler-vite": "2.0.0-rc.28",
+    "@vuepress/plugin-comment": "2.0.0-rc.128",
+    "@vuepress/plugin-docsearch": "2.0.0-rc.128",
+    "katex": "^0.16.45",
+    "markdown-it": "^14.1.1",
+    "vue": "^3.5.33",
+    "vuepress": "2.0.0-rc.28",
+    "vuepress-theme-hope": "2.0.0-rc.106"
   },
   "pnpm": {
     "peerDependencyRules": {

@@ -9,7 +9,16 @@ order: 3
 
 前言
 
-以下命令中`[]`表示可选项，
+以下命令中`[]`表示可选项。
+切换到 `postgres` 用户，执行 `psql` 进入 `postgre` 的交互界面。
+
+```sh
+su postgres
+
+# 默认会以 root 的用户登陆
+psql
+
+```
 
 ## 角色/用户
 
@@ -185,7 +194,8 @@ postgres=# select * from pg_roles where rolname = 'zmh';
 ### 用户切换
 
 ```sql
--- 切换用户
+-- 使用 \c 切换用户
+-- \c table_name user_name table_name 不填默认切换到 postgres 库
 postgres=# \c - postgres
 You are now connected to database "postgres" as user "postgres".
 
@@ -252,6 +262,32 @@ CREATE DATABASE
 \c dbname rolename
 ```
 
+## Table
+
+### 查看数据库
+
+```sh
+# 列出所有数据库
+postgres=#  \l
+```
+
+### 创建数据库
+
+参考：[https://www.postgresql.org/docs/13/sql-createtable.html](https://www.postgresql.org/docs/13/sql-createtable.html)
+
+```sql
+create table tablename (id int);
+
+-- 指定默认值，sequence
+create table test(id int default nextval('test_id'));
+```
+
+### 切换数据库
+
+```sh
+postgres=#\c table_name
+```
+
 ## Schema
 
 参考
@@ -309,21 +345,6 @@ GRANT USAGE ON SCHEMA postgres TO marshio;
 GRANT ALL ON ALL TABLES IN SCHEMA myschema To roleA;  
 
 GRANT USAGE ON SCHEMA postgres TO marshio;
-```
-
-## Table
-
-### 查看数据库
-
-### 创建数据库
-
-参考：[https://www.postgresql.org/docs/13/sql-createtable.html](https://www.postgresql.org/docs/13/sql-createtable.html)
-
-```sql
-create table tablename (id int);
-
--- 指定默认值，sequence
-create table test(id int default nextval('test_id'));
 ```
 
 ## Sequence

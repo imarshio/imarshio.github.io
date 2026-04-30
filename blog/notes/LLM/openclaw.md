@@ -42,3 +42,14 @@ openclaw gateway start
 openclaw gateway status
 
 ```
+
+## 更新
+
+```sh
+# 适用于用 git 下载安装的
+openclaw update
+# 如果使用 pnpm 等包管理器安装的
+pnpm add -g openclaw@latest
+openclaw doctor
+openclaw gateway restart
+```
