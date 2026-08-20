@@ -29,4 +29,4 @@ vs在下载时就会默认让下载编译环境，所以无需过多配置，但
 
 选择 `c++98` 版本.
 
-![Step 1：new project](image-new-project-step-1.png)
+![Step 1：new project](./image-new-project-step-1.png)

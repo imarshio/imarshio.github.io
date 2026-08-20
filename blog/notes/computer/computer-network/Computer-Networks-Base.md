@@ -29,7 +29,7 @@ tag:
 
 ## `TCP/IP` 协议族
 
-![`TCP/IP` 协议族--图源《图解HTTP》](tcp-ip.png)
+![`TCP/IP` 协议族--图源《图解HTTP》](./tcp-ip.png)
 
 ### `TCP/IP` 分层
 
@@ -111,7 +111,7 @@ Internet Protocol，网际协议。位于网络层。
 
 ### Data flow
 
-![tcp-ip-data-flow](tcp-ip-data-flow.png)
+![tcp-ip-data-flow](./tcp-ip-data-flow.png)
 
 [原图](https://www.yuque.com/u21559410/xqh5kz/pt173506chpwo7fu/edit?toc_node_uuid=Qp95NdAMxvVhk84e)
 
