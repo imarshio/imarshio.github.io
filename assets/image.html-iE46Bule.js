@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-2b3e6948","path":"/post/tools/image.html","title":"image tool","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1704958981000,"contributors":[{"name":"marshio","email":"marshioman@gmail.com","commits":1}]},"filePathRelative":"post/tools/image.md"}');export{t as data};
