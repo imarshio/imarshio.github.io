@@ -1,13 +1,18 @@
 ---
+title: "Celery 后台任务"
 icon: fa-brands fa-python
+lang: zh-CN
 category:
   - python
-title: Python Celery
-order: 24
-tag:
-- celery
-
+order: 6
+article: false
+redirectFrom:
+  - /notes/python/celery.html
 ---
+
+# Celery 后台任务
+
+> 以下保留原有项目实践记录。依赖版本、业务配置和目录约定来自当时环境；其中引用项目模块的代码片段需要对应上下文。
 
 ## 简介
 
@@ -123,3 +128,7 @@ celery -A _celery worker -l INFO
 ```py
 
 ```
+
+---
+
+[上一篇](/notes/python/practice/sqlalchemy.md) · [下一篇](/notes/python/practice/mysql-pool.md) · [学习目录](/notes/python/README.md)

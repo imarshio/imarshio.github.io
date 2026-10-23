@@ -3,7 +3,9 @@ icon: fa-solid fa-face-smile-wink
 category:
   - interview
 title: Spring Boot 面试题
-order: 11
+order: 2
+redirectFrom:
+  - /posts/interview/Spring-Boot.html
 ---
 
 ## SpringBoot 是如何实现自动装配的？

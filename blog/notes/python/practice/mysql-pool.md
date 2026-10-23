@@ -1,10 +1,18 @@
 ---
+title: "MySQL 连接池实践"
 icon: fa-brands fa-python
+lang: zh-CN
 category:
   - python
-title: Python MySQL 连接池
-order: 24
+order: 7
+article: false
+redirectFrom:
+  - /notes/python/python-mysql-pool.html
 ---
+
+# MySQL 连接池实践
+
+> 以下保留原有项目实践记录。依赖版本、业务配置和目录约定来自当时环境；其中引用项目模块的代码片段需要对应上下文。
 
 ```python
 import pymysql
@@ -88,3 +96,7 @@ DATABASE_CONFIG = {
 }
 
 ```
+
+---
+
+[上一篇](/notes/python/practice/celery.md) · [下一篇](/notes/python/practice/spider.md) · [学习目录](/notes/python/README.md)

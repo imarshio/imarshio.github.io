@@ -1,13 +1,18 @@
 ---
+title: "爬虫实践记录"
 icon: fa-brands fa-python
+lang: zh-CN
 category:
   - python
-title: Python Spider
-order: 24
-tag:
-- spider
-
+order: 8
+article: false
+redirectFrom:
+  - /notes/python/spider.html
 ---
+
+# 爬虫实践记录
+
+> 以下保留原有项目实践记录。依赖版本、业务配置和目录约定来自当时环境；其中引用项目模块的代码片段需要对应上下文。
 
 以下是我的一些爬虫备份
 
@@ -217,3 +222,7 @@ if __name__ == '__main__':
     scheduler.start()
 
 ```
+
+---
+
+[上一篇](/notes/python/practice/mysql-pool.md) · [学习目录](/notes/python/README.md)

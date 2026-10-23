@@ -4,6 +4,8 @@ category:
   - interview
 title: Java JVM 面试题
 order: 4
+redirectFrom:
+  - /posts/interview/Java-JVM.html
 ---
 
 ## 常见的OOM原因有哪些？

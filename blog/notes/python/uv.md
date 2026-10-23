@@ -2,11 +2,10 @@
 icon: fa-brands fa-python
 category:
   - python
-title: Python UV
-order: 24
-tag:
-- celery
+title: uv 项目管理
+order: 3
 
+article: false
 ---
 
 ## 简介
@@ -82,3 +81,7 @@ uv add requests --dev
 # 移除依赖
 uv remove requests
 ```
+
+---
+
+[上一篇](/notes/python/multi-version.md) · [下一篇](/notes/python/basics/types.md) · [学习目录](/notes/python/README.md)

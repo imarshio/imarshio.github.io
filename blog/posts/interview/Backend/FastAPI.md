@@ -11,6 +11,8 @@ redirectFrom:
 
 # FastAPI 专题
 
+> 按学习顺序展开：[FastAPI 请求与校验](/notes/python/practice/fastapi.md)。
+
 > 背景：我们项目用 Flask（为什么用 Flask 见 [09-Flask专题.md](/posts/interview/Backend/Flask.md)），但市面上新的 AI 后端大多是 FastAPI。
 > 回答「没在生产用过 FastAPI」时的姿态：**理解两者的本质差别，知道迁移的难点，能当场写出流式 Agent 接口**。
 > 建议面试前用 FastAPI 把第六节的代码真跑一遍。

@@ -11,6 +11,8 @@ redirectFrom:
 
 # Python 内存、垃圾回收与执行原理
 
+> 按学习顺序展开：[引用与垃圾回收](/notes/python/runtime/lifecycle.md)、[内存分配与观测](/notes/python/runtime/allocation.md)、[源码、字节码与执行](/notes/python/runtime/execution.md)。
+
 > 入门 / 中等 / 高难各 20 题，共 60 题。★ 是高频。补充 02 的 Python 提纲与 12 的操作系统知识，重点是把「对象如何活着、空间如何复用、代码如何执行」分开讲清楚。
 > 以 **CPython 3.12 的常规 GIL 构建**为主。2026-10-22 核对：项目 `../xknow-ai/pyproject.toml` 限定 `>=3.12,<3.13`，Dockerfile 使用 Python 3.12；本机自检为 CPython 3.12.11。不要把这些实现细节当成所有 Python 实现的语言保证。
 

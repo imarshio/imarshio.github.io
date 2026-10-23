@@ -4,6 +4,8 @@ category:
   - interview
 title: Java 并发面试题
 order: 3
+redirectFrom:
+  - /posts/interview/Java-Concurent.html
 ---
 
 

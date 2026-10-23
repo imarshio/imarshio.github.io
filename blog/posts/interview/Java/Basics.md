@@ -4,6 +4,8 @@ category:
   - interview
 title: Java 基础面试题
 order: 1
+redirectFrom:
+  - /posts/interview/Java-Base.html
 ---
 
 ## 面对对象（OOP）的特点

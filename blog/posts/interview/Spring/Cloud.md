@@ -3,7 +3,9 @@ icon: fa-solid fa-face-smile-wink
 category:
   - interview
 title: Spring Cloud 面试题
-order: 12
+order: 3
+redirectFrom:
+  - /posts/interview/Spring-Cloud.html
 ---
 
 ## 常用的 SpringCloud 组间有哪些？

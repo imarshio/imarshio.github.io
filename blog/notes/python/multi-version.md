@@ -2,11 +2,10 @@
 icon: fa-brands fa-python
 category:
   - python
-title: Python 多版本管理工具
+title: 多版本与虚拟环境
 order: 2
-tag:
-- spider
 
+article: false
 ---
 
 > 管理多个Python版本和它们的虚拟环境对于任何需要在不同项目间切换的开发者来说都是一项基础技能。从官方的 venv 到强大的 pyenv 和其他第三方工具，Python社区提供了一系列的工具来简化这一过程。
@@ -445,3 +444,7 @@ pipenv --venv
 # 使用 pipenv 下载依赖
 pipenv install requests
 ```
+
+---
+
+[上一篇](/notes/python/source-install.md) · [下一篇](/notes/python/uv.md) · [学习目录](/notes/python/README.md)

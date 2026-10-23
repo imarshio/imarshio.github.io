@@ -11,6 +11,8 @@ redirectFrom:
 
 # Flask 专题
 
+> 按学习顺序展开：[WSGI、ASGI 与服务器](/notes/python/practice/web-servers.md)、[Flask 应用与测试](/notes/python/practice/flask.md)。
+
 > Flask 是你简历上唯一「生产在用」的 Python Web 框架，**一定会被问得比 FastAPI 深**。好消息是项目里的真实素材很多：应用工厂按 `APP_SCOPE` 拆三个服务、gevent + SSE、上下文在 greenlet 里的坑、fork 后连接串台、优雅停机。
 >
 > 目录：〇、WSGI/ASGI 与服务器基础 → 〇附、WSGI 三问 → 一、基础 → 二、路由与视图 → 三、请求与响应 → 四、上下文（必考）→ 五、应用工厂与蓝图 → 六、扩展生态 → 七、流式输出与长连接 → 八、部署：Gunicorn + gevent → 九、测试 → 十、高难场景 → 十一、Flask vs FastAPI vs Django

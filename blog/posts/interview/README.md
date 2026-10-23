@@ -19,13 +19,8 @@ dir:
 
 ## 语言与框架
 
-- [Java 基础](./Java-Base.md)
-- [Java 集合](./Java-Collection.md)
-- [Java 并发](./Java-Concurent.md)
-- [JVM](./Java-JVM.md)
-- [Spring](./Spring-Framework.md)
-- [Spring Boot](./Spring-Boot.md)
-- [Spring Cloud](./Spring-Cloud.md)
+- [Java 面试题](./Java/README.md)
+- [Spring 面试题](./Spring/README.md)
 - [Python](./Python/README.md)
 - [后端与部署](./Backend/README.md)
 - [React / Node.js](./Frontend/README.md)

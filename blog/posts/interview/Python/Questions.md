@@ -11,6 +11,8 @@ redirectFrom:
 
 # Python 语言、并发与工程化
 
+> 按学习顺序展开：[函数与参数](/notes/python/basics/functions.md)、[迭代器与生成器](/notes/python/advanced/iterators.md)、[线程、进程与协程](/notes/python/advanced/concurrency.md)。
+
 按入门、中等、高难复习。实现细节以各题标注的 Python 版本为准。
 
 ---
@@ -19,7 +21,7 @@ redirectFrom:
 
 ### 入门
 1. **可变与不可变类型？** 不可变：`int`、`float`、`str`、`tuple`、`frozenset`、`bytes`；可变：`list`、`dict`、`set`、`bytearray`、自定义对象。不可变对象「修改」实际是创建新对象。dict 键必须可哈希，不能简单等同于不可变；例如 tuple 内含 list 就不可哈希。
-2. **list 和 tuple 的区别？tuple 什么时候用？** list 适合需增删的序列；tuple 是有序、可重复、不能增删或替换元素的元组，适合坐标/尺寸等固定组合和函数多值返回；元素都可哈希时还能当字典键或 set 元素。`(1,)` 才是单元素元组，`(1)` 是整数；tuple 内的 list 仍可被修改。选型先看语义，不笼统保证 tuple 一定更快或整体占用一定更小。详见 [Python 基础的 tuple 专题](/posts/interview/Python/Basics.md#二、python-内置数据结构)。
+2. **list 和 tuple 的区别？tuple 什么时候用？** list 适合需增删的序列；tuple 是有序、可重复、不能增删或替换元素的元组，适合坐标/尺寸等固定组合和函数多值返回；元素都可哈希时还能当字典键或 set 元素。`(1,)` 才是单元素元组，`(1)` 是整数；tuple 内的 list 仍可被修改。选型先看语义，不笼统保证 tuple 一定更快或整体占用一定更小。详见 [Python 基础的 tuple 专题](/notes/python/basics/containers.md#元组与固定组合)。
 3. **Python 是值传递还是引用传递？** 都不是，是「**传对象引用**」：函数拿到的是同一个对象的引用。对可变对象原地修改（`lst.append`）外面能看到；在函数里重新赋值（`lst = []`）不影响外面。
 4. **`is` 和 `==`？** `is` 比较是不是同一个对象（`id`），`==` 比较值（调 `__eq__`）。判断 None 用 `is None`。
 5. **小整数缓存？** `-5 ~ 256` 的整数是预先创建好的单例，所以 `a = 256; b = 256; a is b` 是 True，257 就不一定。字符串也有驻留（interning）。这就是为什么比较值要用 `==`。

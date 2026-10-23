@@ -5,6 +5,8 @@ category:
 title: Java 集合面试题
 order: 2
 
+redirectFrom:
+  - /posts/interview/Java-Collection.html
 ---
 
 ## Java 中有哪些集合类？
