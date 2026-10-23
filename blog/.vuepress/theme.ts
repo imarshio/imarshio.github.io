@@ -19,6 +19,7 @@ export default hopeTheme({
   // ],
 
   pure: true,
+  focus: false,
 
   // iconPrefix: "fas fa-",
 
