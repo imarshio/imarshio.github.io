@@ -11,7 +11,7 @@ const languages = {
   java: ["java", "Main.java"],
 };
 
-// Keep the theme's highlighted code block; opt in to the editor with `python run`.
+// Opt in with `run` or an existing standalone Python example marker.
 export const codeRunnerPlugin = () => ({
   name: "vuepress-plugin-code-runner",
   clientConfigFile: fileURLToPath(new URL("./client.ts", import.meta.url)),
@@ -23,8 +23,11 @@ export const codeRunnerPlugin = () => ({
       const token = tokens[index];
       const [language, ...flags] = token.info.trim().split(/\s+/);
       const runtime = Object.hasOwn(languages, language) && languages[language];
+      const firstLine = token.content.trimStart().split(/\r?\n/, 1)[0];
+      const standalonePython = (language === "python" || language === "py") &&
+        /^#\s*可独立运行\s*$/u.test(firstLine);
 
-      if (!flags.includes("run") || !runtime) return rendered;
+      if (!runtime || flags.includes("no-run") || (!flags.includes("run") && !standalonePython)) return rendered;
 
       const [runnerLanguage, filename] = runtime;
       const code = md.utils.escapeHtml(JSON.stringify(token.content));

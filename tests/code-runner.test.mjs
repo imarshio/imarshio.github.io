@@ -58,3 +58,35 @@ test("multiple blocks pass their own complete source independently", () => {
   assert.ok(html.includes("print(1)\\n"));
   assert.ok(html.includes("class Main {}\\n"));
 });
+
+test("existing standalone Python examples get a runner without changing their fence", () => {
+  const code = '# 可独立运行\nfirst = [1, 2]\nsecond = first\nsecond.append(3)\nassert first == [1, 2, 3]';
+  for (const language of ["python", "py"]) {
+    for (const source of [code, `\n  ${code}`, code.replaceAll("\n", "\r\n")]) {
+      const html = markdown.render(block(language, source));
+      assert.equal((html.match(/<CodeRunner /g) ?? []).length, 1);
+      assert.ok(html.includes('language="python" filename="main.py"'));
+      assert.deepEqual(compileTemplate({ source: html, filename: "example.vue", id: "example" }).errors, []);
+    }
+  }
+});
+
+test("external dependencies, ordinary comments and non-Python snippets do not auto-enable", () => {
+  for (const [language, code] of [
+    ["python", '# 可独立运行；需要 Flask\nfrom flask import Flask'],
+    ["python", '# 可独立运行；需要 FastAPI 和 httpx\nfrom fastapi import FastAPI'],
+    ["python", 'print("# 可独立运行")'],
+    ["python", '# 依赖前文上下文\n# 可独立运行\nprint(value)'],
+    ["js", '# 可独立运行\nconsole.log(1)'],
+  ]) {
+    const source = block(language, code);
+    assert.equal(markdown.render(source), plain.render(source));
+  }
+});
+
+test("no-run overrides both the standalone marker and an explicit run flag", () => {
+  for (const info of ["python no-run", "python run no-run", "js run no-run"]) {
+    const source = block(info, '# 可独立运行\nprint("hello")');
+    assert.equal(markdown.render(source), plain.render(source));
+  }
+});
