@@ -3,6 +3,7 @@ import { fileURLToPath } from "node:url";
 import { viteBundler } from "@vuepress/bundler-vite";
 import { defineUserConfig } from "vuepress";
 import theme from "./theme.js";
+import { codeRunnerPlugin } from "./plugins/code-runner/index.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -41,6 +42,8 @@ export default defineUserConfig({
   },
 
   theme,
+
+  plugins: [codeRunnerPlugin()],
 
   // Enable it with pwa
   shouldPrefetch: false,

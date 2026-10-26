@@ -39,3 +39,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### pnpm 11 本地产物（CI 用 pnpm 9，读到它会因缺 packages 字段直接报错）
+pnpm-workspace.yaml
