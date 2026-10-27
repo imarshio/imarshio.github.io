@@ -8,6 +8,10 @@ cover: /assets/images/1265079-1322607782.png
 
 ## 小站更新日记
 
+### 2026.10.27
+
+1. 在[变量、类型与运算](./notes/python/basics/types.md#默认参数为什么不建议直接用可变对象)中补充可变默认参数案例：对比 `items=[]` 与 `items=None` 的连续调用结果，解释默认值求值时机及对象共享，并提供在线运行入口。
+
 ### 2026.10.26
 
 1. 新增[在线代码执行器](./tools/code-runner.md)，通过 OneCompiler 支持 Python、Node.js、JavaScript、HTML 和 Java 示例的在线编辑与运行。
